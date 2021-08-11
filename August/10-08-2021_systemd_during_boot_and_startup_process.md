@@ -38,15 +38,15 @@ Second-Stage and Network booting, the specifics of which I am not going to
 cover in this article. Basically, BIOS/UEFI reads the information from the non
 volatile memory(hard-disk) about the bootloader and loads into memory which
 inturn loads the kernel located in the /boot directory. The kernel, then loads
-*systemd* and *systemd* starts to work it' magic. This marks the end of the
+*systemd* and *systemd* starts to work it's magic. This marks the end of the
 boot process and the start of the startup process.
 
 Systemd first mounts the filesystem as defined by /etc/fstab file including any
 swap files or partitions. It uses it's configuration file,
 /etc/systemd/system/default.target, to determine which state or target to boot
-the host into which in case of a personal computer is likely to be a symlink to
+the host into. This, in case of a personal computer, is likely to be a symlink to
 graphical.target and for a server, multi-user.target. The target is said to be
-reached when all the target before and required by it is reached and when all
+reached after all the target before it is reached and required by it is reached and when all
 the units required by that target is started. You might have seen
 "WantedBy=multi-user.target" when configuring a service or unit. That tells the
 service to start with the multi-user.target but with a lesser level of
@@ -58,13 +58,13 @@ Note: For the sake of simplification, targets in systemd can be
 said to be the state of the computer. When the systemd has all the units
 ready to have multiple user logging in(for example in a server), it's said to
 have reached the multi-user.target. When you're in graphical user state, it's
-called the graphical.target. (multi-user.target precedes graphical-user
+said to have reached graphical.target. (multi-user.target precedes graphical-user
 target.) Poweroff is a target and so is reboot. Rescue mode is also a target.
 
 Note: If you have multiple operating system running on your system(aka
 multibooting), the menu you see too choose between operating systems, rescue
-and recovery options is the bootloader menu. GRUB2, LILO, GRUB are the most
-famous bootloaders.
+and recovery options is the bootloader's menu. GRUB2 and LILO are some of
+the popular bootloaders.
 
 
 ## References
