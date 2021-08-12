@@ -6,9 +6,9 @@
 + So I searched on the aur. But unfortunately, the package was flagged
   out-of-date so even though it installed just fine, I was getting errors when
   I tried running it.
-+ The only thing left was building the source code. But I found it too
-  complicated with no .install file or the configure file.
-+ My final option was running it on docker. And I finally succeededj
++ The next step was trying to build it from the source code. But I found it too
+  complicated with no .install or configure file and about 300 lines of build instructions.
++ My final option was running it on docker. Below are the commands to do just that.
 
 ## Installation commands
 + sudo pacman -Syu
