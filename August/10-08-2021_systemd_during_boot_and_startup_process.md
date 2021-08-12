@@ -48,9 +48,9 @@ swap files or partitions. It uses it's configuration file,
 the host into. This, in case of a personal computer, is likely to be a symlink to
 graphical.target and for a server, multi-user.target. The target is said to be
 reached after all the target before it and required by it is reached when all
-the units required by that target is started. In simpler term, when all of it's 
-dependencies are started. You might have seen
-"WantedBy=multi-user.target" when configuring a service or unit. That tells the
+the units required by that target is started. In simpler term, when the dependencies/services 
+required for the computer to run at this target's specific level of functionality is started.
+You might have seen "WantedBy=multi-user.target" when configuring a service or unit. That tells the
 service to start with the multi-user.target but with a lesser level of
 strictness than RequiredBy. (which means the multi-user.target will continue to
 function even if the service wantedby multi-user.target fails)
