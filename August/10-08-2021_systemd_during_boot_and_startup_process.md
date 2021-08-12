@@ -37,9 +37,10 @@ BIOS's work and now, the control is handed to the loaded boot sector code.
 
 When BIOS/UEFI reads the information from the non volatile memory(hard-disk)
 about the bootloader and loads it into memory, bootloader inturn loads the
-kernel located in the /boot directory. The kernel, then loads **systemd**
-and **systemd** starts to do it's work. This marks the end of the boot process
-and the start of the startup process.
+kernel. The kernel and its associated files are located in the /boot directory.
+The kernel files are identifiable as they are all named starting with vmlinuz.
+The kernel, then loads **systemd** and **systemd** starts to do it's work.
+This marks the end of the boot process and the start of the startup process.
 
 Systemd first mounts the filesystem as defined by /etc/fstab file including any
 swap files or partitions. It uses it's configuration file,
