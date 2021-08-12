@@ -46,7 +46,7 @@ swap files or partitions. It uses it's configuration file,
 /etc/systemd/system/default.target, to determine which state or target to boot
 the host into. This, in case of a personal computer, is likely to be a symlink to
 graphical.target and for a server, multi-user.target. The target is said to be
-reached after all the target before it is reached and required by it is reached and when all
+reached after all the target before it and required by it is reached when all
 the units required by that target is started. You might have seen
 "WantedBy=multi-user.target" when configuring a service or unit. That tells the
 service to start with the multi-user.target but with a lesser level of
