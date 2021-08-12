@@ -14,32 +14,32 @@ and trust it on that:
 > booting process; a kernel panic will occur if the kernel is unable to start
 > it. Init is typically assigned process identifier 1.
 
-So, systemd is the mother(parent) of all processes. It can manage devices,
+So, systemd is the mother of all processes. It can manage devices,
 login, network connection, servies and network logging. It does a lot of cool
 stuff and is a very useful tool. But, in this blog, we are just concerned with
-learning where it lies in the boot and startup process and what it does?
+learning where it lies in the boot and startup process and what it does during
+this process?
 
+## Boot & Startup Process
 The Linux boot and startup process is comprised of following steps:
 1. BIOS POST
 2. Boot loader
 3. Kernel Initialization
 4. Start systemd
 
-So, when your computer is powered, it runs POST (Power On Self Test) which is a
+When your computer is powered, it runs POST (Power On Self Test) which is a
 part of BIOS (Computer's built in firmware). This is a test to ensure all the
-hardware is working correctly. If the test passes, BIOS locates boot sector in
-any attached bootable devices. (Boot sector is a sector of a persistent data
-storage device like hard disk that contains machine code to be loaded into RAM
-and executed by BIOS.) This concludes the BIOS's work and now, the control is
-handed to the loaded boot sector code.
+hardware is working correctly. If the hardwares are pass the test, BIOS locates
+boot sector in any attached bootable devices and loads it into memory. (Boot sector
+is a **sector** of a persistent data storage device like hard disk that contains
+machine code to be loaded into RAM and executed by BIOS.) This concludes the
+BIOS's work and now, the control is handed to the loaded boot sector code.
 
-Now, we're in the bootloading step which executes in three stages. First-Stage,
-Second-Stage and Network booting, the specifics of which I am not going to
-cover in this article. Basically, BIOS/UEFI reads the information from the non
-volatile memory(hard-disk) about the bootloader and loads into memory which
-inturn loads the kernel located in the /boot directory. The kernel, then loads
-*systemd* and *systemd* starts to work it's magic. This marks the end of the
-boot process and the start of the startup process.
+When BIOS/UEFI reads the information from the non volatile memory(hard-disk)
+about the bootloader and loads it into memory, bootloader inturn loads the
+kernel located in the /boot directory. The kernel, then loads **systemd**
+and **systemd** starts it's tasks. This marks the end of the boot process
+and the start of the startup process.
 
 Systemd first mounts the filesystem as defined by /etc/fstab file including any
 swap files or partitions. It uses it's configuration file,
@@ -69,10 +69,7 @@ the popular bootloaders.
 
 ## References
 [Introduction to linux boot and startup process](https://opensource.com/article/17/2/linux-boot-and-startup)
-
 [Init-Wikipedia](https://en.wikipedia.org/wiki/Init)
-
 [Understanding systemd unit and unit files](https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files)
-
 [Beginners guide to systemd target](https://www.thegeeksearch.com/beginners-guide-to-systemd-targets-runlevels/)
 
