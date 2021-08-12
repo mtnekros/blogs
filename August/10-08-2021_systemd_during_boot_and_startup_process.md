@@ -29,7 +29,7 @@ The Linux boot and startup process is comprised of following steps:
 
 When your computer is powered, it runs POST (Power On Self Test) which is a
 part of BIOS (Computer's built in firmware). This is a test to ensure all the
-hardware is working correctly. If the hardwares are pass the test, BIOS locates
+hardware is working correctly. If the hardwares pass the test, BIOS locates
 boot sector in any attached bootable devices and loads it into memory. (Boot sector
 is a **sector** of a persistent data storage device like hard disk that contains
 machine code to be loaded into RAM and executed by BIOS.) This concludes the
