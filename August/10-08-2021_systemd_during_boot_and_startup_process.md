@@ -38,7 +38,7 @@ BIOS's work and now, the control is handed to the loaded boot sector code.
 When BIOS/UEFI reads the information from the non volatile memory(hard-disk)
 about the bootloader and loads it into memory, bootloader inturn loads the
 kernel located in the /boot directory. The kernel, then loads **systemd**
-and **systemd** starts it's tasks. This marks the end of the boot process
+and **systemd** starts to do it's work. This marks the end of the boot process
 and the start of the startup process.
 
 Systemd first mounts the filesystem as defined by /etc/fstab file including any
@@ -53,15 +53,14 @@ service to start with the multi-user.target but with a lesser level of
 strictness than RequiredBy. (which means the multi-user.target will continue to
 function even if the service wantedby multi-user.target fails)
 
-
-Note: For the sake of simplification, targets in systemd can be
-said to be the state of the computer. When the systemd has all the units
+## Notes:
+1. For the sake of simplification, targets in systemd can be
+thought of as the state of the computer. When the systemd has all the units
 ready to have multiple user logging in(for example in a server), it's said to
 have reached the multi-user.target. When you're in graphical user state, it's
 said to have reached graphical.target. (multi-user.target precedes graphical-user
 target.) Poweroff is a target and so is reboot. Rescue mode is also a target.
-
-Note: If you have multiple operating system running on your system(aka
+2. If you have multiple operating system running on your system(aka
 multibooting), the menu you see too choose between operating systems, rescue
 and recovery options is the bootloader's menu. GRUB2 and LILO are some of
 the popular bootloaders.
@@ -69,7 +68,10 @@ the popular bootloaders.
 
 ## References
 [Introduction to linux boot and startup process](https://opensource.com/article/17/2/linux-boot-and-startup)
+
 [Init-Wikipedia](https://en.wikipedia.org/wiki/Init)
+
 [Understanding systemd unit and unit files](https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files)
+
 [Beginners guide to systemd target](https://www.thegeeksearch.com/beginners-guide-to-systemd-targets-runlevels/)
 
