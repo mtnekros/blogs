@@ -8,7 +8,7 @@
   I tried running it.
 + The next step was trying to build it from the source code. But I found it too
   complicated with no .install or configure file and about 300 lines of build instructions.
-+ My final option was running it on docker. Below are the commands to do just that.
++ My final option was running it on docker. Following are the commands to do just that.
 
 ## Installation commands
 + sudo pacman -Syu
