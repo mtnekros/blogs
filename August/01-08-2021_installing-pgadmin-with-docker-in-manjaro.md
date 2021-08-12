@@ -17,7 +17,7 @@
 + sudo usermod -aG docker $USER 
 + reboot
 + docker pull dpage/pgadmin4
-+ docker run --rm --network host -e 'PGADMIN_DEFAULT_EMAIL=mtnekros@gmail.com' -e 'PGADMIN_LISTEN_PORT=5050' -e 'PGADMIN_DEFAULT_PASSWORD=postgres' -d --name pgadmin dpage/pgadmin4 
++ docker run --rm --network host -e 'PGADMIN_DEFAULT_EMAIL=localhost@site.com' -e 'PGADMIN_LISTEN_PORT=5050' -e 'PGADMIN_DEFAULT_PASSWORD=postgres' -d --name pgadmin dpage/pgadmin4 
     * --rm => remove after stoping (a pretty usefull command)
     * --network host => makes it so it uses the same network as the host (The
       most important command for my needs because I have my postgres on the host
@@ -28,7 +28,7 @@
     * -d => run detached
     * --name pgadmin => give name to the container
     * !TODO figure out the way to backup & restore docker container using volumes
-+ docker run --network host -e 'PGADMIN_DEFAULT_EMAIL=mtnekros@gmail.com' -e 'PGADMIN_LISTEN_PORT=5050' -e 'PGADMIN_DEFAULT_PASSWORD=postgres' -d --name pgadmin dpage/pgadmin4 
++ docker run --network host -e 'PGADMIN_DEFAULT_EMAIL=localhost@site.com' -e 'PGADMIN_LISTEN_PORT=5050' -e 'PGADMIN_DEFAULT_PASSWORD=postgres' -d --name pgadmin dpage/pgadmin4 
     * the same command but without the --rm so the container persists.
 
 ## Useful command
