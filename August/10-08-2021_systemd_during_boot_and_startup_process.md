@@ -39,7 +39,8 @@ When BIOS/UEFI reads the information from the non volatile memory(hard-disk)
 about the bootloader and loads it into memory, bootloader inturn loads the
 kernel. The kernel and its associated files are located in the /boot directory.
 The kernel files are identifiable as they are all named starting with vmlinuz.
-The kernel, then loads **systemd** and **systemd** starts to do it's work.
+The kernel first extracts itself since they are in compressed state initially.
+It then loads **systemd** and **systemd** starts to do it's work.
 This marks the end of the boot process and the start of the startup process.
 
 Systemd first mounts the filesystem as defined by /etc/fstab file including any
