@@ -167,4 +167,4 @@ more about this topic in the links provided in the references section.
 ## References
 [MRO by non other than Guido van Rossum himself](http://python-history.blogspot.com/2010/06/method-resolution-order.html)
 
-[L3 Linearization](https://en.wikipedia.org/wiki/C3_linearization)
+[C3 Linearization](https://en.wikipedia.org/wiki/C3_linearization)
