@@ -129,8 +129,8 @@ We can check if our solution is correct by calling the .mro() function
 ```
 
 #### Can you think of situation when multiple inheritance would break?
-Since L3 linearization requires preservation of local precedence order. In the
-following case, python won't let you do a multiple inheritance. 
+Since C3 linearization requires preservation of local precedence order. When C3 linearization breaks it is usually because of poor design cases.
+One such example is given below:
 ```python
 class A:
     pass
