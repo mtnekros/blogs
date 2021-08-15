@@ -15,7 +15,8 @@ class Father:
     def do_something(self):
         print("Called father's do_something")
 
-class Mother: def do_something(self):
+class Mother:
+    def do_something(self):
         print("Called mother's do_something")
 
 class Child(Father, Mother):
