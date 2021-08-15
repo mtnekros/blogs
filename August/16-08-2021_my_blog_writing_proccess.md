@@ -17,7 +17,7 @@ free writing experience.
 + Markdown
 + Markdown preview
 
-![Screenshot of my setup](./images/blog_writing_screenshot.png)
+![Screenshot of my setup](./images/blog_writing_screenshot.png "A screenshot of my setup")
 
 ## Why Markdown?
 + Syntax for writing markdown is very intuitive, easy to learn and use. 
