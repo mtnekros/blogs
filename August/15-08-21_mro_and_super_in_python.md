@@ -46,15 +46,18 @@ bject'>)
 bject'>]
 ```
 
-## Simple trick to figure out the order in basic cases
+## Simple way to figure out the order in basic cases
 You can actually determine the mro in simple cases by just looking how it is
 inherited using the **depth-first left-to-right scheme**.
 + First factor in the determining the precedence is depth of inheritance i.e.
-  how far down the line the class is in the heirarchy. Lower the class higher
-  it's precedence.
-+ Another factor to consider is the position of the classes in the same
-  generation and precedence goes from left to right. In our example `class
+  how far down the line the class is in the heirarchy.This is the theory that
+  child classes override classes overide the methods of their parents which is
+  pretty standard.
++ The second factor to consider is the position of the classes in the same
+  generation. Here, precedence goes from left to right. In our example `class
   Child(Father, Mother)`, Father classes comes before Mother.
+So taking the above two factor in consideration the MRO of our `Child` class in the example
+above would be Child > Father > Mother > object.
 
 ## C3 Linearization
 Now we're trying to dig a little deeper into how the algorithm works.
