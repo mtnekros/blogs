@@ -4,9 +4,9 @@
 It is the order in which the python searches for a method in a class heirarchy.
 It is particularly useful when we are dealing with multiple inheritance. The
 importance of method resolution isn't apparent until we are dealing with a
-situation where we absolutely need it.
+situation where we absolutely need it. 
 
-## Where is it required exactly?
+## Where is it needed exactly?
 Suppose we have the following situation. We have a father class and a mother
 class. And we have a child class that inherits from both father and mother in
 that order.
