@@ -1,4 +1,4 @@
-# What is Method Resolution Order (MRO) and how does it work in python?
+# Method Resolution Order (MRO) and how it works in python
 
 ## What kind of order is a method resolution order?
 It is the order in which the python searches for a method in a class heirarchy.
