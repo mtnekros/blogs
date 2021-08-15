@@ -129,7 +129,7 @@ We can check if our solution is correct by calling the .mro() function
 ```
 
 #### Can you think of situation when multiple inheritance would break?
-Since C3 linearization requires preservation of local precedence order. When C3 linearization breaks it is usually because of poor design cases.
+Since C3 linearization requires preservation of local precedence order. When C3 linearization breaks it is usually because of poor design choices.
 One such example is given below:
 ```python
 class A:
