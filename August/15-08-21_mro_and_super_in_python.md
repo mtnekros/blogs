@@ -98,27 +98,23 @@ class K(A, B, C):
     pass
 ```
 
-<a name="eq1">First get the linearization of the base class</a>
+
 ```
+First, let's get the linearization of the base class
 L(object) = [object] // since it is has no base class it's linearization list only has itself
-```
 
 Now, to get the linearization of 1st generations.
-
 From the definition of [C3 Linearization](#c3l-def), we can write `L(A) = [A] + merge(L(object), [object])`
-```
 L(A) = [A] + merge(L(object), [object]) 
      = [A] + merge([object], [object]) // from [Eq1](#eq1)
      = [A, object] // object added to the output list because it's the only head doesn't appear in any tail
-```
+
 Similarly, for B & C,
-```
+
 L(B) = [B, object] 
 L(C) = [C, object]
-```
-Now, let's calculate the linearization for K
 
-```
+Now, let's calculate the linearization for K
 L(K) = [K] + merge(L(A), L(B), L(C), [A, B, C])                      // From the definition of [C3 Linearization]
      = [K] + merge([A, object], [B, object], [C, object], [A, B, C]) // Replacing all the L(A), L(B), L(C) with their actual value
      = [K, A] + merge([object], [B, object], [C, object], [B, C])    // Added A to the output list because it only appears in the head of all list in the merge part
