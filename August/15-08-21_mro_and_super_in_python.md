@@ -46,7 +46,7 @@ bject'>)
 bject'>]
 ```
 
-## Simple trick to figure out the order in basic cases?
+## Simple trick to figure out the order in basic cases
 You can actually determine the mro in simple cases by just looking how it is
 inherited using the **depth-first left-to-right scheme**.
 + First factor in the determining the precedence is depth of inheritance i.e.
@@ -66,7 +66,7 @@ C3 linearization results in three important properties:
 + preservation of local precedence order
 + monotonic ordering
 
-### <a name="c3l-def">Definition</a>
+#### <a name="c3l-def">Definition</a>
 + C3 linearization of a class is the sum of 
     + the class itself plus
     + a unique merge of
@@ -78,12 +78,11 @@ C3 linearization results in three important properties:
 + The second step is repeated until all the classes are out of the merge list
   into the output list.
 
-### Let's do a C3 serialization ourselves
+#### Let's do a C3 serialization ourselves
 A case of multiple inheritance is given below. Let's compute the MRO of class K in the following example.
 ```Python
-# added the predefined base object class for the sake of simplication
 class object:
-    pass
+    ...
 
 class A(object):
     pass
@@ -98,7 +97,7 @@ class K(A, B, C):
     pass
 ```
 
-
+Solution:
 ```
 First, let's get the linearization of the base class
 L(object) = [object] // since it is has no base class it's linearization list only has itself
@@ -122,8 +121,14 @@ L(K) = [K] + merge(L(A), L(B), L(C), [A, B, C])                      // From the
      = [K, A, B, C] + merge([object], [object], [object])
      = [K, A, B, C, object]
 ```
+We can check if our solution is correct by calling the .mro() function
 
-## Can you think of situation when multiple inheritance would break?
+```python
+>>> K.mro()
+[<class '__main__.K'>, <class '__main__.A'>, <class '__main__.B'>, <class '__main__.C'>, <class 'object'>]
+```
+
+#### Can you think of situation when multiple inheritance would break?
 Since L3 linearization requires preservation of local precedence order. In the
 following case, python won't let you do a multiple inheritance. 
 ```python
