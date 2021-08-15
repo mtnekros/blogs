@@ -1,6 +1,6 @@
 # What is Method Resolution Order (MRO) and how does it work in python?
 
-## What kind of an order is the method resolution order?
+## What kind of order is a method resolution order?
 It is the order in which the python searches for a method in a class heirarchy.
 It is particularly useful when we are dealing with multiple inheritance. The
 importance of method resolution isn't apparent until we are dealing with a
@@ -26,9 +26,9 @@ child.do_something()
 ```
 Which function will be called in this case when child.do_something() is called
 since both the father and the mother have the function do_something? 
-**This is exactly the type of situation where we need to linearlize the
-order of classes in the heirarchy so that we can determine whose methods or
-attribute takes precedence over the other.**
+This is exactly the type of situation where we need to **linearlize the
+order of classes in the heirarchy** so that we can determine whose methods or
+attribute takes precedence over the other.
 
 ## How to get the mro of a class?
 To display the method resolution order a class, we can either access the `__mro__`
@@ -55,17 +55,18 @@ inherited using the **depth-first left-to-right scheme**.
   generation and precedence goes from left to right. In our example `class
   Child(Father, Mother)`, Father classes comes before Mother.
 
-## The actual algorithm used to determine MRO.
+## C3 Linearization
+Now we're trying to dig a little deeper into how the algorithm works.
 Although I said, you can use depth-first left-to-right scheme to determine mro in simple
-cases, *for our ease*, the actual algorithm used for determination of MRO in python3 is
+cases for our ease, the actual algorithm used for determination of MRO in python3 is
 **C3 Linearization**. 
 C3 linearization results in three important properties:
 + a consistent extended precedence graph
 + preservation of local precedence order
 + monotonic ordering
 
-## C3 Linearization Description
-+ <a name="c3l-def"> C3 linearization of a class is the sum of </a>
+### <a name="c3l-def">Definition</a>
++ C3 linearization of a class is the sum of 
     + the class itself plus
     + a unique merge of
         + the linearizations of it's parents plus
@@ -76,7 +77,8 @@ C3 linearization results in three important properties:
 + The second step is repeated until all the classes are out of the merge list
   into the output list.
 
-## Let's do a C3 serialization ourselves
+### Let's do a C3 serialization ourselves
+A case of multiple inheritance is given below. Let's compute the MRO of class K in the following example.
 ```Python
 # added the predefined base object class for the sake of simplication
 class object:
@@ -95,14 +97,14 @@ class K(A, B, C):
     pass
 ```
 
-First get the linearization of the base class.
+<a name="eq1">First get the linearization of the base class</a>
 ```
-L(object) = [object] <a name="eq1">--Eq1</a>// since it is has no base class it's linearization list only has itself
+L(object) = [object] // since it is has no base class it's linearization list only has itself
 ```
 
 Now, to get the linearization of 1st generations.
 
-From the definition of [C3 Linearization](#c3l-def)
+From the definition of [C3 Linearization](#c3l-def), we can write `L(A) = [A] + merge(L(object), [object])`
 ```
 L(A) = [A] + merge(L(object), [object]) 
      = [A] + merge([object], [object]) // from [Eq1](#eq1)
@@ -116,7 +118,7 @@ L(C) = [C, object]
 Now, let's calculate the linearization for K
 
 ```
-L(K) = [K] + merge(L(A), L(B), L(C), [A, B, C])                      // From the definition of [C3 Linearization](#c3l-def)
+L(K) = [K] + merge(L(A), L(B), L(C), [A, B, C])                      // From the definition of [C3 Linearization]
      = [K] + merge([A, object], [B, object], [C, object], [A, B, C]) // Replacing all the L(A), L(B), L(C) with their actual value
      = [K, A] + merge([object], [B, object], [C, object], [B, C])    // Added A to the output list because it only appears in the head of all list in the merge part
      = [K, A, B] + merge([object], [object], [C, object], [C])       // Skipped object (going from left to right) and added B to the output list because it only appears in the head of all list in the merge part
@@ -162,3 +164,5 @@ more about this topic in the links provided in the references section.
 
 ## References
 [MRO by non other than Guido van Rossum himself](http://python-history.blogspot.com/2010/06/method-resolution-order.html)
+
+[L3 Linearization](https://en.wikipedia.org/wiki/C3_linearization)
