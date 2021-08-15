@@ -81,9 +81,8 @@ C3 linearization results in three important properties:
 ### Let's do a C3 serialization ourselves
 A case of multiple inheritance is given below. Let's compute the MRO of class K in the following example.
 ```Python
-# added the predefined base object class for the sake of simplication
 class object:
-    pass
+    ...
 
 class A(object):
     pass
@@ -98,7 +97,7 @@ class K(A, B, C):
     pass
 ```
 
-
+Solution:
 ```
 First, let's get the linearization of the base class
 L(object) = [object] // since it is has no base class it's linearization list only has itself
@@ -121,6 +120,12 @@ L(K) = [K] + merge(L(A), L(B), L(C), [A, B, C])                      // From the
      = [K, A, B] + merge([object], [object], [C, object], [C])       // Skipped object (going from left to right) and added B to the output list because it only appears in the head of all list in the merge part
      = [K, A, B, C] + merge([object], [object], [object])
      = [K, A, B, C, object]
+```
+We can check if our solution is correct by calling the .mro() function
+
+```python
+>>> K.mro()
+[<class '__main__.K'>, <class '__main__.A'>, <class '__main__.B'>, <class '__main__.C'>, <class 'object'>]
 ```
 
 ## Can you think of situation when multiple inheritance would break?
