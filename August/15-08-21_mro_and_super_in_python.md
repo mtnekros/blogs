@@ -119,7 +119,7 @@ L(B) = [B, object]
 L(C) = [C, object]
 
 Now, let's calculate the linearization for K
-From the definition of [C3 Linearization], L(K) is class + unique merge of (linearizations of parents + list of parent),
+From the definition of [C3 Linearization], L(K) is class + unique merge of (linearizations of parents + list of parent from left to right),
 L(K) = [K] + merge(L(A), L(B), L(C), [A, B, C])                      
      = [K] + merge([A, object], [B, object], [C, object], [A, B, C]) // Replacing all the L(A), L(B), L(C) with their actual value
      = [K, A] + merge([object], [B, object], [C, object], [B, C])    // Added A to the output list because it only appears in the head of all list in the merge part
