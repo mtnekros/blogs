@@ -46,18 +46,23 @@ bject'>)
 bject'>]
 ```
 
-## Simple trick to figure out the order in basic cases
+## Simple way to figure out the order in basic cases
 You can actually determine the mro in simple cases by just looking how it is
 inherited using the **depth-first left-to-right scheme**.
 + First factor in the determining the precedence is depth of inheritance i.e.
-  how far down the line the class is in the heirarchy. Lower the class higher
-  it's precedence.
-+ Another factor to consider is the position of the classes in the same
-  generation and precedence goes from left to right. In our example `class
+  how far down the line the class is in the heirarchy.This is the theory that
+  child classes override classes overide the methods of their parents which is
+  pretty standard.
++ The second factor to consider is the position of the classes in the same
+  generation. Here, precedence goes from left to right. In our example `class
   Child(Father, Mother)`, Father classes comes before Mother.
 
+So taking the above two factor in consideration the MRO of our `Child` class in the example
+above would be Child > Father > Mother > object.
+
 ## C3 Linearization
-Now we're trying to dig a little deeper into how the algorithm works.
+Now, we're trying to dig a little deeper into how the algorithm works. In a more complex
+heirarchy of classes, it isn't very easy to determine the mro.
 Although I said, you can use depth-first left-to-right scheme to determine mro in simple
 cases for our ease, the actual algorithm used for determination of MRO in python3 is
 **C3 Linearization**. 
@@ -100,12 +105,12 @@ class K(A, B, C):
 Solution:
 ```
 First, let's get the linearization of the base class
-L(object) = [object] // since it is has no base class it's linearization list only has itself
+L(object) = [object] --Eq1 // since it is has no base class it's linearization list only has itself
 
 Now, to get the linearization of 1st generations.
-From the definition of [C3 Linearization](#c3l-def), we can write `L(A) = [A] + merge(L(object), [object])`
+From the definition of [C3 Linearization, we can write, L(A) = [A] + merge(L(object), [object])`
 L(A) = [A] + merge(L(object), [object]) 
-     = [A] + merge([object], [object]) // from [Eq1](#eq1)
+     = [A] + merge([object], [object]) // from [Eq1]
      = [A, object] // object added to the output list because it's the only head doesn't appear in any tail
 
 Similarly, for B & C,
@@ -114,7 +119,8 @@ L(B) = [B, object]
 L(C) = [C, object]
 
 Now, let's calculate the linearization for K
-L(K) = [K] + merge(L(A), L(B), L(C), [A, B, C])                      // From the definition of [C3 Linearization]
+From the definition of [C3 Linearization], L(K) is class + unique merge of (linearizations of parents + list of parent from left to right),
+L(K) = [K] + merge(L(A), L(B), L(C), [A, B, C])                      
      = [K] + merge([A, object], [B, object], [C, object], [A, B, C]) // Replacing all the L(A), L(B), L(C) with their actual value
      = [K, A] + merge([object], [B, object], [C, object], [B, C])    // Added A to the output list because it only appears in the head of all list in the merge part
      = [K, A, B] + merge([object], [object], [C, object], [C])       // Skipped object (going from left to right) and added B to the output list because it only appears in the head of all list in the merge part
