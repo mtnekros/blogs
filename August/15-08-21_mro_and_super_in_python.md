@@ -56,6 +56,7 @@ inherited using the **depth-first left-to-right scheme**.
 + The second factor to consider is the position of the classes in the same
   generation. Here, precedence goes from left to right. In our example `class
   Child(Father, Mother)`, Father classes comes before Mother.
+
 So taking the above two factor in consideration the MRO of our `Child` class in the example
 above would be Child > Father > Mother > object.
 
