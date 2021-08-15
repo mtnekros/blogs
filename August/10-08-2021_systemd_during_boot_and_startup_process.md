@@ -1,5 +1,6 @@
 # What is systemd & where does it lie in the boot and startup process?
 
+
 ## What is systemd?
 Systemd is a system and service manager for Linux
 operating system. It is one of the popular init systems. Now, what is an init
