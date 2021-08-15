@@ -60,7 +60,8 @@ So taking the above two factor in consideration the MRO of our `Child` class in 
 above would be Child > Father > Mother > object.
 
 ## C3 Linearization
-Now we're trying to dig a little deeper into how the algorithm works.
+Now, we're trying to dig a little deeper into how the algorithm works. In a more complex
+heirarchy of classes, it isn't very easy to determine the mro.
 Although I said, you can use depth-first left-to-right scheme to determine mro in simple
 cases for our ease, the actual algorithm used for determination of MRO in python3 is
 **C3 Linearization**. 
