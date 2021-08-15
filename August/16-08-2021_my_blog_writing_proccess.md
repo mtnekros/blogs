@@ -41,9 +41,9 @@ def fibonacci(n):
 1. **Research**:
 First, I research on any topic that I am interested in. It is usually something that I want to know about but have no idea about. I also keep track of the links of the sites I've read from so that I can add in the reference section.
 2. **Planning/Layout**:
-I break down the blog into subtopics I want to discuss in each paragraph. Usually, the subheadings are questions because I think it gets me in a mind state to explain my thoughts to reader. I think that is a very important thing when writing tech blogs.
-3. **Details**:
-Now, I fill in the details of into each subtopic. After I've planned the whole thing, adding in the details into specific sub topic is a lot easier. I don't have to think about everything and my mind can focus on explaining this specific part of the blog.
+After I have studied about the topic, I decide what I want to write on the topic. I break down the blog into subtopics I want to discuss in each paragraph. Usually, the subtopics are questions because it gets me in a mind state to explain my thoughts to the readers and to myself. I think that is a very important thing when writing anything.
+03. **Details**:
+Now, I fill in the details of each subtopic. After I've planned the whole thing, adding in the details into specific sub topic is a lot easier. I don't have to think about everything and my mind can focus on explaining this specific part of the blog. This plays a crucial part in making the writing process enjoyable for me.
 4. **Final edits**:
 And I try to read & re-read the blog and fix any thing that needs fixing.
 
