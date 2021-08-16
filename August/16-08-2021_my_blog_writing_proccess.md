@@ -49,3 +49,6 @@ And I try to read & re-read the blog and fix any thing that needs fixing.
 
 ## Conclusion
 That is how I write my blogs and I find it very helpful to have this kind of structure. If you feel like this would be helpful to you too, give it a go.
+
+## References
+[Mastering github markdown](https://guides.github.com/features/mastering-markdown/)
