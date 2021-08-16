@@ -39,7 +39,7 @@ def fibonacci(n):
 
 ## Process
 1. **Research**:
-First, I research on any topic that I am interested in. It is usually something that I want to know about but have no idea about. I also keep track of the links of the sites I've read from so that I can add in the reference section.
+First, I research on any topic that I am interested in. Sometimes, it's something that I want to know about but have no idea about and sometimes I just want to share the knowledge of something I already know. I also keep track of the links of the sites I've read from so that I can add in the reference section.
 2. **Planning/Layout**:
 After I have studied about the topic, I decide what I want to write on it. I break down the blog into subtopics I want to discuss in each paragraph. Usually, the subtopics are questions because it gets me in a mind state to explain my thoughts to the readers and to myself. I think that is a very important thing when writing anything. This also helps to keep my thoughts organized and decide beforehand what are the questions I need to answer with the blog. When I don't do this and write whatever comes to my mind, I find myself overexplaining some concepts and completely forgetting to discuss about some concepts which may be very important. 
 03. **Details**:
