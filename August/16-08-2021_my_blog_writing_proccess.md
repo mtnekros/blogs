@@ -20,7 +20,7 @@ free writing experience.
 ![Screenshot of my setup](./images/blog_writing_screenshot.png "A screenshot of my setup")
 
 ## Why Markdown?
-+ Syntax for writing markdown is very intuitive, easy to learn and use. 
++ Syntax for writing markdown is very intuitive, easy to learn and use.
 + Since most of my blogs is programming related, markdown's code block
 feature is very useful. For example:
 ```html
