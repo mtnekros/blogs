@@ -3,7 +3,7 @@
 
 ## Background
 At the start of august 2021, I was presented this idea of writing a quick blog
-a day after studying about an hour about it by my friend Luckey. I thought it
+a day after studying about an hour about it by my friend [Luckey](https://gitlab.com/luckeysherpa07). I thought it
 was a good idea since I would be learning something everyday and these blogs
 would be useful to me as a collection of notes on things I've learned. But I had
 no idea that it would be this fun. In this blog, I just want to write about
