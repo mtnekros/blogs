@@ -4,7 +4,7 @@
 ## What is systemd?
 Systemd is a system and service manager for Linux
 operating system. It is one of the popular init systems. Now, what is an init
-system?. Well, here's what wikipedia says:
+system?. According to wikipedia:
 
 > In Unix-based computer operating systems, init (short for initialization) is
 > the first process started during booting of the computer system. Init is a
