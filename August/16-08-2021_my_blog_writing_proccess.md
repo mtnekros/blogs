@@ -7,7 +7,7 @@ a day after studying about an hour about it by my friend [Luckey](https://gitlab
 was a good idea since I would be learning something everyday and these blogs
 would be useful to me as a collection of notes on things I've learned. But I had
 no idea that it would be this fun. In this blog, I just want to write about
-my process of writing the blog.
+my process of writing a blog.
 
 ## My setup for writing blogs
 I write the blog using markdown. I use the VSCode as my text editor for
