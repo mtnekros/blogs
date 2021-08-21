@@ -16,7 +16,7 @@ system?. According to wikipedia:
 
 So, systemd is the mother of all processes. It can manage devices,
 login, network connection, servies and network logging. It does a lot of cool
-stuff and is a very useful tool. But, in this blog, we are just concerned with
+stuff and is a useful tool. But, in this blog, we are just concerned with
 learning where it lies in the boot and startup process and what it does during
 this process?
 
