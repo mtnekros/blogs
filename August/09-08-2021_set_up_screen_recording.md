@@ -37,10 +37,10 @@ Since we have no border in the floating video window, it can't be resized using 
 2. You can look through the commented codes to see how it works.
 3. Add the following line and save the file
 
-`
+```
 a       add window-scale -0.005
 ctrl+a  add window-scale 0.005
-`
+```
 
 4. Now when you open mpv, you can press 'a' to make the window size smaller and press Ctrl+a to make it bigger.
 
