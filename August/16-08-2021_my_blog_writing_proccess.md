@@ -1,4 +1,5 @@
-# My blog writing process
+    \ dd
+  \ # My blog writing process
 ![Picture of writing](./images/blog_banner.png "My writing process")
 
 ## Background
@@ -10,12 +11,9 @@ would be useful to me as a collection of notes on things I've learned. But I had
 no idea that it would be this fun. In this blog, I just want to write about
 my process of writing a blog.
 
-This is very very very bad. This was is bad. She were bad. THis is Stupid.
-
-
 ## My setup for writing blogs
 I write the blog using markdown. I use the VSCode as my text editor for
-writing blogs along the Markdown preview. It makes for a really distracton
+writing blogs along the Markdown preview. It makes for a really distraction
 free writing experience.
 + VSCode
 + Markdown
@@ -56,7 +54,7 @@ explain my thoughts to the readers and to myself. I think that is a very
 important thing when writing anything. This also helps to keep my thoughts
 organized and decide beforehand what are the questions I need to answer with
 the blog. When I don't do this and write whatever comes to my mind, I find
-myself overexplaining some concepts and completely forgetting to discuss about
+myself over explaining some concepts and completely forgetting to discuss about
 some concepts which may be very important.
 03. **Details**:
 Now, I fill in the details under each subtopic. After I've planned the whole
