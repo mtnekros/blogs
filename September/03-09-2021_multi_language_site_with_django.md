@@ -69,7 +69,7 @@
 * [ ] translations should work now after restarting the server
 
 ## TIPS
-1. To reused same translated text in multiple place
+1. To reuse same translated text in multiple place in a file
     * set variable as translated text at one place
         * `{% trans "Repeated text" as var_name %}`
         * `{% blocktrans asvar var_name %}`
