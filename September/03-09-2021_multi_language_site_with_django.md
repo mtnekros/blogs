@@ -3,44 +3,42 @@
 * [ ] make the directory to where .po and .mo files should go (this is the LOCALE_PATHS)
     * [ ] $BASE_DIR/locale/
 * [ ] add LOCALE_PATHS variable to settings.py
-```python
-  LOCALE_PATHS = [
-      os.path.join(BASE_DIR, 'locale')
-  ]
-```
+   ```python
+     LOCALE_PATHS = [
+         os.path.join(BASE_DIR, 'locale')
+     ]
+   ```
 * [ ] add the supported LANGUAGES in the settings.py
-```python
-  LANGUAGES = (
-      ('en', _('English')),
-      ('ne', _('Nepali')),
-  )
-```
+   ```python
+     LANGUAGES = (
+         ('en', _('English')),
+         ('ne', _('Nepali')),
+     )
+   ```
 * [ ] add "django.middleware.locale.LocaleMiddleware" after common middleware in settings.py
-```python
-from django.conf.urls.i18n import i18n_patterns
-
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.locale.LocaleMiddleware # <- Add this
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-```
+   ```python
+   MIDDLEWARE = [
+       'django.middleware.security.SecurityMiddleware',
+       'django.contrib.sessions.middleware.SessionMiddleware',
+       'django.middleware.common.CommonMiddleware',
+       'django.middleware.locale.LocaleMiddleware # <- Add this
+       'django.middleware.csrf.CsrfViewMiddleware',
+       'django.contrib.auth.middleware.AuthenticationMiddleware',
+       'django.contrib.messages.middleware.MessageMiddleware',
+       'django.middleware.clickjacking.XFrameOptionsMiddleware',
+   ]
+   ```
 * [ ] wrap the urls patterns in the projets urls.py with i18n_patterns from django.conf.urls.i18n
-```python
-urlpatterns = i18n_patterns(
-    path('users', include('users.urls')),
-    # other urls
-    url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
-    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
-    *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-)
-
-```
+   ```python
+   from django.conf.urls.i18n import i18n_patterns
+   urlpatterns = i18n_patterns(
+       path('users', include('users.urls')),
+       # other urls
+       url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
+       url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
+       *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+   )
+   ```
     * Adding the middleware and wrapping the url paths with i18n_patterns will
       set the translation urls to be automatically handled
       For example: all nepali language page paths will have ne/ prefixed to them.
