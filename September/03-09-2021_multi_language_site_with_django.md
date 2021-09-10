@@ -29,12 +29,13 @@
           `from django.utils.translation import gettext as _`
         * wrap every text that should be translated like this
           `_(text_to_be_translated)`
-* [ ] run the command: "python manage.py makemessages -t ne"
-  Note: for makemessage command to work, you need to install GNU gettext utilities 
-  in your computer
-      - For linux users, gettext will usually installed by default. If it isn't, you
-      can install using the package manager of your choice.
-      - For windows users, follow this [link](https://docs.djangoproject.com/en/2.2/topics/i18n/translation/#gettext-on-windows)
+* [ ] run the command: `python manage.py makemessages -t ne`
+  
+  _Note: for makemessages & compilemessages command to work, you need to install GNU gettext utilities 
+  in your computer_
+      * _For linux users, gettext will usually installed by default. If it isn't, you
+      can install using the package manager of your choice._
+      * _For windows users, read more at this [link](https://docs.djangoproject.com/en/2.2/topics/i18n/translation/#gettext-on-windows) or download & install getext [here](https://mlocati.github.io/articles/gettext-iconv-windows.html)_
 * [ ] edit the .po files
 * [ ] compile and regenerate .mo file
     * [ ] Use this command: "python manage.py compilemessages"
