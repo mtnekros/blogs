@@ -60,13 +60,13 @@
   
   _Note: for makemessages & compilemessages command to work, you need to install GNU gettext utilities 
   in your computer_
-      * _For linux users, gettext will usually installed by default. If it isn't, you
+      * _For linux users, gettext will usually be installed by default. If it isn't, you
       can install using the package manager of your choice._
       * _For windows users, read more at this [link](https://docs.djangoproject.com/en/2.2/topics/i18n/translation/#gettext-on-windows) or download & install getext [here](https://mlocati.github.io/articles/gettext-iconv-windows.html)_
 * [ ] edit the .po files
 * [ ] compile and regenerate .mo file
     * [ ] Use this command: `python manage.py compilemessages`
-* [ ] edit the .mo files
+* [ ] translations should work now after restarting the server
 
 ## TIPS
 1. To reused same translated text in multiple place
