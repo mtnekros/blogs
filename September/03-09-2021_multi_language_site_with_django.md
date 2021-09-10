@@ -4,16 +4,16 @@
     * [ ] $BASE_DIR/locale/
 * [ ] add LOCALE_PATHS variable to settings.py
    ```python
-     LOCALE_PATHS = [
-         os.path.join(BASE_DIR, 'locale')
-     ]
+  LOCALE_PATHS = [
+      os.path.join(BASE_DIR, 'locale')
+  ]
    ```
 * [ ] add the supported LANGUAGES in the settings.py
    ```python
-     LANGUAGES = (
-         ('en', _('English')),
-         ('ne', _('Nepali')),
-     )
+  LANGUAGES = (
+      ('en', _('English')),
+      ('ne', _('Nepali')),
+  )
    ```
 * [ ] add "django.middleware.locale.LocaleMiddleware" after common middleware in settings.py
    ```python
