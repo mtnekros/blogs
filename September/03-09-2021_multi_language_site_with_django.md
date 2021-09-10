@@ -38,7 +38,7 @@
       * _For windows users, read more at this [link](https://docs.djangoproject.com/en/2.2/topics/i18n/translation/#gettext-on-windows) or download & install getext [here](https://mlocati.github.io/articles/gettext-iconv-windows.html)_
 * [ ] edit the .po files
 * [ ] compile and regenerate .mo file
-    * [ ] Use this command: "python manage.py compilemessages"
+    * [ ] Use this command: `python manage.py compilemessages`
 * [ ] edit the .mo files
 
 ## TIPS
