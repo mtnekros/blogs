@@ -68,8 +68,80 @@
     * [ ] Use this command: `python manage.py compilemessages`
 * [ ] edit the .mo files
 
+## Working the variables inside translation string in django template
+Note that trans doesn't work properly with variables as expected.
+If you have to translate, `{{ count }} lemons` and wrap it inside trans tag like
+`{% trans "{{ count }} lemons" %}`, django will treat `{{ count }}` as a string.
+
+From django documentation,
+> It's not possible to mix a template variable inside a string within {% trans
+> %}. If your translations require strings with variables (placeholders), use
+> {% blocktrans %} instead.
+
+If you want to translate strings that contain variables as a whole, you need to use
+blocktrans tag. Contrarily to the trans tag, the blocktrans tag allows you to mark complex
+sentences consisting of literals and variable content for translation by making
+use of placeholders:
+```htmldjango
+{% blocktrans %}This string will have {{ value }} inside.{% endblocktrans %}
+```
+To translate a template expression – say, accessing object attributes or using
+template filters – you need to bind the expression to a local variable for use
+within the translation block. Examples:
+
+```htmldjango
+{% blocktrans with amount=article.price myvar=value|filter %}
+That will cost $ {{ amount }}.
+This will have {{ myvar }} inside.
+{% endblocktrans %}
+```
+
+## Contextual markers: Translation for words that have different meaning in different context
+The same word can have multiple translations based on different contexts. For
+example, the word "May" can refer to a month name and to a verb. To enable the
+translators to translate this word in two contexts, you can use
+django.utils.translation.pgettext() function or the
+django.utils.translation.npgettext() function if the string needs
+pluralization.
+```python
+from django.utils.translation import pgettext
+
+month = pgettext("month name", "May")
+verb = pgettext("verb", "May")
+```
+They take a context string as the first variable which will appear in the .po
+file as show below and same text will appear twice in the .po file given that
+the context strings for them are different.
+
+```po
+msgctxt "month name"
+msgid "May"
+msgstr ""
+
+msgctxt "verb"
+msgid "May"
+msgstr ""
+```
+
+Providing context in django template can be done with translation tags as shown
+below and context string will appear in the .po the same way as before.
+```htmldjango
+{% trans "May" context "verb"%}
+
+{% blocktrans context "month name"%}May{% endblocktrans %}
+```
+
+
 ## TIPS
-1. To reused same translated text in multiple place
+1. To ignore newlines within a blocktrans tag with can use trimmed option.
+    ```
+    {% blocktrans trimmed %}
+    This is a multiline text.
+    But it will be treated as a single line text by the blocktrans
+    tag because it has trimmed option given.
+    {% endblocktrans %}
+    ```
+2. To reused same translated text in multiple place
     * set variable as translated text at one place
         * `{% trans "Repeated text" as var_name %}`
         * `{% blocktrans asvar var_name %}`
@@ -77,7 +149,7 @@
           `{% endblocktrans %}`
     * reuse the `{{ var_name }}`
         * `{{ var_name }}`
-2. Very useful extensions for VSCode
+3. Very useful extensions for VSCode
     * `gettext` extension by MrOrz for po file syntax highlighting
     * `gettext-duplicate-error` extension by ovcharik for detecting
     duplicate translation string
