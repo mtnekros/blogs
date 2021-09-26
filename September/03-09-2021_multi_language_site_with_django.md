@@ -3,17 +3,16 @@
 This is going to be a run through of how one can get around setting up a
 multi-language site in django. We are going to go through following steps to
 set it all up.
-
-1. Setup the locale settings
-2. Mark the strings for translation and make the .po files
-3. Add the translation in .po files and generate .mo files
-4. Switch language in template
-5. Tips
-  1. Working the variables inside translation string in django template
-  2. Contextual markers: translation for words that have different meaning in different context
-  3. Trimmed blocktrans
-  4. Resuing translated text as variable in django template
-  5. Useful extensions for VSCode
+* Setup the locale settings
+* Mark the strings for translation and make the .po files
+* Add the translation in .po files and generate .mo files
+* Switch language in template
+* Tips
+  * Working the variables inside translation string in django template
+  * Contextual markers: translation for words that have different meaning in different context
+  * Trimmed blocktrans
+  * Resuing translated text as variable in django template
+  * Useful extensions for VSCode
 
 ## 1. Setup the locale settings
 * [ ] make the directory to where .po and .mo files should go (this is the LOCALE_PATHS)
