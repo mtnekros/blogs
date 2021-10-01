@@ -71,7 +71,7 @@ set it all up.
           `from django.utils.translation import gettext as _`
         * wrap every text that should be translated like this
           `_(text_to_be_translated)`
-2. [ ] run the command: `python manage.py makemessages -t ne`
+2. [ ] run the command: `python manage.py makemessages -l ne`
 
   _Note: for makemessages & compilemessages command to work, you need to install GNU gettext utilities 
   in your computer_
