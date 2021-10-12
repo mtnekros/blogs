@@ -247,7 +247,7 @@ set it all up.
     {% endblocktrans %}
     ```
 3. To ignore newlines within a blocktrans tag with can use trimmed option.
-    ```
+    ```htmldjango
     {% blocktrans trimmed %}
     This is a multiline text.
     But it will be treated as a single line text by the blocktrans
