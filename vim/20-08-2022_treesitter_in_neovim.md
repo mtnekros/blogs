@@ -15,11 +15,17 @@ With treesitter, you will have:
 
 ## Installing Treesitter in Neovim
 With VimPlug, installing nvim-treesitter is as easy as adding the following
-line to you settings file.
+line to you nvim/init.vim file.
 
 ```vim
+clall plug#begin(~/.config/nvim/plugged')
+...
 Plug 'nvim-treesitter/nvim-treesitter', {'do': {'TSUpdate'}}
+...
+call plug#end()
 ```
+Now you can source the rc file with `source %`  or restart the vim. And do a
+This will install the nvim-treesitter plugin.
 
 >NOTE: This plugin is only guaranteed to work with specific versions of language
 >parsers (as specified in the lockfile.json). When upgrading the plugin, you
@@ -27,7 +33,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': {'TSUpdate'}}
 >:TSUpdate
 
 ## Language parsers
-This will install the nvim-treesitter plugin. Now if you don't install any language
+Now that you have the plugin installed. If you don't install any language
 parsers, you won't be able to enjoy the goodness of treesitter magic. You need
 to install individual language-parsers for the languages you want to support.
 Luckily you can do easily with just a simple command. And it's also supports tabbing
