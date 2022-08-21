@@ -1,4 +1,4 @@
-![fixed value fields](./database/images/enums.png)
+![fixed value fields](./images/enums.png)
 <h1 style="text-align: center">Enums in postgresql </h1>
 
 
