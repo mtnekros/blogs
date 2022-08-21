@@ -66,7 +66,7 @@ Table:
 |-----------|-----------------|------------------|----------------------|
 |1 |     140|text-processing  |pending|
 |2 |     140|video-processing |in process|
-|3 |     140|web-processing |processing|
+|3 |     140|web-processing |in process|
 |4 |     140|image-processing |completed|
 
 ## 4. Inserting/Updating the process_status column with wrong values?
