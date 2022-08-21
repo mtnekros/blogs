@@ -1,6 +1,8 @@
-# Create choice fields/enums in postgresql
+![fixed value fields](./database/images/enums.png)
+<h1 style="text-align: center">Enums in postgresql </h1>
 
-## The need for enum types
+
+<h2 style="text-align: center">The need for enum types</h2>
 Ever been in a situation when you need to have finite specific values in one
 of the columns in your table? I was in a similar siutation. I needed to track
 the status of some process. And the following are the posible solutions:
@@ -10,7 +12,8 @@ the status of some process. And the following are the posible solutions:
 make sure everyone inserts/updates the column with the fixed, prespecified values. 
 2. If you really care about consistency, you could just create a foreign table
 where you store all those data and reference it by a foreign key. This is a
-better solution. But there's is something better
+better solution. But there's is something much better for static values that isn't
+going to be updated a lot.
 3. You could use custom enumerated types. It's like creating a foreign table with
 constants but much better without all the hassles.
 
@@ -84,7 +87,8 @@ Character: 60
 ```
 
 >It's always good to never have an option to make an error instead of just trying to
->be careful not to make that error.  With enums that's possible without the headache having to create a different table.
+>be careful not to make that error.  With enums that's possible without the
+>headache having to create a different table and foreign key constraint.
 
 ### 5. Altering the enum type values
 Another benefit of using an enum is, if you want to change the enum values you can change the name
@@ -101,6 +105,12 @@ Now the table will look like this
 |2 |     140|video-processing |processing|
 |3 |     140|web-processing |processing|
 |4 |     140|image-processing |completed|
+
+## Conclusion:
+Therefore, never use text fields for columns that have option/choice values. If
+they are going to be dynamic and keep changing a lot or you just have a long
+list of choices, then a foreign table is the way to go. But if you have finite
+values for a column in a table that aren't going to change, go with enums.
 
 ## References
 * [Postgresql Enum documentations](https://www.postgresql.org/docs/current/datatype-enum.html)
