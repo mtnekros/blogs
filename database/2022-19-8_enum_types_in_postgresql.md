@@ -1,4 +1,4 @@
-![fixed value fields](./database/images/enums.png)
+![fixed value fields](./images/enums.png)
 <h1 style="text-align: center">Enums in postgresql </h1>
 
 
@@ -66,7 +66,7 @@ Table:
 |-----------|-----------------|------------------|----------------------|
 |1 |     140|text-processing  |pending|
 |2 |     140|video-processing |in process|
-|3 |     140|web-processing |processing|
+|3 |     140|web-processing |in process|
 |4 |     140|image-processing |completed|
 
 ## 4. Inserting/Updating the process_status column with wrong values?
