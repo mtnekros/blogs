@@ -20,7 +20,7 @@ line to you nvim/init.vim file.
 ```vim
 call plug#begin(~/.config/nvim/plugged')
 ...
-Plug 'nvim-treesitter/nvim-treesitter', {'do': {'TSUpdate'}}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': {':TSUpdate'}}
 ...
 call plug#end()
 ```
