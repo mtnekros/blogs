@@ -18,7 +18,7 @@ With VimPlug, installing nvim-treesitter is as easy as adding the following
 line to you nvim/init.vim file.
 
 ```vim
-clall plug#begin(~/.config/nvim/plugged')
+call plug#begin(~/.config/nvim/plugged')
 ...
 Plug 'nvim-treesitter/nvim-treesitter', {'do': {'TSUpdate'}}
 ...
