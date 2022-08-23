@@ -85,7 +85,7 @@ C3 linearization results in three important properties:
 
 #### Let's do a C3 serialization ourselves
 A case of multiple inheritance is given below. Let's compute the MRO of class K in the following example.
-```Python
+```python
 class object:
     ...
 

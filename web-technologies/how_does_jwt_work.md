@@ -1,4 +1,5 @@
 # What is JWT & how does it work?
+![Banner](./images/jwt.png)
 
 ## What's JWT?
 JWT(JSON Web Token is a method of authentication that stores user's session

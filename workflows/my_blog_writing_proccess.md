@@ -26,7 +26,7 @@ feature is very useful. For example:
 ```html
 <button class="btn btn-primary">Submit</button>
 ```
-```js
+```javascript
 const fruits = ["Mango", "Banana", "Orange"];
 const sentences = fruits.map(fruit => `I have eaten ${fruit}`)
 ```
