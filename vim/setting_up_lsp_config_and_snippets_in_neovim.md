@@ -16,13 +16,13 @@ stuff like renaming a variable or displaying squigly lines for a possible
 error, every IDE had it's own way of implementing that and they had to
 implement that for each language.
 
-Now, an editor can ask the language server, "Do you support go to declaration?"
-and the language server protocol ensures that the way go to definition APIs
-follow a standard for all languages. So, any new editor can make use of any
-sophisticated language server. And any programmer involved with the development
-of a new programming language can make services for that language available to
-existing editors. This is the reason Neovim can use the VSCode's language
-server (coc) for code diagnostics.
+With LSP, an editor can ask the language server, "Do you support go to
+declaration?" and the language server protocol ensures that the way go to
+definition APIs follow a standard for all languages. So, any new editor can
+make use of any sophisticated language server. And any programmer involved with
+the development of a new programming language can make services for that
+language available to existing editors. This is the reason Neovim can use the
+VSCode's language server (coc) for code diagnostics.
 
 So, editor is the client and servers are any language server providing
 information that language. And they communicate with each other using Language
