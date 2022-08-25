@@ -71,9 +71,9 @@ Since I work with python, typescript, I will set up lsp for those.
   ```sh
   npm install -g pyright
   ```
-* Install tsserver for typescript
+* Install typescript-language-server for typescript
   ```sh
-  npm install -g tsserver
+  npm install -g typescript typescript-language-server
   ```
 
 ### Tell Neovim to use the language server
@@ -112,7 +112,10 @@ end
 local servers = { 'pyright', 'tsserver' }
 for _, lsp in pairs(servers) do
     require('lspconfig')[lsp].setup {
-        on_attach = on_attach
+        on_attach = on_attach,
+        flags = {
+          debounce_text_changes = 150,
+        }
     }
 end
 
