@@ -138,7 +138,7 @@ EOF
 ## The results
 Now you can go to a python or typescript or a java project. Yay 🎉🎉🎉
 ![Unused import for Java](./images/lsp-java-unused-import.png)
-![Duplicate public class for Java](./images/lsp-java-duplicate class.png)
+![Duplicate public class for Java](./images/lsp-java-duplicate-class.png)
 ![Python errors diagnostics](./images/lsp-python-errors.png)
 
 
