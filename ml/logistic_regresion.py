@@ -22,6 +22,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
 import seaborn as sb
+import numpy as np
 
 digits = load_digits()
 
@@ -55,5 +56,62 @@ plt.figure(figsize=(8,6))
 sb.heatmap(cm, annot=True)
 plt.xlabel('Predicted')
 plt.ylabel('Truth')
-# plt.show()
+plt.show()
 
+
+"""
+Same thing for iris dataset
+"""
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+
+# viewing the scatter plot data
+_, ax = plt.subplots()
+scatter = ax.scatter(iris.data[:, 0], iris.data[:, 1], c=iris.target)
+ax.set(xlabel=iris.feature_names[0], ylabel=iris.feature_names[1])
+ax.legend(
+    scatter.legend_elements()[0],
+    iris.target_names,
+    loc="lower right",
+    title="Classes",
+)
+
+_, ax1 = plt.subplots()
+scatter1 = ax1.scatter(iris.data[:, 2], iris.data[:, 3], c=iris.target)
+ax1.set(xlabel=iris.feature_names[2], ylabel=iris.feature_names[3])
+ax1.legend(
+    scatter1.legend_elements()[0],
+    iris.target_names,
+    loc="lower right",
+    title="Classes",
+)
+
+# spitting test train data
+x_train, x_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.2)
+print(f"{len(x_train)} {len(y_train)}")
+print(f"{len(x_test)} {len(y_test)}")
+print(x_train[0])
+print(y_train[0])
+
+# create and train mdoel
+model = LogisticRegression()
+model.fit(x_train, y_train)
+# checking model score
+score = model.score(x_test, y_test)
+print(f"model score: {score}")
+
+# trying prediction
+pred = model.predict([[10, 6, 1.6, 0.6]])
+print(iris.target_names[pred])
+
+# generating confusion matrix
+preds = model.predict(x_test)
+cm = confusion_matrix(y_test, preds)
+
+# drawing the confustino matrix
+plt.figure(figsize=(6, 4))
+plt.xlabel('Predicted')
+plt.ylabel('Truth')
+sb.heatmap(cm, annot=True)
+plt.show()
