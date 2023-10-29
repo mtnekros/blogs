@@ -3,7 +3,7 @@ Logistic regression is a classification algorithm used for binary or
 multi-class classification tasks. Logistic regression estimates the probability
 that an input belongs to a particular class. Despite its name, it's a
 classification algorithm, not a regression algorithm, which is used for
-predicting continuous algorithm. However, it can be seen as an extension of the
+predicting continuous data. However, it can be seen as an extension of the
 linear regression, mathematically speaking, as it is achieved by applying the
 sigmoid function on the linear equation. 
 

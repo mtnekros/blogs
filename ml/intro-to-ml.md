@@ -45,7 +45,7 @@ The machine learning process typically involves the following steps:
 5. Training
 6. Evaluation
 7. Hyperparameter tuning
-8. Deploymen
+8. Deployment
 
 ### Challenges in Machine Learning
 
