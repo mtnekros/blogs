@@ -26,6 +26,13 @@ Constraints:
 The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
 """
 
+## BRUTE FORCE APPROACH
+def product_except_self_brute(nums):
+    total = len(nums)
+    prefix = 1
+
+
+# SECOND APPROACH
 def product_except_self(nums):
     """
     :type nums: List[int]
@@ -47,5 +54,21 @@ def product_except_self(nums):
         post *= nums[i]
     return res
 
+## THIRD APPROACH
+from functools import reduce
+
+def product_except_self_v2(nums):
+    n_zeros = sum(1 for n in nums if n == 0)
+    print(n_zeros)
+    if n_zeros == 0:
+        tp = reduce(lambda a,n: a*n, nums)
+        return [tp/n for n in nums]
+    if n_zeros > 1:
+        return [0 for _ in nums]
+    res = [0 for _ in nums]
+    res[nums.index(0)] = reduce(lambda a,n: a*n,( n for n in nums if n != 0))
+    return res
+
 print(product_except_self([1,2,3,4]))
 print(product_except_self([-1, 1, 0, -3, 3]))
+print(product_except_self_v2([-1,1,0,-3,3]))
