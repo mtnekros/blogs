@@ -46,13 +46,7 @@ should exceed the physical memory (RAM)hof the database server."
    filtering data in hash-partitioned tables may not be as efficient as in
    tables partitioned using other methods.
 
-Note: Hashing is a process of mapping data of arbitrary size to fixed-size
-values. The algorithm aims to generate a unique hash value for each unique
-input while minimizing the likelihood of collisions (two inputs producing the
-same hash value). PostgreSQL doesn't specify which specific has function it
-uses internally, but it has to be a hash function optimized for performance and
-good distribution of hash values across partitions, such as MurmurHash,
-FarmHash, etc.
+Note: Hashing is a process of mapping data of arbitrary size to fixed-size values. The algorithm aims to generate a unique hash value for each unique input while minimizing the likelihood of collisions (two inputs producing the same hash value). PostgreSQL doesn't specify which specific has function it uses internally, but it has to be a hash function optimized for performance and good distribution of hash values across partitions, such as MurmurHash, FarmHash, etc.
 
 ## Considerations:
 1. Query Patterns: First, we need to analyze your most frequent queries.
@@ -137,6 +131,16 @@ CREATE TABLE orders_partition_3 PARTITION OF orders
 
 CREATE TABLE orders_partition_4 PARTITION OF orders
     FOR VALUES WITH (MODULUS 4, REMAINDER 3);
+
+-- The MODULUS 4 part indicates that we're dividing the hash space into 4
+-- partitions. The REMAINDER x part specifies which portion of the hash space each
+-- partition will cover. Each partition covers a range of hash values based on
+-- their remainders when divided by 4. For example, orders_partition_1 covers hash
+-- values where hash(order_id) % 4 = 0, orders_partition_2 covers hash values
+-- where hash(order_id) % 4 = 1, and so on. By using hash partitioning, we
+-- distribute the data across multiple partitions based on the hash value of the
+-- order_id column. This can help in achieving better performance by evenly
+-- distributing the data and reducing contention on specific partitions.
 ```
 
 ## Attaching and detaching partitions

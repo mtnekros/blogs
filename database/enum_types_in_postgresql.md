@@ -114,4 +114,4 @@ values for a column in a table that aren't going to change, go with enums.
 
 ## References
 * [Postgresql Enum documentations](https://www.postgresql.org/docs/current/datatype-enum.html)
-* [More information on ALTER TYPE](https://www.postgresql.org/docs/current/sql-altertype.html)
+    * [More information on ALTER TYPE](https://www.postgresql.org/docs/current/sql-altertype.html)
