@@ -1,6 +1,5 @@
+import inspect
 import types
-
-type
 
 class Tracing:
     count = 0 
@@ -78,41 +77,66 @@ def test_tracer():
     person.show()
 
 
-if __name__ == "__main__":
-    person = Person("Diwash Tamang", 28)
-    person.show()
-    person.make_older(2)
-    person.show()
-# p = Person("Diwash Tamang", 28)
+class NamespaceCustomizationType(type):
+    @classmethod
+    def __prepare__(mcs, name, bases):
+        print(f"NamespaceCustomization.__prepare__ => mcs: {mcs} name: {name}: bases: {bases}")
+        extra_attrs = super().__prepare__(mcs, name, bases)
+        return {
+            **extra_attrs,
+            "_count": 0,
+            "swear": lambda self: print("Fuck you")
+        }
 
-# class Point:
-#     x: int
-#     y: int
-#
-# def attach_init(cls: type):
-#     def init(self, x, y):
-#         self.x = x
-#         self.y = y
-#     cls.__init__ = init
-#     cls.__repr__ = lambda self: f"Point(x={self.x}, y={self.y})"
-#
-# attach_init(Point)
-# print(Point(1, 3))
-#
-# class M(type):
-#     def __new__(mcs, name, bases, namespace, **kwargs):
-#         if "__repr__" not in namespace:
-#             raise NotImplementedError("__repr__ has to be implemented in subclasses of this function")
-#         return super(M, mcs).__new__(mcs, name, bases, namespace, **kwargs)
-#
-#     def __call__(cls, *args, **kwargs):
-#         _obj = super(M, cls).__call__(*args, **kwargs)
-#         print(f"From metaclass: {_obj}")
-#         return _obj
-#
-# class A(metaclass=M):
-#     x = None
-#     y = None
+    def __new__(mcs, name, bases, namespace, **kwargs):
+        for attr, value in namespace.items():
+            if type(value) is types.FunctionType:
+                for param_key,param_val in inspect.signature(value).parameters.items():
+                    if param_key not in ("self", "cls") and param_val.annotation == inspect._empty:
+                        raise Exception(f"Class: {name} doesn't have annotations for method: {attr}")
+        return super().__new__(mcs, name, bases, namespace)
+
+
+class Fruit(metaclass=NamespaceCustomizationType):
+    c = 3
+    def __init__(self, name: str, price: float):
+        self.name = name
+        self.price = price
+
+    @classmethod
+    def __call__(cls, *args, **kwargs):
+        self = super().__new__(cls)
+        self.__init__(*args, **kwargs)
+        return self
+
+    def __repr__(self):
+        return f"Fruit(name='{self.name}', price: {self.price})"
+
+    def _log_error(self, error):
+        print(error)
+
+def test_meta_methods():
+    f = Fruit(name="Mango", price=10)
+    print(f)
+    print(f.swear())
+
+if __name__ == "__main__":
+    test_meta_methods()
+
+class M(type):
+    def __new__(mcs, name, bases, namespace, **kwargs):
+        if "__repr__" not in namespace:
+            raise NotImplementedError("__repr__ has to be implemented in subclasses of this function")
+        return super(M, mcs).__new__(mcs, name, bases, namespace, **kwargs)
+
+    def __call__(cls, *args, **kwargs):
+        _obj = super(M, cls).__call__(*args, **kwargs)
+        print(f"From metaclass: {_obj}")
+        return _obj
+
+class A(metaclass=M):
+    x = None
+    y = None
 #
 #     def __new__(cls, *args, **kwargs):
 #         _obj = super().__new__(cls)
@@ -166,26 +190,26 @@ if __name__ == "__main__":
 # print(p1)
 
 # # TRYING WITH METACLASS
-# class SingletonType(type):
-#     _instances = {}
-#
-#     def __call__(cls, *args, **kwargs):
-#         if cls not in cls._instances:
-#             cls._instances[cls] = super().__call__(*args, **kwargs)
-#         return cls._instances[cls]
-#
-# class Point(metaclass=SingletonType):
-#     def __init__(self, x, y):
-#         self.x = x
-#         self.y = y
-#
-#     def show(self):
-#         print(f"Point(x={self.x}, y={self.y})")
-#
-# class Person(metaclass=SingletonType):
-#     def __init__(self, name):
-#         self.name = name
-#
+class SingletonType(type):
+    _instances = {}
+
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            cls._instances[cls] = super().__call__(*args, **kwargs)
+        return cls._instances[cls]
+
+class Point(metaclass=SingletonType):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def show(self):
+        print(f"Point(x={self.x}, y={self.y})")
+
+class Person(metaclass=SingletonType):
+    def __init__(self, name):
+        self.name = name
+
 # Point(10, 10)
 # p1 = Person("Diwash")
 # print(p1.name)
@@ -245,49 +269,6 @@ if __name__ == "__main__":
 """ TRY 1 """
 
 # import copy
-#
-# def _make_init(annotations: dict):
-#     init_str = (
-#         f"def __init__(self, {','.join(annotations.keys())}):"
-#         +
-#         "".join(f"self.{_var} = {_var};" for _var in annotations.keys())
-#     )
-#     print(init_str)
-#     return init_str
-#
-# def init(self, x, y):
-#     self.x = x
-#     self.y = y
-#
-#
-# class DataClassMeta(type):
-#     def __new__(mcs, name, bases, namespace, **kwargs):
-#         annotations = namespace.get('__annotations__')
-#         print(annotations)
-#         # print(f"mcs: {mcs}")
-#         # print(f"name: {name}")
-#         # print(f"bases: {bases}")
-#         # print(f"namespace: {namespace}")
-#         # print(f"kwargs: {kwargs}")
-#         return super().__new__(mcs, name, bases, namespace, **kwargs)
-#
-# class DataClass(metaclass=DataClassMeta):
-#     pass
-#
-# class Point(DataClass):
-#     x: int
-#     y: int
-#     # __instance: None = None
-#
-#     def __init__(self):
-#         pass
-#
-#     def add(self, x, y):
-#         self.x += x
-#         self.y += y
-#
-#     def show(self):
-#         print(f"Point(x={self.x}, y={self.y})")
 #
 # # x = Point()
 # # x = Point()
