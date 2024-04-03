@@ -1,24 +1,33 @@
 # Metaclasses in python
 
 You must have heard everything in python is an object. I did too. But the first
-time I learnt classes were objects as well, it caught me by surprise. 
-Classes are objects of `type`, which makes sense, as classes, int, strings,
-tuples can all be lumped together as types. And I guess python wouldn't be python if
-we didn't have a way to modify everything at runtime. You shouldn't
-be surprised to learn that there is also way to change how classes are constructed
-as well. This is a way of metaprogramming. Metaprogramming is a programming
-technique in which computer programs have the ability to treat other programs
-as their data. It means that a program can be designed to read, generate,
-analyze or transform other programs, and even modify itself while running.
+time I learnt classes were objects as well, it caught me by surprise. Classes
+are objects of `type`, which makes sense, as classes, int, strings, tuples can
+all be lumped together as types. And I guess python wouldn't be python if we
+didn't have a way to modify everything at runtime. Therefore, you shouldn't be
+surprised to learn that there is also way to change how classes are
+constructed. This is a also known as metaprogramming.
+
+>> Metaprogramming is a programming technique in which computer programs have
+>> the ability to treat other programs as their data. It means that a program can
+>> be designed to read, generate, analyze or transform other programs, and even
+>> modify itself while running.
+
+You must have wondered how the models in Django Framework behave very
+differently to normal classes. The fields are defined as class variables but
+when you access it via an instance, it returns a value instead of the field.
+And you can specify proxy models which works very different to normal models.
+Django achieves this by making use of metaclasses and descriptors.
 
 In this blog, we are going to learn how metaclasses can help you change how you
-classes are constructed. I think the best way to learn about something in
-programming is to learn what you can do with it. And we are going to do just
-that by learning how to create metaclasses and what magic methods metaclasses offer.
-
-# TODO: add a few lines of metaprogramming
+classes are constructed. I think the best way to learn programming is to write
+code. So, i highly recommed you to take some of the examples here and add your
+own tweaks to them. Let's get into how you can create metaclasses and what
+magic methods metaclasses offer.
 
 ## Base setup
+Metaclasses are created by inheriting from `type`. Here's a simple snippet
+to show how they are created.
 
 ```python
 # all metaclasses must inherit from type
@@ -29,16 +38,20 @@ class Person(metaclass=Metaclass):
     pass
 ```
 
-## Major methods
+## Methods in metaclasses
+Now, let us get into some of the dunder method metaclasses offer And about what 
+they can be used for.
+
 1. __new__
 Like the __new__ method of normal classes, __new__ is used for creating a new
 instance. But in case of metaclasses, it returns a class. And it has different
 parameters which are as follows:
-mcs => 1st arguement is the metaclass itself.
-name => name of the class
-bases => tuple of base classes of the class
-namespace => aka attrs is dictinoary that holds all the attributes,
-methods, __annotations__, etc.
+    * mcs => 1st arguement is the metaclass itself.
+    * name => name of the class
+    * bases => tuple of base classes of the class
+    * namespace => aka attrs is a dictinoary that holds all the attributes,
+        methods, __annotations__, etc. that are defined within the body of the
+        class.
 
 ```python
 class Metaclass(type):
@@ -51,25 +64,38 @@ in this function, we can use it do to many things.
 1. Code generation
 2. Type checking
 3. Ensuring certain methods or variables are defined and many more.
+4. When an attribute is a parameterless function, call it on reference (to mimic
+  it being an instance variable); same on assignment
+5. Implement that each instance is initialized with copies of all class
+  variables
 
-# Example 1:
-Here's a way to ensure all classes have __repr__ defined.
+# Example 1: Enforcing methods/attributes in subclasses
+Here's a simple example on how you can enforce 
 
 ```python
 class M(type):
     def __new__(mcs, name, bases, namespace, **kwargs):
+        # namespace contains all the attributes defined in the class including
+        # variables, methods and module it was defined in.
         if "__repr__" not in namespace:
             raise NotImplementedError("__repr__ has to be implemented in subclasses of this function")
         return super(M, mcs).__new__(mcs, name, bases, namespace, **kwargs)
 
-    def __call__(cls, *args, **kwargs):
-        _obj = super(M, cls).__call__(*args, **kwargs)
-        print(f"From metaclass: {_obj}")
-        return _obj
 
-class A(metaclass=M):
-    x = None
-    y = None
+class Base(metaclass=M):
+    pass
+
+class Point(Base): # this will pass the check
+    def __init__(self, x: float, y: float):
+        self.x = x
+        self.y = y
+
+    def __repr__(self):
+        return f"Point(x={self.x}, y={self.y})"
+
+class Line(Base): # this will raise an error because __repr__ is not defined in this class
+    def __init__(self, points: list):
+        self.points = points
 
 # This will raise an NotImplementedError
 ```
@@ -112,12 +138,19 @@ Exception: Class: Fruit doesn't have annotations for method: get_price
 ```
 
 Note: Although this is possible, it should be noted that this will slow down the code,
-with all the type checking and calls to the inspect.signature.
+with all the type checking and calls to the inspect.signature. Therefore I would not
+recommend doing something like this in real applications.
 
 #  Example 3: Code generation
+Here is a way to generate an __init__ function based on the type annotations
+provided in the class. We are also create instance variables from class
+variables in this example.
 
 ```python
 def _make_init(annotations: dict):
+    """
+    returns the __init__ function from the given annotations in string form
+    """
     return (
         f"def __init__(self, {','.join(annotations.keys())}):" +
         "".join(f"self.{_var} = {_var};" for _var in annotations.keys())
@@ -138,11 +171,12 @@ class DataClass(metaclass=DataClassMeta):
 class Point(DataClass):
     x: int
     y: int
+    z: int = 10
 
     def show(self):
-        print(f"Point(x={self.x}, y={self.y})")
+        print(f"Point(x={self.x}, y={self.y}, {self.z})")
 
-Point(1, 2) # works just fine!!! :D
+Point(1, 2, 3) # works just fine!!! :D
 ```
 
 2. __prepare__ posibilities
@@ -162,8 +196,13 @@ class NamespaceCustomizationType(type):
         return {
             **extra_attrs,
             "_count": 0,
-            "__repr__": lambda self: print("Fuck you")
+            "swear": lambda self: print("Watch your profanity!")
         }
+
+    # __call__ function is called when creating a cls instance
+    def __call__(cls, *args, **kwargs):
+        cls._count += 1
+        return cls(*args, **kwargs)
 
 class Fruit(metaclass=NamespaceCustomizationType):
     def __init__(self, name: str, price: float):
@@ -174,6 +213,7 @@ f = Fruit("Mango", 10)
 print(f.name)
 print(f.price)
 print(f._count) # this is also here from the __prepare__ method
+print(f.swear())
 # note: f._count is a class variable not an instance variables. Unless you
 # assign it value using the instance later in the code.;
 ```
@@ -181,15 +221,19 @@ print(f._count) # this is also here from the __prepare__ method
 3. __call__
 This function is called when you create an instance using your class. When you
 create an instance, Person(), you are basically calling the __call__ method of
-your class Person. So meta-instance method of __call__ in a metaclass can
-override that method.
+your class Person. And those are defined in your metaclasses.
+
 ```python
 class Metaclass(type):
     def __call_(cls, *args, **kwargs):
         return cls(*args, **kwargs)
 ```
 # Example 5: Creating singletons by overriding __call__ method
-# TODO: Check this code once
+
+There are multiple ways to create the controversial singleton class. However,
+you can override the __call__ method in your metaclass to achieve the same
+result.
+
 ```python
 class SingletonType(type):
     _instances = {}
@@ -205,24 +249,54 @@ class Point(metaclass=SingletonType):
         self.x = 10
         self.y = 20
 
-    @classmethod
-    def __call__(cls, *args, **kwargs):
-        # not required but this is what happens when we create new instance
-        print("In Point.__call__")
-        self = super().__new__(cls)
-        self.__init__(*args, **kwargs)
-        return self
-
     def show(self):
         print(f"Point(x={self.x}, y={self.y})")
 
 print(Point() is Point()) # will return true because they point to the same instance
 ```
 
+# Example 6: Returning a potato object
+As you can probably guess by now, with all the possiblities provided by the
+metaclases, you can do some very stupid things. Such as returning a potato
+instance everytime you create an object. And here's a way to do that.
+
+```python
+class Potato:
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return f"Hi there! My name is {self.name}"
+
+class PotatoType(type):
+    def __call__(cls, *args, **kwargs):
+        return Potato("Brown Potato")
+
+class Base(metaclass=PotatoType):
+    pass
+
+class Person(Base):
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+class Square(Base):
+    def __init__(self, length):
+        self.length = length
+
+p = Person("Diwash", 24) # returns a potato object
+s = Square(10) # returns a potato object
+print(p)
+print(s)
+# Both will just print:
+# Hi there! My name is Brown Potato.
+```
+
 4. custom methods.
 Like any methods, in the class can be used by the instances of that class. Any
 method you add to your metaclass can be accessed by the class (meta-instance).
-And the instead of
+And they are always going to be classmethods.
+
 ```python
 class Metaclass(type):
     def make(cls, *args, **kwargs):
@@ -242,36 +316,17 @@ if __name__ == "__main__":
     Human.make() # This works and returns a Human object
 ```
 
-Usecases:
-Usually, it's best not to touch the metaclasses. It is seldom used in many
-application, for that specific reason. Because they are powerful and thus, can
-be misused. You can return random instances of random classes, add random
-variables and features to the classes, etc. But here are some use cases
-nonetheless.
+# Summary:
+Metaclasses in Python often seem mysterious and esoteric to many developers,
+but they are an incredibly powerful tool for metaprogramming. Hopefully, this
+blog has demystified metaclasses by providing a comprehensive overview of what
+they are, how they work, and why they are useful and about how it can produce
+unpredictable behaviours.
 
-# TODO: READ and edit the following and make it more readable
-There are lots of things you could do with metaclasses. Most of these can also
-be done with creative use of __getattr__, but metaclasses make it easier to
-modify the attribute lookup behavior of classes. Here's a partial list.
+However, it's important to consider whether using metaclasses is truly
+necessary. While they offer powerful capabilities, the need to change class
+behavior at this level may be minimal in many cases. Developers should
+carefully evaluate whether metaclasses are the best solution for their specific
+use case, or if there are alternative approaches that can achieve the desired
+outcome more simply.
 
-* Enforce different inheritance semantics, e.g. automatically call base class
-  methods when a derived class overrides
-* Implement class methods (e.g. if the first argument is not named 'self')
-* Implement that each instance is initialized with copies of all class
-  variables
-* Implement a different way to store instance variables (e.g. in a list kept
-  outside the the instance but indexed by the instance's id())
-* Automatically wrap or trap all or certain methods
-* for tracing
-* for precondition and postcondition checking
-* for synchronized methods
-* for automatic value caching
-* When an attribute is a parameterless function, call it on reference (to mimic
-  it being an instance variable); same on assignment
-* Instrumentation: see how many times various attributes are used
-* Different semantics for __setattr__ and __getattr__ (e.g. disable them when
-  they are being used recursively)
-* Abuse class syntax for other things
-* Experiment with automatic type checking
-* Delegation (or acquisition)
-* Dynamic inheritance patterns

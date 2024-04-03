@@ -52,10 +52,9 @@ class BoundMethod:
         print("calling", self.function, "for", self.instance, "with", args)
         return self.function(self.instance, *args)
 
-class Trace(metaclass=Tracing):
-    pass
+Trace = Tracing('Trace', (), {})
 
-class Person(Trace):
+class Person1(Trace):
     n_updates = 0
 
     def __init__(self, name: str, age: int):
@@ -71,7 +70,7 @@ class Person(Trace):
         self.n_updates += 1
 
 def test_tracer():
-    person = Person("Diwash Tamang", 28)
+    person = Person1("Diwash Tamang", 28)
     person.show()
     person.make_older(2)
     person.show()
@@ -81,7 +80,7 @@ class NamespaceCustomizationType(type):
     @classmethod
     def __prepare__(mcs, name, bases):
         print(f"NamespaceCustomization.__prepare__ => mcs: {mcs} name: {name}: bases: {bases}")
-        extra_attrs = super().__prepare__(mcs, name, bases)
+        extra_attrs = super().__prepare__(name, bases)
         return {
             **extra_attrs,
             "_count": 0,
@@ -112,7 +111,7 @@ class Fruit(metaclass=NamespaceCustomizationType):
     def __repr__(self):
         return f"Fruit(name='{self.name}', price: {self.price})"
 
-    def _log_error(self, error):
+    def _log_error(self, error="three thousand"):
         print(error)
 
 def test_meta_methods():
@@ -125,8 +124,8 @@ if __name__ == "__main__":
 
 class M(type):
     def __new__(mcs, name, bases, namespace, **kwargs):
-        if "__repr__" not in namespace:
-            raise NotImplementedError("__repr__ has to be implemented in subclasses of this function")
+        # if "__repr__" not in namespace:
+        #     raise NotImplementedError("__repr__ has to be implemented in subclasses of this function")
         return super(M, mcs).__new__(mcs, name, bases, namespace, **kwargs)
 
     def __call__(cls, *args, **kwargs):
@@ -194,21 +193,29 @@ class SingletonType(type):
     _instances = {}
 
     def __call__(cls, *args, **kwargs):
+        print("SingletonType's __call__")
         if cls not in cls._instances:
             cls._instances[cls] = super().__call__(*args, **kwargs)
         return cls._instances[cls]
 
 class Point(metaclass=SingletonType):
     def __init__(self, x, y):
+        print("Point's init")
         self.x = x
         self.y = y
+
+    def __new__(cls, *args, **kwargs):
+        print("Point's new")
+        return super().__new__(cls)
 
     def show(self):
         print(f"Point(x={self.x}, y={self.y})")
 
-class Person(metaclass=SingletonType):
-    def __init__(self, name):
-        self.name = name
+# class Person(metaclass=SingletonType):
+#     def __init__(self, name):
+#         self.name = name
+
+Point.__call__(1, 2)
 
 # Point(10, 10)
 # p1 = Person("Diwash")
