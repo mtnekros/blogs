@@ -244,7 +244,7 @@ to see it clearly using this example. Also, we can see from the logs when the st
 python script exited.
 
 ## Why stop here? Let's add enable line buffering as well in our custom output wrapper.
-```
+```python
 ...
 
 class CustomOutputWrapper():
