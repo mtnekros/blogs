@@ -1,15 +1,13 @@
-
-
 # Introduction
-Have you ever come accross a situation where your print statements or logs are
-coming in the wrong order? If you have been working with a separate logging
-service such as AWS Cloudwatch, it's highly like that you have. I encountered
-the same situation and went into the rabbit hole of learning about python buffering.
-Even though at first it felt like the print order was random, it was being printed
-as it should be in the given situation.
 
+Ever had your print statements or logs appear in a completely unexpected order?
+If you've ever worked with a separate logging service like AWS CloudWatch, you
+probably have! It can feel like you've fallen down a rabbit hole, with
+everything seeming random and chaotic. But fear not, because we're diving into
+the delightful world of Python buffering. And you will see that what seemed
+like Magic was pretty simple all along.
 
-# Example 1
+# Example 1: The Curious Case of Jumbled Logs
 ```python
 import sys
 import logging
@@ -23,14 +21,7 @@ for i in range(3):
 logging.info("This is the end")
 ```
 
-# What are the code smells you see in the above code?
-1. I am using both logging and print statement.
-   * Use logging as it has more options for {insert the benefits of logging
-     module}. But at the very least, be consistent with what logging mechanism
-     you use and just use either print statements or logging module throughout
-     the project.
-
-I am sure you expected the logs to be as follows:
+Expected output:
 ```log
 INFO:root:This is the start
 [STDOUT] == 0
@@ -42,8 +33,7 @@ INFO:root:This is the start
 INFO:root:This is the end
 ```
 
-And yes in the console, it will be the case. But when you run it in a container
-and point the logs to cloudwatch, the logs are a whole lot different.
+But what you get, when in environments like Docker containers piping logs to CloudWatch, can look like this:
 ```log
 INFO:root:This is the start
 [STDERR] >> 0
@@ -54,121 +44,177 @@ INFO:root:This is the end
 [STDOUT] == 1
 [STDOUT] == 2
 ```
-# What is happening?
-Python, like many programming languages, employs buffers to enhance performance
-and efficiency during input/output operations. A buffer is essentially a
-temporary storage area where data is held before being written to its final
-destination (like a file or the console). So, when we run any print statement or logs,
-it is intially written to a buffer, and then when the buffer is full, it gets written to
-the console or file. And the default settings for buffering also differs based
-on which env it is run on. There are two modes:
-1. INTERACTIVE MODE (e.g., in a terminal or REPL)
-   When python is run interactively in a terminal, standard input and output
-   streams are line-buffered. This means the output to the terminal is flushed
-   whenever a newline chaaracter is encountered. The stand error system is
-   unbuffered. (Gets printed immediately)
 
-   * stdin => Line Buffered
-   * stdout => Line Buffered
-   * stderr => Unbuffered
-2. NON INTERACTIVE MODE/Script Excecution
-   When run in non interactive mode and if the logs aren't redirected to any
-   file/pipes, standard output & standard input are line buffered. And standard
-   error is again unbuffered.
-   * stdin => Line Buffered when associated with a terminal (TTY)
-   * stdout => Line Buffered when associated with a terminal (TTY)
-   * stderr => Unbuffered
-3. Redirection to Files/Pipes
-   If you pipe the outputs to another cmd or redirect the outputs to a file or
-   AWS Cloudwatch or any other logging system, io will follow the following rule.
-   * stdin => Fully Buffered
-   * stdout => Fully Buffered
-   * stderr => Unbuffered
-   Note:
-   You can try the script with cmd: `python test.py | cat` or `python test.py > output.txt`
-   to get the result easily.
+# What's Happening?
+
+Let's demystify this! Python, like many other programming languages, uses
+buffers to enhance performance during input/output operations. A buffer is a
+temporary storage area where data is held before being sent to its final
+destination (like your console or a log file). Here’s the scoop:
+
+## Buffering Modes
+
+1. **Interactive Mode:** 
+   When running Python in a terminal or a REPL, both standard input and output
+   streams are *line-buffered*. This means the output is flushed to the
+   terminal whenever a newline character is encountered. Meanwhile, standard
+   error (`stderr`) is *unbuffered*, meaning it gets printed immediately.
+   - **stdin:** Line Buffered
+   - **stdout:** Line Buffered
+   - **stderr:** Unbuffered
+
+2. **Non-Interactive Mode/Script Execution:** 
+   If Python isn't being run interactively, and logs aren't redirected to any
+   file or pipe, standard input and output are still line-buffered, while
+   standard error remains unbuffered.
+   - **stdin:** Line Buffered when connected to a terminal
+   - **stdout:** Line Buffered when connected to a terminal
+   - **stderr:** Unbuffered
+
+3. **Redirection to Files/Pipes:** 
+   When outputs are redirected (e.g., `python script.py | cat` or `python script.py > output.txt`), buffering behavior changes:
+   - **stdin:** Fully Buffered
+   - **stdout:** Fully Buffered
+   - **stderr:** Unbuffered
+
+## Logging Module and Buffering
+
+Why does the `logging` module behave differently? It has its own buffering
+mechanism, set to be line-buffered by default. This means log messages are
+flushed immediately when a newline character is encountered, making the output
+appear more consistent and immediate compared to mixing it with `print`
+statements.
 
 ## Why Buffers?
 
-Performance: Writing data to a physical device is relatively slow. By
-accumulating data in a buffer and writing it in larger chunks, Python can
-significantly improve performance.
+Buffers are like a magical cauldron that cooks up performance benefits:
 
-Smoothing: Buffering helps to smooth out the flow of data, preventing sudden
-bursts of output that can overwhelm the system.
+1. **Performance:** Directly writing data to a physical device can be slow. Buffers help by accumulating data and writing it in larger chunks, significantly speeding things up.
+2. **Smoothing:** Buffers help to smooth out data flow, preventing sudden bursts of output that could overwhelm your system.
 
-# PYTHONUNBUFFERED
-If you didn't know,  
+# Disabling Buffering with PYTHONUNBUFFERED
 
-## Types of Buffers in Python
-Python primarily uses three buffering strategies:
+Sometimes, you just want things printed right away, without any buffering delay. Enter the `PYTHONUNBUFFERED` environment variable! By setting `PYTHONUNBUFFERED=1`, you disable buffering, ensuring everything is printed instantly. This can be super useful for real-time logging or debugging.
 
-1. No Buffering: Data is written directly without any intermediate storage.
-   This is typically used for interactive environments.
-2. Line Buffering: Data is stored until a newline character is encountered, and
-   then it's written to the output. This is the default behavior for stdout
-   when connected to a terminal.
-3. Full Buffering: Data is stored until the buffer is full, and then it's
-   written to the output. This is commonly used for files.
+```bash
+PYTHONUNBUFFERED=1
+```
 
-## The flush() Method
-To ensure that all data in the buffer is written to the output immediately, you
-can use the flush() method.
+# Types of Buffers in Python
+
+Python offers three main types of buffering:
+
+1. **No Buffering:** Data is written directly, ideal for interactive environments.
+2. **Line Buffering:** Data is written to the output after encountering a newline character. This is the default for `stdout` when connected to a terminal.
+3. **Full Buffering:** Data is stored in the buffer until it's full, then written out. Commonly used for files.
+
+# The flush() Method
+
+Want to manually empty the buffer and get that data out immediately? Use the `flush()` method!
 
 ```python
 import sys
 
 print("Hello, world!")
 sys.stdout.flush()  # Forces the buffer to be emptied
-Use code with caution.
 ```
 
+# Customizing Buffer Behavior
+
+You can customize how your standard output and error streams behave in terms of buffering. Here's how you can disable line buffering:
+
+```python
+import io
+import sys
+import logging
+
+logging.basicConfig(level=logging.INFO)
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer.raw, line_buffering=False)
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer.raw, line_buffering=False)
+
+logging.info("This is the start")
+for i in range(3):
+    print(f"[STDOUT]: {i}")
+    print(f"[ERR]: {i}", file=sys.stderr)
+logging.info("This is the end")
+```
+
+Now, no matter the environment, your output will be fully buffered.
+
+# Going Even Further: Custom Output Wrappers
+
+Want to add a custom prefix to your `stdout` and `stderr` messages? You can
+create a custom output wrapper:
+
+```python
+import io
+import sys
+
+g_original_stdout = sys.stdout
+
+class CustomOutputWrapper():
+    def __init__(self, prefix):
+        self.prefix = prefix
+        self.stream = io.StringIO()
+
+    def write(self, message):
+        if not message.strip():
+            self.stream.write(message)
+            return
+        # All this extra stuff is to make sure we only add the prefix when
+        # there's a newline The inner python code, both the prints during
+        # execptions and normal print statemments they add extra stuff to the
+        # stream before printing. For example, a normal print statement will
+        # add a newline after the print. Exception msgs gets pushed to sys.stderr
+        # and it prints the tracebacks and the error msgs in the exception.
+        # Hence to ensure the code executes as expected, we are only adding the
+        # prefix, during the first write or any newline after that.
+        written_msg = self.stream.getvalue()
+        self.stream.truncate(0)
+        if not written_msg or written_msg.endswith("\n"):
+            self.stream.write(written_msg + self.prefix + message)
+        else:
+            self.stream.write(written_msg + message)
+
+    def flush(self):
+        final_msg = self.stream.getvalue()
+        g_original_stdout.write(final_msg)
+        self.stream.truncate(0)
+
+sys.stdout = CustomOutputWrapper("[STDOUT]: ")
+sys.stderr = CustomOutputWrapper("[ERR] >> ")
+
+for i in range(3):
+    print(i)
+    print(i, file=sys.stderr)
+    if i == 2:
+        raise Exception("Raised")
+```
+
+While not generally recommended for production, playing with these customizations can be a fun way to explore Python's flexibility.
 
 ## When Buffers Can Be Problematic
-While buffering is generally beneficial, it can sometimes lead to unexpected
-behavior:
 
-1. Lost Data: If a program crashes before the buffer is flushed, the data in
-   the buffer might be lost.
-2. Delayed Output: In certain scenarios, you might want immediate output, but
-   buffering can cause delays.
+While buffers are great, they can occasionally lead to tricky situations:
 
-Practical Examples
-1. Logging: When rotating log files, understanding buffer behavior is crucial
-   to prevent data loss.
-2. Debugging: Buffering can sometimes obscure the order of events, making
-   debugging challenging. Using flush() or the -u flag can help.
-3. Performance Optimization: For I/O-bound applications, fine-tuning buffer
-   sizes can significantly impact performance.
-4. Concurrent Programming: Buffering can introduce complexities in
-   multi-threaded or multi-process environments.
+1. **Lost Data:** If a program crashes before the buffer is flushed, any buffered data might be lost.
+2. **Delayed Output:** Sometimes you need immediate feedback, and buffering can delay this.
 
-Best Practices
-1. Use flush() when immediate output is critical.
-2. Consider the trade-off between performance and data integrity when adjusting
-   buffer behavior.
-3. For large datasets or performance-critical applications, explore alternative
-   approaches like writing to files or using specialized libraries.
-4. Be aware of platform-specific differences in buffering behavior.
+## Practical Examples
 
-Conclusion
-Python's buffering mechanism is a powerful tool for optimizing performance. By
-understanding its intricacies and applying best practices, you can write more
-efficient and reliable Python code.
+1. **Logging:** In rotating log files, understanding buffering is crucial to prevent data loss.
+2. **Debugging:** Buffers can obscure the order of events, making debugging harder. Use `flush()` or the `-u` flag for immediate output.
+3. **Concurrent Programming:** Buffers can add complexity in multi-threaded or multi-process environments.
 
-Useful Ideas:
+## Best Practices
 
-1. Can I set buffersize for print?
-2. Recreate situations with python code that will:
-    * Fail to flush the buffer (print buffer & file buffer)
-    * Mess up the log vs print ordering
-3. Add example code when trying to log to a file?
-4. Give an overview of what buffer is in general software engineering & list
-   the ways it's used in all areas.
-   * Networks
-   * Prints
-   * Writing to files, etc
+1. **Use `flush()`** when immediate output is critical.
+2. **Weigh Performance vs. Data Integrity:** Consider the trade-offs when adjusting buffer behavior.
+3. **Explore Alternatives:** For large datasets or performance-critical apps, look into writing directly to files or using specialized libraries.
+4. **Be Platform-Aware:** Buffering behavior can vary between platforms, so test accordingly.
 
+## Conclusion
 
-References:
-* Buffering in file: https://docs.python.org/3/library/functions.html#open
+Python's buffering mechanism is a powerful tool for optimizing performance. By understanding its intricacies and applying best practices, you can write more efficient and reliable Python code. And remember, this isn't just about `stdout` and `stderr`; similar principles apply when writing to files. Whether you're debugging, logging, or just learning, a good grasp of buffering can make all the difference.
+
+So, next time you see unexpected output order, don't fret! Just remember this journey through the whimsical world of Python buffering and all the magic it holds.
