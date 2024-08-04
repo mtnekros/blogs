@@ -56,6 +56,13 @@ Note: We have chosen to use process substitution with `python test.py &> (cat)` 
 
 # What's Happening?
 
+TDLR; standard output are buffered in python when the logs are redirected to a
+file or through a log driver. That is why they are getting printed at the end.
+However, standard errors are unbuffered by default in all cases. So they are
+printed  as soon as the code reaches that part. So what about the logs printed
+using the logging module? Well, they are line-buffered & that's why the logs
+seem unordered.
+
 Python, like many other programming languages, uses
 buffers to enhance performance during input/output operations. A buffer is a
 temporary storage area where data is held before being sent to its final
@@ -63,16 +70,7 @@ destination (like your console or a log file). Here’s the scoop:
 
 ## Buffering Modes
 
-1. **Interactive Mode:** 
-   When running Python in a terminal or a REPL, both standard input and output
-   streams are *line-buffered*. This means the output is flushed to the
-   terminal whenever a newline character is encountered. Meanwhile, standard
-   error (`stderr`) is *unbuffered*, meaning it gets printed immediately.
-   - **stdin:** Line Buffered
-   - **stdout:** Line Buffered
-   - **stderr:** Unbuffered
-
-2. **Non-Interactive Mode/Script Execution:** 
+1. **Non-Interactive Mode/Script Execution:** 
    If Python isn't being run interactively, and logs aren't redirected to any
    file or pipe, standard input and output are still line-buffered, while
    standard error remains unbuffered.
@@ -80,7 +78,7 @@ destination (like your console or a log file). Here’s the scoop:
    - **stdout:** Line Buffered when connected to a terminal
    - **stderr:** Unbuffered
 
-3. **Redirection to Files/Pipes:** 
+2. **Redirection to Files/Pipes:** 
    When outputs are redirected (e.g., `python script.py | cat` or `python script.py > output.txt`), buffering behavior changes:
    - **stdin:** Fully Buffered
    - **stdout:** Fully Buffered
@@ -88,15 +86,18 @@ destination (like your console or a log file). Here’s the scoop:
 
 ## Logging Module and Buffering
 
-Why does the `logging` module behave differently? It has its own buffering
-mechanism, set to be line-buffered by default. This means log messages are
-flushed immediately when a newline character is encountered, making the output
-appear more consistent and immediate compared to mixing it with `print`
-statements.
+The logging module in Python operates differently from standard output because
+of how it handles of streams and buffering. It employs its own streams and can
+be configured with various handlers, each potentially having distinct buffering
+behaviors. By default, the logging module uses line buffering, which means that
+log messages are flushed to the destination as soon as a newline character is
+encountered. This approach ensures that log entries are promptly displayed,
+making them appear more consistent and immediate compared to standard output
+(When logs are redirected).
 
-## Why Buffers?
+## Why do we even need buffers?
 
-Buffers are like a magical cauldron that cooks up performance benefits:
+Because buffers are like a magical cauldron that cooks up performance benefits:
 
 1. **Performance:** Directly writing data to a physical device can be slow. Buffers help by accumulating data and writing it in larger chunks, significantly speeding things up.
 2. **Smoothing:** Buffers help to smooth out data flow, preventing sudden bursts of output that could overwhelm your system.
@@ -104,9 +105,10 @@ Buffers are like a magical cauldron that cooks up performance benefits:
 # Disabling Buffering with PYTHONUNBUFFERED
 
 Sometimes, you just want things printed right away, without any buffering delay. Enter the `PYTHONUNBUFFERED` environment variable! By setting `PYTHONUNBUFFERED=1`, you disable buffering, ensuring everything is printed instantly. This can be super useful for real-time logging or debugging.
+You may have seen the follwing line in dockerfiles of python projects.
 
 ```bash
-PYTHONUNBUFFERED=1
+ENV PYTHONUNBUFFERED=1
 ```
 
 # Types of Buffers in Python
