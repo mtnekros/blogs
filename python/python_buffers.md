@@ -4,10 +4,33 @@ Ever had your print statements or logs appear in a completely unexpected order?
 If you've ever worked with a separate logging service like AWS CloudWatch, you
 probably have! It can feel like you've fallen down a rabbit hole, with
 everything seeming random and chaotic. But fear not, because we're diving into
-the delightful world of Python buffering. And you will see that what seemed
-like Magic was pretty simple all along.
+the delightful world of Python buffering and unravel this mystery.
 
-# Example 1: The Curious Case of Jumbled Logs
+## Introduction
+Python, like many other programming languages, uses
+buffers to enhance performance during input/output operations. A buffer is a
+temporary storage area where data is held before being sent to its final
+destination such as a console, a log file, or external service. Understanding
+buffering can help you manage log outputs more effectively and aviod confusion.
+
+## Understanding Buffering Modes
+
+Python uses three main types of buffering, depending on the context and the
+nature of output.
+
+1. No Bufferring: Data is written immediately. This mode is typically used
+   interactive environment where immediate feedback is crucial.
+2. Line Buffering: Data is written whenever a character is encountered. This is
+   the mode for `stdout` when connected to a terminal .i.e. when logs are
+   getting printed to the terminal.
+3. Full Buffering: Data is stored until the buffer is full before being written
+   out. This is commonly used for files to optimize write operations (When
+   writing to a file or when logs are pointed to a file or external service).
+
+# Buffering in Action: The Curious Case of Jumbled Logs
+
+How do you think the following script is going to print its logs?
+
 ```python
 """
 test.py
@@ -52,24 +75,21 @@ ERROR:root:This is the end
 [STDOUT]: 2
 ```
 
-Note: We have chosen to use process substitution with `python test.py &> (cat)` instead of piping with `python test.py | cat` because pipes only send stdout to the next command, missing stderr. Process substitution creates a file-like object for the command output, allowing both stdout and stderr to be captured and used together, like a file.  This way, cat can handle both outputs seamlessly, ensuring no output is lost or separated. If you try using a pipe, stderr output will be printed first, without being piped through cat, and then the rest will get `cat`ed out which does not accurately reflect what python is doing with the intended log order.
+>> We have chosen to use process substitution with `python test.py &> (cat)` instead of piping with `python test.py | cat` because pipes only send stdout to the next command, missing stderr. Process substitution creates a file-like object for the command output, allowing both stdout and stderr to be captured and used together, like a file.  This way, cat can handle both outputs seamlessly, ensuring no output is lost or separated. If you try using a pipe, stderr output will be printed first, without being piped through cat, and then the rest will get `cat`ed out which does not accurately reflect what python is doing with the intended log order.
 
 # What's Happening?
 
-TDLR; standard output are buffered in python when the logs are redirected to a
-file or through a log driver. That is why they are getting printed at the end.
-However, standard errors are unbuffered by default in all cases. So they are
-printed  as soon as the code reaches that part. So what about the logs printed
-using the logging module? Well, they are line-buffered & that's why the logs
-seem unordered.
+We have three differnt types of logs in the code:
+1. **Standard output** are buffered in python when the logs are redirected to a
+   file or through a log driver. That is why they are getting printed at the
+   end when the buffer is cleared at the end of the script.
+2. However, standard errors are unbuffered by default in all cases. So they are
+   printed  as soon as the code reaches that part.
+3. So what about the logs printed using the logging module? They all also seem
+   to be printed immediately. That is true to an extent. They are line-buffered
+   & that's why the logs seem unordered.
 
-Python, like many other programming languages, uses
-buffers to enhance performance during input/output operations. A buffer is a
-temporary storage area where data is held before being sent to its final
-destination (like your console or a log file). Here’s the scoop:
-
-## Buffering Modes
-
+Here's a more in depth explanation:
 1. **Non-Interactive Mode/Script Execution:** 
    If Python isn't being run interactively, and logs aren't redirected to any
    file or pipe, standard input and output are still line-buffered, while
@@ -79,13 +99,12 @@ destination (like your console or a log file). Here’s the scoop:
    - **stderr:** Unbuffered
 
 2. **Redirection to Files/Pipes:** 
-   When outputs are redirected (e.g., `python script.py | cat` or `python script.py > output.txt`), buffering behavior changes:
+   When outputs are redirected (e.g., python script.py | cat or python script.py > output.txt), buffering behavior changes:
    - **stdin:** Fully Buffered
    - **stdout:** Fully Buffered
    - **stderr:** Unbuffered
 
-## Logging Module and Buffering
-
+3. **Logging module**
 The logging module in Python operates differently from standard output because
 of how it handles of streams and buffering. It employs its own streams and can
 be configured with various handlers, each potentially having distinct buffering
@@ -110,14 +129,6 @@ You may have seen the follwing line in dockerfiles of python projects.
 ```bash
 ENV PYTHONUNBUFFERED=1
 ```
-
-# Types of Buffers in Python
-
-Python offers three main types of buffering:
-
-1. **No Buffering:** Data is written directly, ideal for interactive environments.
-2. **Line Buffering:** Data is written to the output after encountering a newline character. This is the default for `stdout` when connected to a terminal.
-3. **Full Buffering:** Data is stored in the buffer until it's full, then written out. Commonly used for files.
 
 # The flush() Method
 
