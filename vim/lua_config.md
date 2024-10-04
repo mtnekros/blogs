@@ -589,8 +589,16 @@ require("lazy").setup({
 * lua/plugins/lsp.lua
 * combination of lua, lspsaga & nvim-web-devicons
 ```lua
+-- local ruff = require("lspconfig")["pyright"]
+-- vim.api.nvim_buf_set_lines(
+--     vim.api.nvim_get_current_buf(),
+--     0,
+--     0,
+--     false,
+--     vim.split(vim.inspect(ruff), "\n")
+-- )
+
 return {
-    -- Main LSP Configuration
     "neovim/nvim-lspconfig",
     dependencies = {
         -- Automatically install LSPs and related tools to stdpath for Neovim
@@ -742,7 +750,9 @@ return {
                         args = {
                             "--select", "F,UP,B,SIM,I,E,W",
                             "--line-length", "120",
-                            "--ignore", "I001"
+                            "--ignore", "I001,ERA001",
+                            "--ignore-noqa", "false",
+                            "--show-fixes", "true",
                         },
                     },
                 },
@@ -750,7 +760,6 @@ return {
             pyright = {
                 settings = {
                     pyright = {
-                        -- Using Ruff's import organizer
                         disableOrganizeImports = true,
                     },
                     python = {
@@ -804,7 +813,7 @@ return {
                     local on_attach = function(client, bufnr)
                         if client.name == 'ruff_lsp' then
                             client.server_capabilities.hoverProvider = false
-                       end
+                        end
                     end
                     server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
                     server.on_attach = on_attach
