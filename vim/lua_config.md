@@ -954,6 +954,8 @@ return {
 # neotree
 
 ```
+-- Neo-tree is a Neovim plugin to browse the file system https://github.com/nvim-neo-tree/neo-tree.nvim
+
 
 function ToggleNeoTree()
     for _, win in ipairs(vim.api.nvim_list_wins()) do
@@ -995,7 +997,7 @@ return {
         })
 
         require('neo-tree').setup({
-            close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
+            close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
             popup_border_style = "rounded",
             enable_git_status = true,
             enable_diagnostics = true,
@@ -1008,7 +1010,7 @@ return {
             icon = {
                 folder_closed = "",
                 folder_open = "",
-                folder_empty = "",
+                folder_empty = "",
                 default = "*",
                 highlight = "NeoTreeFileIcon"
             },
@@ -1026,19 +1028,20 @@ return {
                 -- Change type
                 added     = "✚", -- or "✚", but this is redundant info if you use git_status_colors on the name
                 modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
-                deleted   = "",-- this can only be used in the git_status source
+                deleted   = "𝗑",-- this can only be used in the git_status source
                 renamed   = "➜",-- this can only be used in the git_status source
                 -- Status type
-                untracked = "",
-                ignored   = "",
-                unstaged  = "",
-                staged    = "",
+                untracked = "﹖",
+                ignored   = "󰈉",
+                unstaged  = "󰲶",
+                staged    = "✓",
                 conflict  = "",
                 }
             },
-            },
-        });
-    end
-
+        },
+      });
+  end
 }
+
+
 ```
