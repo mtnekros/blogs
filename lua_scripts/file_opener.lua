@@ -1,10 +1,14 @@
-function GetAllFilesInDir(dir, ignore_pattern)
+local function should_include(_f)
+    local ignore_pattern = "^\\.\\|^\\.git\\|^venv\\|__pycache__\\|*\\.py[cod]"
+    -- if file name/directory doesn't match, we should include it
+    return vim.fn.match(_f, ignore_pattern) == -1
+end
+
+
+function GetAllFilesInDir(dir, _should_include)
     -- local function to check if a file or directory should be ignored
-    local function should_ignore(_f)
-        return vim.fn.match(_f, ignore_pattern) == -1
-    end
     -- list all directorys except ignored
-    local ls_dirs = vim.fn.readdir(dir, should_ignore)
+    local ls_dirs = vim.fn.readdir(dir, _should_include)
     local files = {} -- to store the file directories
     for _, file in pairs(ls_dirs) do
         if vim.fn.isdirectory(dir..'/'..file) == 0  then
@@ -13,7 +17,7 @@ function GetAllFilesInDir(dir, ignore_pattern)
         else
             -- if it's a directory, recursive call this function to get the
             -- files from that directory
-            for _, inner_file in pairs(GetAllFilesInDir(dir..'/'..file)) do
+            for _, inner_file in pairs(GetAllFilesInDir(dir..'/'..file, _should_include)) do
                 table.insert(files, file.."/"..inner_file)
             end
         end
@@ -21,6 +25,7 @@ function GetAllFilesInDir(dir, ignore_pattern)
     table.sort(files)
     return files
 end
+
 
 function CreateFloatingWindow(title, texts, buf_opts)
     buf_opts = buf_opts or {}
@@ -46,7 +51,7 @@ function CreateFloatingWindow(title, texts, buf_opts)
     for opt, val in pairs(buf_opts) do
         vim.opt_local[opt] = val
     end
-    return bufnr, win
+    return win, bufnr
 end
 
 function CloseWindow(win, buf)
@@ -59,9 +64,12 @@ function CloseWindow(win, buf)
 end
 
 function FindFiles()
-    local ignore_pattern = "^\\.\\|^\\.git\\|^venv\\|__pycache__\\|*\\.py[cod]"
-    local files = GetAllFilesInDir('.', ignore_pattern)
-    local buf, win = CreateFloatingWindow(" Find Files ", files, {modifiable = false})
+    local files = GetAllFilesInDir('.', should_include)
+    local win, buf = CreateFloatingWindow(" Find Files ", files, {
+        modifiable = false,
+        cursorline = true,
+    })
+    -- vim.opt_local.buftype = "nofile"
 
     local function open_file()
         local file = vim.fn.getline('.')
@@ -74,5 +82,3 @@ function FindFiles()
 end
 
 vim.keymap.set("n", "<C-p>", FindFiles, {noremap = true, silent = true})
-
-
