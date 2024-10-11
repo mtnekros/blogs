@@ -125,3 +125,6 @@ import 'dart:math'; // Import the math library
 void main() {
   print(sqrt(25)); // Using a function from the math library
 }
+
+// --------------------------------------------
+// vim:tw=78:ft=dart:norl:
