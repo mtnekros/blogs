@@ -63,7 +63,7 @@ class Person1(Trace):
         self.age = age
 
     def show(self):
-        print(f"Person(name={self.name}, age={self.age}, n_updates={Person.n_updates})")
+        print(f"Person(name={self.name}, age={self.age}, n_updates={self.__class__.n_updates})")
 
     def make_older(self, yrs: int):
         self.age += yrs

@@ -1,31 +1,17 @@
 # Why Are Log Outputs Disordered? Python Buffering Explained
 
-Ever had your print statements or logs appear in a completely unexpected order?
-If you've ever worked with a separate logging service like AWS CloudWatch, you
-probably have! It can feel like you've fallen down a rabbit hole, with
-everything seeming random and chaotic. But fear not, because we're diving into
-the delightful world of Python buffering and unravel this mystery.
+Ever had your print statements or logs appear in a completely unexpected order?  If you've ever worked with a separate logging service like AWS CloudWatch, you probably have! It can feel like you've fallen down a rabbit hole, with everything seeming random and chaotic. But fear not, because we're diving into the delightful world of Python buffering and unravel this mystery.
 
 ## Introduction
-Python, like many other programming languages, uses
-buffers to enhance performance during input/output operations. A buffer is a
-temporary storage area where data is held before being sent to its final
-destination such as a console, a log file, or external service. Understanding
-buffering can help you manage log outputs more effectively and aviod confusion.
+Python, like many other programming languages, uses buffers to enhance performance during input/output operations. A buffer is a temporary storage area where data is held before being sent to its final destination such as a console, a log file, or external service. Understanding buffering can help you manage log outputs more effectively and avoid confusion.
 
 ## Understanding Buffering Modes
 
-Python uses three main types of buffering, depending on the context and the
-nature of output.
+Python uses three main types of buffering, depending on the context and the nature of output.
 
-1. No Bufferring: Data is written immediately. This mode is typically used
-   interactive environment where immediate feedback is crucial.
-2. Line Buffering: Data is written whenever a character is encountered. This is
-   the mode for `stdout` when connected to a terminal .i.e. when logs are
-   getting printed to the terminal.
-3. Full Buffering: Data is stored until the buffer is full before being written
-   out. This is commonly used for files to optimize write operations (When
-   writing to a file or when logs are pointed to a file or external service).
+1. No Bufferring: Data is written immediately. This mode is typically used interactive environment where immediate feedback is crucial.i
+2. Line Buffering: Data is written whenever a character is encountered. This is the mode for `stdout` when connected to a terminal .i.e. when logs are getting printed to the terminal.
+3. Full Buffering: Data is stored until the buffer is full before being written out. This is commonly used for files to optimize write operations (When writing to a file or when logs are pointed to a file or external service).
 
 # Buffering in Action: The Curious Case of Jumbled Logs
 
@@ -80,14 +66,9 @@ ERROR:root:This is the end
 # What's Happening?
 
 We have three differnt types of logs in the code:
-1. **Standard output** are buffered in python when the logs are redirected to a
-   file or through a log driver. That is why they are getting printed at the
-   end when the buffer is cleared at the end of the script.
-2. However, standard errors are unbuffered by default in all cases. So they are
-   printed  as soon as the code reaches that part.
-3. So what about the logs printed using the logging module? They all also seem
-   to be printed immediately. That is true to an extent. They are line-buffered
-   & that's why the logs seem unordered.
+1. **Standard output** are buffered in python when the logs are redirected to a file or through a log driver. That is why they are getting printed at the end when the buffer is cleared at the end of the script.
+2. However, standard errors are unbuffered by default in all cases. So they are printed  as soon as the code reaches that part.
+3. So what about the logs printed using the logging module? They all also seem to be printed immediately. That is true to an extent. They are line-buffered & that's why the logs seem unordered.
 
 Here's a more in depth explanation:
 1. **Non-Interactive Mode/Script Execution:** 
@@ -105,14 +86,7 @@ Here's a more in depth explanation:
    - **stderr:** Unbuffered
 
 3. **Logging module**
-The logging module in Python operates differently from standard output because
-of how it handles of streams and buffering. It employs its own streams and can
-be configured with various handlers, each potentially having distinct buffering
-behaviors. By default, the logging module uses line buffering, which means that
-log messages are flushed to the destination as soon as a newline character is
-encountered. This approach ensures that log entries are promptly displayed,
-making them appear more consistent and immediate compared to standard output
-(When logs are redirected).
+The logging module in Python operates differently from standard output because of how it handles of streams and buffering. It employs its own streams and can be configured with various handlers, each potentially having distinct buffering behaviors. By default, the logging module uses line buffering, which means that log messages are flushed to the destination as soon as a newline character is encountered. This approach ensures that log entries are promptly displayed, making them appear more consistent and immediate compared to standard output (When logs are redirected).
 
 ## Why do we even need buffers?
 
@@ -123,8 +97,7 @@ Because buffers are like a magical cauldron that cooks up performance benefits:
 
 # Disabling Buffering with PYTHONUNBUFFERED
 
-Sometimes, you just want things printed right away, without any buffering delay. Enter the `PYTHONUNBUFFERED` environment variable! By setting `PYTHONUNBUFFERED=1`, you disable buffering, ensuring everything is printed instantly. This can be super useful for real-time logging or debugging.
-You may have seen the follwing line in dockerfiles of python projects.
+Sometimes, you just want things printed right away, without any buffering delay. Enter the `PYTHONUNBUFFERED` environment variable! By setting `PYTHONUNBUFFERED=1`, you disable buffering, ensuring everything is printed instantly. This can be super useful for real-time logging or debugging.  You may have seen the follwing line in dockerfiles of python projects.
 
 ```bash
 ENV PYTHONUNBUFFERED=1
@@ -178,9 +151,7 @@ Now, no matter the environment, your output will be fully buffered. even when we
 
 # Going Even Further: Custom Output Wrappers
 
-Want to add a custom prefix to your `stdout` and `stderr` messages? You can
-create a custom output wrapper. The only requirements for an class
-to be compatible with sys.stdout & sys.stderr is to have the following two things:
+Want to add a custom prefix to your `stdout` and `stderr` messages? You can create a custom output wrapper. The only requirements for an class to be compatible with sys.stdout & sys.stderr is to have the following two things:
 1. Must have an `write` instance method
    * that takes message as an argument
    * that adds the message to an internal stream
@@ -251,10 +222,7 @@ Standard output stream is flushed
 Standard error stream is flushed
 ```
 
-While not generally recommended for production, playing with these customizations can be a fun way to explore Python's flexibility. Also, we can see that the logs related to the error messages are
-pushed to the stderr stream instead of the stdout stream. Which makes total sense, but it's nice
-to see it clearly using this example. Also, we can see from the logs when the streams was flused as well. Standard error stream was flushed before and after the exception was raised and before the
-python script exited.
+While not generally recommended for production, playing with these customizations can be a fun way to explore Python's flexibility. Also, we can see that the logs related to the error messages are pushed to the stderr stream instead of the stdout stream. Which makes total sense, but it's nice to see it clearly using this example. Also, we can see from the logs when the streams was flused as well. Standard error stream was flushed before and after the exception was raised and before the python script exited.
 
 ## Why stop here? Let's add enable line buffering as well in our custom output wrapper.
 ```python
