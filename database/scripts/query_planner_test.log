@@ -1,0 +1,302 @@
+----------------------------------------------------------------------------------------------------
+TABLE SIZES: 
+T1 SIZE: 1, T2 SIZE: 1
+----------------------------------------------------------------------------------------------------
+QUERYPLAN: 
+Nested Loop  (cost=0.00..2.04 rows=1 width=30) (actual time=0.037..0.038 rows=1 loops=1)
+  Join Filter: (t1.id = t2.id)
+  ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.026..0.026 rows=1 loops=1)
+        Filter: (id < 10)
+  ->  Seq Scan on t2  (cost=0.00..1.01 rows=1 width=15) (actual time=0.010..0.010 rows=1 loops=1)
+Planning Time: 1.254 ms
+Execution Time: 0.120 ms
+----------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------
+TABLE SIZES: 
+T1 SIZE: 1, T2 SIZE: 100
+----------------------------------------------------------------------------------------------------
+QUERYPLAN: 
+Hash Join  (cost=1.02..3.41 rows=1 width=30) (actual time=0.077..0.089 rows=1 loops=1)
+  Hash Cond: (t2.id = t1.id)
+  ->  Seq Scan on t2  (cost=0.00..2.00 rows=100 width=15) (actual time=0.034..0.039 rows=100 loops=1)
+  ->  Hash  (cost=1.01..1.01 rows=1 width=15) (actual time=0.024..0.024 rows=1 loops=1)
+        Buckets: 1024  Batches: 1  Memory Usage: 9kB
+        ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.017..0.018 rows=1 loops=1)
+              Filter: (id < 10)
+Planning Time: 1.013 ms
+Execution Time: 0.240 ms
+----------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------
+TABLE SIZES: 
+T1 SIZE: 1, T2 SIZE: 10000
+----------------------------------------------------------------------------------------------------
+QUERYPLAN: 
+Hash Join  (cost=1.02..193.53 rows=1 width=30) (actual time=0.067..1.660 rows=1 loops=1)
+  Hash Cond: (t2.id = t1.id)
+  ->  Seq Scan on t2  (cost=0.00..155.00 rows=10000 width=15) (actual time=0.031..1.065 rows=10000 loops=1)
+  ->  Hash  (cost=1.01..1.01 rows=1 width=15) (actual time=0.026..0.026 rows=1 loops=1)
+        Buckets: 1024  Batches: 1  Memory Usage: 9kB
+        ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.018..0.019 rows=1 loops=1)
+              Filter: (id < 10)
+Planning Time: 1.379 ms
+Execution Time: 1.752 ms
+----------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------
+TABLE SIZES: 
+T1 SIZE: 1, T2 SIZE: 1000000
+----------------------------------------------------------------------------------------------------
+QUERYPLAN: 
+Gather  (cost=1001.02..12136.30 rows=1 width=30) (actual time=0.872..131.204 rows=1 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  ->  Hash Join  (cost=1.02..11136.20 rows=1 width=30) (actual time=42.899..83.959 rows=0 loops=3)
+        Hash Cond: (t2.id = t1.id)
+        ->  Parallel Seq Scan on t2  (cost=0.00..9572.67 rows=416667 width=15) (actual time=0.038..52.105 rows=333333 loops=3)
+        ->  Hash  (cost=1.01..1.01 rows=1 width=15) (actual time=0.317..0.318 rows=1 loops=3)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.304..0.305 rows=1 loops=3)
+                    Filter: (id < 10)
+Planning Time: 2.377 ms
+Execution Time: 131.363 ms
+----------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------
+TABLE SIZES: 
+T1 SIZE: 100, T2 SIZE: 1
+----------------------------------------------------------------------------------------------------
+QUERYPLAN: 
+Hash Join  (cost=1.02..3.31 rows=1 width=30) (actual time=0.074..0.083 rows=1 loops=1)
+  Hash Cond: (t1.id = t2.id)
+  ->  Seq Scan on t1  (cost=0.00..2.25 rows=8 width=15) (actual time=0.038..0.045 rows=9 loops=1)
+        Filter: (id < 10)
+        Rows Removed by Filter: 91
+  ->  Hash  (cost=1.01..1.01 rows=1 width=15) (actual time=0.026..0.026 rows=1 loops=1)
+        Buckets: 1024  Batches: 1  Memory Usage: 9kB
+        ->  Seq Scan on t2  (cost=0.00..1.01 rows=1 width=15) (actual time=0.017..0.018 rows=1 loops=1)
+Planning Time: 1.313 ms
+Execution Time: 0.193 ms
+----------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------
+TABLE SIZES: 
+T1 SIZE: 100, T2 SIZE: 100
+----------------------------------------------------------------------------------------------------
+QUERYPLAN: 
+Hash Join  (cost=2.35..4.80 rows=8 width=30) (actual time=0.093..0.111 rows=9 loops=1)
+  Hash Cond: (t2.id = t1.id)
+  ->  Seq Scan on t2  (cost=0.00..2.00 rows=100 width=15) (actual time=0.036..0.042 rows=100 loops=1)
+  ->  Hash  (cost=2.25..2.25 rows=8 width=15) (actual time=0.043..0.043 rows=9 loops=1)
+        Buckets: 1024  Batches: 1  Memory Usage: 9kB
+        ->  Seq Scan on t1  (cost=0.00..2.25 rows=8 width=15) (actual time=0.028..0.034 rows=9 loops=1)
+              Filter: (id < 10)
+              Rows Removed by Filter: 91
+Planning Time: 2.519 ms
+Execution Time: 0.212 ms
+----------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------
+TABLE SIZES: 
+T1 SIZE: 100, T2 SIZE: 10000
+----------------------------------------------------------------------------------------------------
+QUERYPLAN: 
+Hash Join  (cost=2.35..194.93 rows=8 width=30) (actual time=0.101..2.153 rows=9 loops=1)
+  Hash Cond: (t2.id = t1.id)
+  ->  Seq Scan on t2  (cost=0.00..155.00 rows=10000 width=15) (actual time=0.042..1.359 rows=10000 loops=1)
+  ->  Hash  (cost=2.25..2.25 rows=8 width=15) (actual time=0.049..0.049 rows=9 loops=1)
+        Buckets: 1024  Batches: 1  Memory Usage: 9kB
+        ->  Seq Scan on t1  (cost=0.00..2.25 rows=8 width=15) (actual time=0.034..0.040 rows=9 loops=1)
+              Filter: (id < 10)
+              Rows Removed by Filter: 91
+Planning Time: 2.645 ms
+Execution Time: 2.270 ms
+----------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------
+TABLE SIZES: 
+T1 SIZE: 100, T2 SIZE: 1000000
+----------------------------------------------------------------------------------------------------
+QUERYPLAN: 
+Gather  (cost=1002.35..12138.35 rows=8 width=30) (actual time=0.683..148.213 rows=9 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  ->  Hash Join  (cost=2.35..11137.55 rows=3 width=30) (actual time=50.514..97.348 rows=3 loops=3)
+        Hash Cond: (t2.id = t1.id)
+        ->  Parallel Seq Scan on t2  (cost=0.00..9572.67 rows=416667 width=15) (actual time=0.035..59.662 rows=333333 loops=3)
+        ->  Hash  (cost=2.25..2.25 rows=8 width=15) (actual time=0.258..0.258 rows=9 loops=3)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              ->  Seq Scan on t1  (cost=0.00..2.25 rows=8 width=15) (actual time=0.241..0.247 rows=9 loops=3)
+                    Filter: (id < 10)
+                    Rows Removed by Filter: 91
+Planning Time: 1.860 ms
+Execution Time: 148.335 ms
+----------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------
+TABLE SIZES: 
+T1 SIZE: 10000, T2 SIZE: 1
+----------------------------------------------------------------------------------------------------
+QUERYPLAN: 
+Nested Loop  (cost=0.00..181.12 rows=1 width=30) (actual time=0.068..1.452 rows=1 loops=1)
+  Join Filter: (t1.id = t2.id)
+  Rows Removed by Join Filter: 8
+  ->  Seq Scan on t2  (cost=0.00..1.01 rows=1 width=15) (actual time=0.031..0.031 rows=1 loops=1)
+  ->  Seq Scan on t1  (cost=0.00..180.00 rows=9 width=15) (actual time=0.035..1.418 rows=9 loops=1)
+        Filter: (id < 10)
+        Rows Removed by Filter: 9991
+Planning Time: 1.606 ms
+Execution Time: 1.560 ms
+----------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------
+TABLE SIZES: 
+T1 SIZE: 10000, T2 SIZE: 100
+----------------------------------------------------------------------------------------------------
+QUERYPLAN: 
+Hash Join  (cost=3.25..183.29 rows=1 width=30) (actual time=0.105..1.552 rows=9 loops=1)
+  Hash Cond: (t1.id = t2.id)
+  ->  Seq Scan on t1  (cost=0.00..180.00 rows=9 width=15) (actual time=0.048..1.491 rows=9 loops=1)
+        Filter: (id < 10)
+        Rows Removed by Filter: 9991
+  ->  Hash  (cost=2.00..2.00 rows=100 width=15) (actual time=0.045..0.045 rows=100 loops=1)
+        Buckets: 1024  Batches: 1  Memory Usage: 13kB
+        ->  Seq Scan on t2  (cost=0.00..2.00 rows=100 width=15) (actual time=0.022..0.027 rows=100 loops=1)
+Planning Time: 1.670 ms
+Execution Time: 1.662 ms
+----------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------
+TABLE SIZES: 
+T1 SIZE: 10000, T2 SIZE: 10000
+----------------------------------------------------------------------------------------------------
+QUERYPLAN: 
+Hash Join  (cost=180.11..372.70 rows=9 width=30) (actual time=1.511..3.567 rows=9 loops=1)
+  Hash Cond: (t2.id = t1.id)
+  ->  Seq Scan on t2  (cost=0.00..155.00 rows=10000 width=15) (actual time=0.038..1.346 rows=10000 loops=1)
+  ->  Hash  (cost=180.00..180.00 rows=9 width=15) (actual time=1.459..1.460 rows=9 loops=1)
+        Buckets: 1024  Batches: 1  Memory Usage: 9kB
+        ->  Seq Scan on t1  (cost=0.00..180.00 rows=9 width=15) (actual time=0.031..1.450 rows=9 loops=1)
+              Filter: (id < 10)
+              Rows Removed by Filter: 9991
+Planning Time: 1.536 ms
+Execution Time: 3.656 ms
+----------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------
+TABLE SIZES: 
+T1 SIZE: 10000, T2 SIZE: 1000000
+----------------------------------------------------------------------------------------------------
+QUERYPLAN: 
+Gather  (cost=1180.11..12316.22 rows=9 width=30) (actual time=2.130..172.737 rows=9 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  ->  Hash Join  (cost=180.11..11315.32 rows=4 width=30) (actual time=33.065..82.741 rows=3 loops=3)
+        Hash Cond: (t2.id = t1.id)
+        ->  Parallel Seq Scan on t2  (cost=0.00..9572.67 rows=416667 width=15) (actual time=0.022..51.633 rows=333333 loops=3)
+        ->  Hash  (cost=180.00..180.00 rows=9 width=15) (actual time=1.440..1.440 rows=9 loops=2)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              ->  Seq Scan on t1  (cost=0.00..180.00 rows=9 width=15) (actual time=0.206..1.428 rows=9 loops=2)
+                    Filter: (id < 10)
+                    Rows Removed by Filter: 9991
+Planning Time: 1.693 ms
+Execution Time: 172.847 ms
+----------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------
+TABLE SIZES: 
+T1 SIZE: 1000000, T2 SIZE: 1
+----------------------------------------------------------------------------------------------------
+QUERYPLAN: 
+Gather  (cost=1001.02..11615.62 rows=1 width=30) (actual time=0.685..106.597 rows=1 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  ->  Hash Join  (cost=1.02..10615.52 rows=1 width=30) (actual time=27.358..60.357 rows=0 loops=3)
+        Hash Cond: (t1.id = t2.id)
+        ->  Parallel Seq Scan on t1  (cost=0.00..10614.33 rows=42 width=15) (actual time=27.337..60.334 rows=3 loops=3)
+              Filter: (id < 10)
+              Rows Removed by Filter: 333330
+        ->  Hash  (cost=1.01..1.01 rows=1 width=15) (actual time=0.034..0.036 rows=1 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              ->  Seq Scan on t2  (cost=0.00..1.01 rows=1 width=15) (actual time=0.024..0.025 rows=1 loops=1)
+Planning Time: 2.903 ms
+Execution Time: 106.732 ms
+----------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------
+TABLE SIZES: 
+T1 SIZE: 1000000, T2 SIZE: 100
+----------------------------------------------------------------------------------------------------
+QUERYPLAN: 
+Gather  (cost=1003.25..11617.85 rows=1 width=30) (actual time=0.641..139.888 rows=9 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  ->  Hash Join  (cost=3.25..10617.75 rows=1 width=30) (actual time=39.389..83.181 rows=3 loops=3)
+        Hash Cond: (t1.id = t2.id)
+        ->  Parallel Seq Scan on t1  (cost=0.00..10614.33 rows=42 width=15) (actual time=39.352..83.142 rows=3 loops=3)
+              Filter: (id < 10)
+              Rows Removed by Filter: 333330
+        ->  Hash  (cost=2.00..2.00 rows=100 width=15) (actual time=0.084..0.085 rows=100 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 13kB
+              ->  Seq Scan on t2  (cost=0.00..2.00 rows=100 width=15) (actual time=0.032..0.044 rows=100 loops=1)
+Planning Time: 1.338 ms
+Execution Time: 140.021 ms
+----------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------
+TABLE SIZES: 
+T1 SIZE: 1000000, T2 SIZE: 10000
+----------------------------------------------------------------------------------------------------
+QUERYPLAN: 
+Gather  (cost=1280.00..11894.60 rows=1 width=30) (actual time=3.468..164.593 rows=9 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  ->  Hash Join  (cost=280.00..10894.50 rows=1 width=30) (actual time=16.522..47.884 rows=3 loops=3)
+        Hash Cond: (t1.id = t2.id)
+        ->  Parallel Seq Scan on t1  (cost=0.00..10614.33 rows=42 width=15) (actual time=15.592..46.952 rows=3 loops=3)
+              Filter: (id < 10)
+              Rows Removed by Filter: 333330
+        ->  Hash  (cost=155.00..155.00 rows=10000 width=15) (actual time=2.691..2.692 rows=10000 loops=1)
+              Buckets: 16384  Batches: 1  Memory Usage: 587kB
+              ->  Seq Scan on t2  (cost=0.00..155.00 rows=10000 width=15) (actual time=0.033..1.456 rows=10000 loops=1)
+Planning Time: 1.516 ms
+Execution Time: 164.842 ms
+----------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------
+TABLE SIZES: 
+T1 SIZE: 1000000, T2 SIZE: 1000000
+----------------------------------------------------------------------------------------------------
+QUERYPLAN: 
+Gather  (cost=11614.86..22760.21 rows=100 width=30) (actual time=69.487..143.116 rows=9 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  ->  Parallel Hash Join  (cost=10614.86..21750.21 rows=42 width=30) (actual time=85.124..107.440 rows=3 loops=3)
+        Hash Cond: (t2.id = t1.id)
+        ->  Parallel Seq Scan on t2  (cost=0.00..9572.67 rows=416667 width=15) (actual time=0.017..38.075 rows=333333 loops=3)
+        ->  Parallel Hash  (cost=10614.33..10614.33 rows=42 width=15) (actual time=40.262..40.262 rows=3 loops=3)
+              Buckets: 1024  Batches: 1  Memory Usage: 40kB
+              ->  Parallel Seq Scan on t1  (cost=0.00..10614.33 rows=42 width=15) (actual time=17.284..40.210 rows=3 loops=3)
+                    Filter: (id < 10)
+                    Rows Removed by Filter: 333330
+Planning Time: 1.248 ms
+Execution Time: 143.200 ms
+----------------------------------------------------------------------------------------------------
+
+
