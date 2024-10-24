@@ -1,4 +1,4 @@
-"""Module stores random tests I do from time to time."""
+"""Module holds functions to test different join query plans."""
 import logging
 from collections.abc import Iterator
 from contextlib import contextmanager
@@ -8,10 +8,12 @@ from typing import Dict
 import psycopg2
 
 logging.basicConfig(
-    filename="query_planner_test.log",
-    filemode="w",
     level=logging.INFO,
     format="%(message)s",
+    handlers=(
+        logging.StreamHandler(),
+        logging.FileHandler(filename="query_planner_test.log"),
+    ),
 )
 
 DB_CREDS = {
@@ -29,7 +31,7 @@ def db_cursor() -> Iterator[psycopg2.extensions.cursor]:
         yield cursor
 
 def get_query_plan(query: str) -> str:
-    """Return the join query plan of given table sizes."""
+    """Return the query plan of the query."""
     query = f"""
     EXPLAIN ANALYZE {query}
     """
@@ -58,7 +60,10 @@ def get_sql_value_generator(sql_data_type: str) -> str:
 
 def insert_data_into_table(table: str, columns: Dict[str,str], row_count: int) -> None:
     """Truncate and add random data to existing table."""
-    columns_filtered = {name: _type for name,_type in columns.items() if _type.lower() != "serial"}
+    columns_filtered = {
+        name: _type for name,_type in columns.items()
+        if _type.strip().lower() != "serial"
+    }
     sql_columns = ", ".join({name for name in columns_filtered})
     sql_column_generator = ", ".join(
         f"{get_sql_value_generator(_type)} AS {name}"
@@ -73,6 +78,25 @@ def insert_data_into_table(table: str, columns: Dict[str,str], row_count: int) -
     with db_cursor() as cursor:
         cursor.execute(query)
 
+def add_indexes(index_on_t1: bool, index_on_t2: bool) -> None:
+    """Add indexes to t1 & t2 table on id column based on passed parameters."""
+    if not index_on_t1 and not index_on_t2:
+        return
+    with db_cursor() as cursor:
+        if index_on_t1:
+            cursor.execute(dedent("""
+                DROP INDEX IF EXISTS t1_id_idx;
+                CREATE INDEX t1_id_idx ON t1(id);
+                CLUSTER t1 USING t1_id_idx;
+            """))
+        if index_on_t2:
+            cursor.execute(dedent("""
+                DROP INDEX IF EXISTS t2_id_idx;
+                CREATE INDEX t2_id_idx ON t2(id);
+                CLUSTER t2 USING t2_id_idx;
+            """))
+        cursor.execute("ANALYZE t1, t2;")
+
 def run_tests() -> None:
     """Log query plan for join of different sizes of table."""
     tables = {
@@ -86,19 +110,38 @@ def run_tests() -> None:
         },
     }
     t1_sizes = t2_sizes = [1, 100, 10_000, 1_000_000 ] # , 1_000, 100_000, 1_000_000, 5_000_000]
-    query = """SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10"""
+    queries = [
+        """SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10""",
+        """SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10""",
+        """SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000""",
+        """SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id""",
+    ]
+    indexes = [
+        (False, False),
+        (True, False),
+        (True, True),
+    ]
+    dash_count = 100
     for t1_row_count in t1_sizes:
         for t2_row_count in t2_sizes:
             for table_name, columns in tables.items():
                 create_table(table_name, columns)
                 row_count = t1_row_count if table_name == "t1" else t2_row_count
                 insert_data_into_table(table_name, columns, row_count)
-            query_plan = get_query_plan(query)
-            logging.info("-"*100)
-            logging.info(f"TABLE SIZES: \nT1 SIZE: {t1_row_count}, T2 SIZE: {t2_row_count}")
-            logging.info("-"*100)
-            logging.info(f"QUERYPLAN: \n{query_plan}")
-            logging.info("-"*100)
+            logging.info("-"*dash_count)
+            logging.info(f"TABLE SIZES:\nT1 SIZE: {t1_row_count}, T2 SIZE: {t2_row_count}")
+            logging.info("-"*dash_count)
+            for index_on_t1, index_on_t2 in indexes:
+                add_indexes(index_on_t1, index_on_t2)
+                logging.info("-"*dash_count)
+                logging.info(f"INDEXES:\nINDEX ON t1(id): {index_on_t1}, INDEX ON t2(id): {index_on_t2}")
+                logging.info("-"*dash_count)
+                for query in queries:
+                    query_plan = get_query_plan(query)
+                    logging.info(f"QUERY: {query}")
+                    logging.info("-"*dash_count)
+                    logging.info(f"QUERYPLAN: \n{query_plan}")
+                    logging.info("-"*dash_count)
             logging.info("\n")
 
 if __name__ == "__main__":
