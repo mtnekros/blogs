@@ -251,6 +251,7 @@ class StatsOverlay:
     def update(self, walkers: list[Walker]) -> None:
         """Update the stats."""
         self.stats = [
+            f"Using Slots: {'Yes' if USE_SLOTS else 'No'}",
             f"Frame Rate: {Game.FRAME_RATE}",
             f"Walker Count: {len(walkers)}",
             f"RAM Usage: {self.get_ram_usage()}",
