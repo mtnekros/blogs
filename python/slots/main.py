@@ -2,7 +2,7 @@ import math
 import random
 import sys
 import time
-from typing import Type
+from typing import Tuple, Type
 
 import psutil
 import pygame
@@ -38,7 +38,7 @@ class Game:
         self.add_walkers(count=Game.INITIAL_WALKER_COUNT)
         self.screen = pygame.display.set_mode((Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT))
         self.clock = pygame.time.Clock()
-        self.stats_overlay = StatsOverlay(5, 5, 300, 140)
+        self.stats_overlay = StatsOverlay(5, 5)
 
     def add_walkers(self, count: int=1) -> None:
         """Add walkers into the game."""
@@ -232,13 +232,12 @@ class StatsOverlay:
     text_offset = 10
     y_offset = 20
 
-    __slots__ = ("left", "top", "overlay", "font", "stats")
+    __slots__ = ("left", "top", "font", "stats")
 
-    def __init__(self, left: float, top: float, width: float, height: float) -> None:
+    def __init__(self, left: float, top: float) -> None:
         """Initialize stats overlay position & fonts."""
         self.left = left
         self.top = top
-        self.overlay = Surface((width, height))
         self.font =  pygame.font.SysFont(None, 24)
         self.stats = []
 
@@ -255,20 +254,28 @@ class StatsOverlay:
             f"Frame Rate: {Game.FRAME_RATE}",
             f"Walker Count: {len(walkers)}",
             f"RAM Usage: {self.get_ram_usage()}",
+            f"Empty Array Memory (sys.getsizeof): {sys.getsizeof([])}",
             f"Walker Memory (sys.getsizeof): {sys.getsizeof(walkers)}",
             f"Walker Memory (pympler): {asizeof(walkers)}",
         ]
 
+    def get_estimate_size(self) -> Tuple[float, float]:
+        """Return the size of the overlay based on stats text."""
+        width = max(len(line) for line in self.stats) * 9
+        height = len(self.stats) * 25
+        return width, height
+
     def draw(self, screen: Surface) -> None:
         """Draw the stats on the screen."""
-        self.overlay.set_alpha(180) # transparency
-        self.overlay.fill("gray")
+        overlay = Surface(self.get_estimate_size())
+        overlay.set_alpha(180) # transparency
+        overlay.fill("gray")
         y_offset = self.text_offset
         for line in self.stats:
             text = self.font.render(line, True, "black")
-            self.overlay.blit(text, (self.left + self.text_offset, self.top + y_offset))
+            overlay.blit(text, (self.left + self.text_offset, self.top + y_offset))
             y_offset += self.y_offset
-        screen.blit(self.overlay, (self.left, self.top))
+        screen.blit(overlay, (self.left, self.top))
 
 
 

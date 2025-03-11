@@ -1,5 +1,5 @@
 # TODO LISTs
 
-* [ ] Get objects moving in python
-* [ ] Get a screen to show used spaces.
-* [ ] Prepare slides
+* [X] Get objects moving in python
+* [X] Get a screen to show used memory.
+* [X] Prepare slides
