@@ -1,0 +1,11 @@
+[project]
+name = "slots"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "psutil>=7.0.0",
+    "pygame>=2.6.1",
+    "pympler>=1.1",
+]
