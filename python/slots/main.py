@@ -13,6 +13,7 @@ from pygame import (
 from pympler.asizeof import asizeof
 
 import colors
+from src.player import Player
 
 random.seed(time.time())
 
@@ -28,15 +29,16 @@ class Game:
     CENTER_Y = SCREEN_HEIGHT // 2
     BACKGROUND = "black"
     RECT = Rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
-    INITIAL_WALKER_COUNT = 100
+    INITIAL_WALKER_COUNT = 10
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     def __init__(self) -> None:
         """Initialize the game."""
         self.is_running = True
         # self.road = Road(width=350)
         self.walkers = []
+        self.player = Player()
         self.add_walkers(count=Game.INITIAL_WALKER_COUNT)
-        self.screen = pygame.display.set_mode((Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT))
         self.clock = pygame.time.Clock()
         self.stats_overlay = StatsOverlay(5, 5)
 
@@ -44,7 +46,7 @@ class Game:
         """Add walkers into the game."""
         for _ in range(count):
             self.walkers.append(
-                Walker.create_at_random_pos(Game.SCREEN_WIDTH, Game.SCREEN_HEIGHT)
+                Walker(Game.SCREEN_WIDTH/2, Game.SCREEN_HEIGHT/2)
             )
 
     def remove_walkers(self, count: int=1) -> None:
@@ -72,6 +74,7 @@ class Game:
                     self.remove_walkers(count=1)
                 elif event.key == pygame.K_DELETE:
                     self.remove_walkers(count=10)
+        self.player.update(pygame.key.get_pressed(), dt)
         for walker in self.walkers:
             walker.update(dt, Game.RECT)
         self.stats_overlay.update(self.walkers)
@@ -82,6 +85,7 @@ class Game:
         # self.road.draw(self.screen)
         for walker in self.walkers:
             walker.draw(self.screen)
+        self.player.draw(self.screen)
         self.stats_overlay.draw(self.screen)
 
     def run(self) -> None:
@@ -251,12 +255,12 @@ class StatsOverlay:
     def update(self, walkers: list[Walker]) -> None:
         """Update the stats."""
         self.stats = [
+            f"Slots usage: {'Yes' if USE_SLOTS else 'No'}",
             f"Frame Rate: {Game.FRAME_RATE}",
             f"Walker Count: {len(walkers)}",
             f"RAM Usage: {self.get_ram_usage()}",
-            f"Empty Array Memory (sys.getsizeof): {sys.getsizeof([])}",
-            f"Walker Memory (sys.getsizeof): {sys.getsizeof(walkers)}",
-            f"Walker Memory (pympler): {asizeof(walkers)}",
+            f"Walker Memory (sys.getsizeof): {sys.getsizeof(walkers) / 1024:.2f} KB",
+            f"Walker Memory (pympler): {asizeof(walkers) / 1024:.2f} KB",
         ]
 
     def get_estimate_size(self) -> Tuple[float, float]:

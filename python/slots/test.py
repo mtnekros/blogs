@@ -1,21 +1,46 @@
 from typing import Literal
 
 import pygame
-from pygame.constants import K_UP
+from pygame import (
+    Rect,
+    Surface,
+)
 from pygame.key import ScancodeWrapper
 
+from src.animation import Animation
 
-def get_frame(sheet, frame_width, frame_height, index, top_offset: int, flip: bool = False):
-    """Return a specific frame from a horizontal sprite sheet."""
-    frame_rect = pygame.Rect(index * frame_width, top_offset, frame_width, frame_height)
+
+def get_frame(
+    sheet: Surface,
+    frame_width: float,
+    frame_height: float,
+    index: int,
+    top_offset: int,
+    flip: bool = False,
+) -> Surface:
+    """Return a specific frame from a sprite sheet."""
+    frame_rect = Rect(index * frame_width, top_offset, frame_width, frame_height)
     frame_image = sheet.subsurface(frame_rect).copy()
     if flip:
         frame_image = pygame.transform.flip(frame_image, True, False)
     return frame_image
 
+
+def create_animation() -> Animation:
+    """Return an animation instance."""
+    frame_width = 85
+    frame_height = 100
+    running_frames = [get_frame(sprite_sheet, frame_width, frame_height, i, 0) for i in range(6)]
+    return Animation(
+        frames=running_frames,
+        duration_secs=2,
+        cycle=False,
+    )
+
+
 AnimationType = Literal["running", "resting", "jumping"]
 Direction = Literal["left", "right"]
-class Animation:
+class Player:
     """Animation: handles player animation."""
 
     def __init__(self) -> None:
@@ -97,7 +122,8 @@ clock = pygame.time.Clock()
 pygame.init()
 
 sprite_sheet = pygame.image.load("./assets/player.png").convert_alpha()
-anim = Animation()
+player = Player()
+anim = create_animation()
 
 running = True
 color = (20, 20, 20)
@@ -111,9 +137,11 @@ while running:
         if event.type == pygame.KEYDOWN:
             color = (20, 20, 20)
 
+    anim.update(dt)
     screen.fill(color)
-    anim.update(pygame.key.get_pressed(), dt)
-    anim.draw(screen)
+    player.update(pygame.key.get_pressed(), dt)
+    player.draw(screen)
+    screen.blit(anim.get_frame(), (100, 100))
     pygame.display.flip()
     clock.tick(FRAME_RATE)
 
