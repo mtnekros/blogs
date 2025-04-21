@@ -129,6 +129,8 @@ completion = client.beta.chat.completions.create(
         * error message + initial prompt to LLM again
         * Repeat until success
 
+![Re-prompting Flow Diagram](./images/how_reprompting_works.png)
+
 ## Demo with Instructor
 * DEMO with Instructor
 
@@ -145,6 +147,7 @@ completion = client.beta.chat.completions.create(
 * Uses logits based approach
     > Logits represent the raw, unnormalized scores produced by the last layer of
     > a neural network before these scores are transformed into probabilities.
+![how llm works](./images/how_llm_works_2.png)
 * Brief overvew of LLMs work
     * Messages History/Prompts Feed into LLM
         * LLM gets a list of probable next token
