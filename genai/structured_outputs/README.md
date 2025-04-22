@@ -9,7 +9,8 @@
 ![My Career Depends on it Bro](./images/career_depends_on_it_bro.png)
 
 
-
+> Note to self: Run demo_0_prompt_hack.py
+* Time estimation: 2 + 4 + 4 + 4 + 2: 16min
 
 
 
@@ -47,9 +48,11 @@
             Request POST
             Payload {"text": "Some txt ...", "model_names": ["YearsInBusiness"] }
             Response: {"status": 200, "body": [{"model": "YearsInBusiness", "output": 9}]}
-            ``` * We need structured outputs like Json, XML. JSON, XML, Tables, etc
+            ```
+        * We need structured outputs like Json, XML. JSON, XML, Tables, etc
 
->Note: We will be going through progressively better way of getting structured output in this presentation
+>Note: We will be going through progressively better way of getting structured
+>output in this presentation
 
 
 
@@ -117,6 +120,7 @@
 * Took multiple tries to get the answer correct. (80-90)
 * Demo: With ChatGPT & Ollama
 
+> Note to self: Run demo_1_prompt_hack.py
 
 
 
@@ -142,13 +146,13 @@
     * Activates some internal constraints that forces the model to output json
         * No explanation & preambles. No trailing characters. :)
         * Doesn't reliably matches the defined schema. :(
-* JSON APIs
+* Structured JSON APIs
     * Models that are fine tuned to output json
     * Activates some internal constraints that forces the model to output json
-        * No explanation & preambles. No trailing characters.
-        * Doesn't reliably matches the defined schema.
+        * Follows a user defined structure (pydantic or zod)
 
 
+> Note to self: Run demo_2_instructor.py (re-prompting example)
 
 
 
@@ -176,7 +180,7 @@ response = openai.ChatCompletion.create(
     model="gpt-4o-mini",
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Give me a JSON object with name and age fields."}
+        {"role": "user", "content": "Give me an interesting character with name and age in JSON Format."}
     ],
     response_format={"type": "json_object"},  # 👈 this activates JSON mode
 )
@@ -186,14 +190,14 @@ print(response.choices[0].message.content)
 from pydantic import BaseModel
 from open_ai import OpenAI
 
-class Business:
+class Business(BaseModel):
     name: str # name of the business
     subsidiaries: list[str] # list of subsidiary businesses
     # NOTE: it also supports nested classes (5 level of nesting)
 
 client = OpenAI()
 context = "...scraped content..."
-completion = client.beta.chat.completions.create(
+response = client.beta.chat.completions.create(
     model="gpt-4o-mini",
     messages=[
         "role": "user",
@@ -201,8 +205,10 @@ completion = client.beta.chat.completions.create(
             { "type": "text", "text": f"<document>{context}</document>" },
             { "type": "text", "text": question },
         ]
-    ]
+    ],
+    response_format=Business,
 )
+print(response.choice[0].message.parsed)
 ```
 
 
@@ -285,6 +291,9 @@ completion = client.beta.chat.completions.create(
     * Case 2: Error
         * error message + initial prompt to LLM again
         * Repeat until success
+* Frameworks:
+    * instructor
+    * langchain
 
 ![Re-prompting Flow Diagram](./images/how_reprompting_works.png)
 
@@ -309,6 +318,9 @@ completion = client.beta.chat.completions.create(
 
 ## Demo with Instructor
 * DEMO with Instructor
+
+> Note to self: Run demo_3_outlines.py (Structured Generation)
+
 
 
 
@@ -336,7 +348,7 @@ completion = client.beta.chat.completions.create(
 * Cons:
     * Time consuming (Multiple Attempts)
     * Money consuming (Multiple Attempts, More token used)
-    * Chanche of failing
+    * Chance of failing
 
 
 
@@ -376,9 +388,9 @@ completion = client.beta.chat.completions.create(
     * Example:
         * Question: Give the business information in json output.
         * next token logits:
-            1. `Here` 45%
-            2. `Of course` 45% (these are tokens)
-            3. `{` (2%) (Models fine tuned for json will automatically have this as the highest probablity)
+            1. `Here` 32%
+            2. `Of course` 31% (these are tokens)
+            3. `{` (28%) (Models fine tuned for json will automatically have this as the highest probablity)
             ...
         * No 3 is selected because of the baised selection that outlines enforces
         * This is done continually until a valid json is formed.
@@ -462,13 +474,14 @@ completion = client.beta.chat.completions.create(
 
 
 # Conclusion from trials
+* Structured Output is a must for software integration.
 * Structure is not always ensured even with outlines in case of complex regex matching.
     * Reason 1: Model is not good
     * Reason 2: Context is not good
     * Reason 3: Impossible condition.
         * Example:
             1. Extract email from scraped content.
-            2. "Content has no email."
+            2. Content: "My name is Hari Bahadur Chyangba" (content has no email.)
             3. Don't hallucinate
         * No way of matching a valid email now.
         ```
@@ -483,7 +496,6 @@ completion = client.beta.chat.completions.create(
                                    ||----w |
                                    ||     ||
         ```
-* Structured Output is better than Vanilla Output.
 
 
 
@@ -506,9 +518,9 @@ completion = client.beta.chat.completions.create(
 
 ## References:
 * [Structured LLM Output Course on learn.deeplearning.ai](https://learn.deeplearning.ai/courses/getting-structured-llm-output)
-    * Recommend to check this out.
+    * Highly recommend to check this out.
     * It's a free course on SO.
-    * An hour of pure knowledge. (Video tutorial + Lab)
+    * An hour of pure raw knowledge. (Video tutorial + Lab)
 * [Outlines GitHub Page](https://github.com/dottxt-ai/outlines)
 * [Outlines Webpage](https://dottxt-ai.github.io/outlines/latest/welcome/)
 * [Harnessing Structured total w/ Ollama & Instructor](https://python.useinstructor.com/examples/ollama/)
@@ -618,3 +630,4 @@ completion = client.beta.chat.completions.create(
 * Any thing that needs to be improved?
 * Did I overexplain or underexplain anything?
 * Anything that you would have wanted to see.
+* Was the presentation too lengthy?

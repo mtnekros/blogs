@@ -10,6 +10,8 @@ from openai import OpenAI
 from openai.types.chat.chat_completion import ChatCompletion
 from pydantic import BaseModel, Field
 
+from utils import time_it
+
 OLLAMA_HOST = "http://localhost:11434/v1"
 
 
@@ -48,6 +50,7 @@ class TokenTracker(BaseModel):
 
 PydModel = TypeVar("PydModel", bound=BaseModel)
 
+@time_it
 def get_so_with_instructor(
     model: str,
     question: str,
@@ -73,6 +76,7 @@ def get_so_with_instructor(
     print(tracker.summary())
     return resp
 
+@time_it
 def get_vanilla_output(
     model: str,
     question: str,
@@ -89,6 +93,7 @@ def get_vanilla_output(
     )
     return response.message.content or ""
 
+@time_it
 def summarise_new_article_comp() -> None:
     """Comparison between structured output & converstation text using instructor & ollama."""
     context = """
@@ -131,3 +136,20 @@ def summarise_new_article_comp() -> None:
 
 if __name__ == "__main__":
     summarise_new_article_comp()
+"""
+
+Attemp no: 1
+
+Num Retries: 1
+Total Input Token Used: 701
+Total Output Token Used: 62
+Total Tokens Used: 763"
+
+Time taken by get_so_with_instructor: 23.660 sec(s).
+Article Summary: The suspension is a result of the introduction of Donald Trump's new t
+ariff regime, which has led to a significant increase in formal customs clearances.    
+Key points:
+   * Fact 0: DHL Express suspends deliveries to the US worth over $800 due to increased
+ red tape at customs
+
+"""

@@ -4,7 +4,7 @@ from typing import Literal
 from ollama import chat
 from pydantic import BaseModel, Field, StringConstraints
 
-from utils import get_scraped_content, restaurant_url
+from utils import get_scraped_content, restaurant_url, time_it
 
 
 class Location(BaseModel):  # noqa: D101
@@ -28,10 +28,10 @@ class BusinessInfo(BaseModel):  # noqa: D101
     contact_info: ContactInfo
     category: Literal["Restaurant", "Retail", "Hotel", "Contractor", "Other"]
 
+@time_it
 def main() -> None:
     """Extract business info using ollama's structured output api."""
     context = get_scraped_content(restaurant_url)
-    print(context)
     question = f"""
     <document>{context}<document>
     From the given document, extract the business name, owner, location & contact information in a json format.
@@ -44,10 +44,37 @@ def main() -> None:
         format=BusinessInfo.model_json_schema(),
     )
 
-    # biz_info = BusinessInfo.model_validate_json(response.message.content or "")
-    # print(repr(biz_info))
+    biz_info = BusinessInfo.model_validate_json(response.message.content or "")
+    print(f"BUSINESS: {repr(biz_info)}")
     print(response.message.content)
 
 
 if __name__ == "__main__":
     main()
+
+"""
+BUSINESS: BusinessInfo(name='Le Sherpa Restaurant', owner='', location=Location(address
+='Maharajgunj, KTM, Nepal', city='Kathmandu', country='Nepal'), contact_info=ContactInf
+o(email='This email address is being protected from spambots. You need JavaScript enabl
+ed to view it.', phone_number='+977-9801159480,01-4528604', fax_number=''), category='R
+estaurant')
+{
+"name": "Le Sherpa Restaurant",
+"owner": "",
+"location": {
+  "address": "Maharajgunj, KTM, Nepal",
+  "city": "Kathmandu",
+  "country": "Nepal"
+},
+"contact_info": {
+  "email": "This email address is being protected from spambots. You need JavaScript en
+abled to view it.",
+  "phone_number": "+977-9801159480,01-4528604"
+  ,
+  "fax_number": ""
+}
+,
+"category": "Restaurant"
+}
+Time taken by main: 56.894 sec(s).
+"""

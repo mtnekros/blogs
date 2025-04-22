@@ -15,8 +15,8 @@ class Location(BaseModel):  # noqa: D101
 
 class ContactInfo(BaseModel):  # noqa: D101
     # Regex matching
-    email: Annotated[str, StringConstraints(pattern=r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")]
-    phone_number: str
+    email: str # Annotated[str, StringConstraints(pattern=r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")]
+    phone_number: Annotated[str, StringConstraints(pattern=r"\+\d{3} \d{9}")]
     fax_number: str
 
 class BusinessInfo(BaseModel):  # noqa: D101
@@ -105,5 +105,5 @@ def example_2() -> None:
     print(repr(info))
 
 if __name__ == "__main__":
-    # example_1()
-    example_2()
+    example_1()
+    # example_2()

@@ -1,8 +1,11 @@
+import time
+from collections.abc import Callable
+from typing import Any
+
 import requests
 from bs4 import BeautifulSoup
 
 le_sherpa_url = "https://lesherpa.com.np/about"
-lod_url = "https://www.clublod.com/about"
 restaurant_url = le_sherpa_url
 
 def get_scraped_content(url: str) -> str:
@@ -13,6 +16,15 @@ def get_scraped_content(url: str) -> str:
         script_or_style.decompose()
     return soup.get_text()
 
+
+def time_it(func: Callable) -> Callable:
+    """Return a wrapper that will log function execution time."""
+    def _wrapper(*args: Any, **kwargs: Any) -> Any:  # noqa: ANN401
+        t1 = time.perf_counter()
+        result = func(*args, **kwargs)
+        print(f"Time taken by {func.__name__}: {time.perf_counter()-t1:.3f} sec(s).")
+        return result
+    return _wrapper
 
 
 scraped_content = """
