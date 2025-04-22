@@ -1,4 +1,4 @@
 venv/**
-**/main.py
+*.py[cod]
 **/main.js
 *.png~
