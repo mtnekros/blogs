@@ -3,8 +3,10 @@
 # Structured Outputs with Large Language Models (LLMs)
 
 * Title: Structured Outputs with Large Language Models (LLMs)
-* Subtitle: Interacting with LLMs in code using structured outputs
 * Presented by: Diwash Tamang
+
+> A continuation to:
+![My Career Depends on it Bro](./images/career_depends_on_it_bro.png)
 
 
 
