@@ -1,8 +1,28 @@
+
+
 # Structured Outputs with Large Language Models (LLMs)
 
 * Title: Structured Outputs with Large Language Models (LLMs)
 * Subtitle: Interacting with LLMs in code using structured outputs
 * Presented by: Diwash Tamang
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Intro to structured Outputs
@@ -30,6 +50,26 @@
 >Note: We will be going through progressively better way of getting structured output in this presentation
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Example Use Case
 * Get the names of business & subsidiaries from scraped content.
     1. Get the list of business urls
@@ -38,7 +78,26 @@
     4. Parse the output response
     5. Save it to some database
 
-# 1.0 Option Zero: Hack Prompting
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Option Zero: Hack Prompting
 * Hack prompting example:
     ```
     <document>...scraped content here...</document>
@@ -57,6 +116,24 @@
 * Demo: With ChatGPT & Ollama
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Option One: Using proprietory LLM's API
 * JSON Mode
     * Models that are fine tuned to output json
@@ -69,6 +146,26 @@
         * No explanation & preambles. No trailing characters.
         * Doesn't reliably matches the defined schema.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Example code w/ openai python client (That I know works 😎 but can't do a demo. 😅)
 ```python
 import openai
 
@@ -105,10 +202,49 @@ completion = client.beta.chat.completions.create(
     ]
 )
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Demo with ollama
 * json mode in ollama
-* release recently
+* released recently
 * had to update the ollama docker image
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Pros & Cons of using Proprietary Structured Outputs
 * Pros:
@@ -117,6 +253,25 @@ completion = client.beta.chat.completions.create(
 * Cons:
     * Refactoring when changing from one Vendor to Another
     * Lack of control
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Option Two: Re-prompting
 * Principle:
@@ -129,8 +284,46 @@ completion = client.beta.chat.completions.create(
         * error message + initial prompt to LLM again
         * Repeat until success
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Demo with Instructor
 * DEMO with Instructor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Pros & Cons
 * Pros:
@@ -140,6 +333,25 @@ completion = client.beta.chat.completions.create(
     * Time consuming (Multiple Attempts)
     * Money consuming (Multiple Attempts, More token used)
     * Chanche of failing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Option Three: Structured Generation (aka Constrained Decoding)
 * Uses logits based approach
@@ -166,10 +378,48 @@ completion = client.beta.chat.completions.create(
         * No 3 is selected because of the baised selection that outlines enforces
         * This is done continually until a valid json is formed.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Demo with outlines
 * Business Info
 * Character Generation
 * Tool calling
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Pros & Cons of Structured Generation
 * Pros:
@@ -186,6 +436,25 @@ completion = client.beta.chat.completions.create(
     * Requires control over the model
         * Open models
         * Your own proprietory model
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Conclusion from trials
 * Structure is not always ensured even with outlines in case of complex regex matching.
@@ -211,6 +480,25 @@ completion = client.beta.chat.completions.create(
         ```
 * Structured Output is better than Vanilla Output.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## References:
 * [Structured LLM Output Course on learn.deeplearning.ai](https://learn.deeplearning.ai/courses/getting-structured-llm-output)
     * Recommend to check this out.
@@ -224,8 +512,48 @@ completion = client.beta.chat.completions.create(
     * Co-author & Co-maintainer of outlines
     * CEO & Co-founder of [dottxt](https://dottxt.co/)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Any Questions?
 * Any questions friends?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Some Notes:
 * Initially planned to use out deepseek-r1 demo (Which was said to be a relatively smaller model)
@@ -262,3 +590,26 @@ completion = client.beta.chat.completions.create(
         * Denotes the size
     * `Distill`
         * Smaller student models trained using a larger teacher model.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Feed Back
+* Any thing that needs to be improved?
+* Did I overexplain or underexplain anything?
+* Anything that you would have wanted to see.
