@@ -489,7 +489,7 @@ print(response.choice[0].message.parsed)
         | WHATT??? json.encode.JSONEncodeError |
         ========================================
                            \
-                           \
+                            \
                                ^__^ (Instructor & Outline)
                                (oo)\_______
                                (__)\       )\/\
@@ -677,7 +677,6 @@ print(response.choice[0].message.parsed)
 
 
 # Thank you for listening
-
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⠀⠀⠀⢀⡤⠤⠤⣄⠀⣀⣀⡀
 ⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⠤⢴⣴⠒⠉⠹⣴⣏⠀⠀⠀⡀⠈⢇⠀⠀⣼⠀⠀⠀⠘⣶⠇⠀⢨⢃⡾⠓⠲⢤
 ⠀⠀⠀⣀⠤⠔⠒⠙⣯⣇⠀⠈⣿⣇⠀⠀⣿⣿⣿⠀⠀⣷⠀⠘⡄⠀⣿⠀⠀⠀⠀⢹⠀⠀⢸⡏⠇⠀⢀⠇⣀⠤⠒⠒⠤⣄

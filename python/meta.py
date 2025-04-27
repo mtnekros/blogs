@@ -1,8 +1,9 @@
 import inspect
 import types
 
-class Tracing:
-    count = 0 
+
+class Tracing:  # noqa: D101
+    count = 0
     def __init__(self, name, bases, namespace):
         """Create a new class"""
         self.__name__ = name
@@ -19,6 +20,7 @@ class Tracing:
 
 class Instance:
     def __init__(self, klass, *args, **kwargs):
+        assert type(klass) is str
         self.attributes = set()
         self.initialized = False
         self.__klass__ = klass
