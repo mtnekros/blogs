@@ -54,7 +54,27 @@ Set-Service -Name sshd -StartupType 'Automatic'
     * Create or open the `authorized_keys` file.
     * Paste the public key content into this file.
 * Ensure the `.ssh` folder and `authorized_keys` file have the correct permissions:
-    * Only your user account should have access.
+    * Only your user account & SYSTEM should have access.
+    * Check the permissions with `icacls C:\Users\YourName\.ssh\authorized_keys`
+    * Remove all permissions
+        ```powershell
+        icacls .\authorized_keys /reset # this will reset all manually added permissions
+        icacls .\authorized_keys /inheritance:r # this will remove any inherited permissions
+        ```
+    * Check the permissions again. It should be empty.
+    ```powershell
+    > icacls C:\Users\YourName\.ssh\authorized_keys
+    .\authorized_keys
+    Successfully processed 1 files; Failed processing 0 files
+    ```
+    * Now add only your & SYSTEM access
+    ```powershell
+    >icacls icacls C:\Users\YourName\.ssh\authorized_keys /grant "YourName:F"
+    >icacls icacls C:\Users\YourName\.ssh\authorized_keys /grant "SYSTEM:F"
+    ```
+    * Check the permissions again. Only you and system should have full access
+
+    ```
 
 ### 5. **Connect Using SSH**
 * From your client machine, open PowerShell or Command Prompt and run:
