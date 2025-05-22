@@ -4,7 +4,7 @@ import time
 from collections.abc import Callable, Iterator
 from contextlib import contextmanager
 from textwrap import dedent
-from typing import Dict
+from typing import Any, Dict
 
 import psycopg2
 
@@ -95,6 +95,7 @@ def insert_data_into_table(table: str, columns: Dict[str,str], row_count: int) -
             FROM generate_series(i, i + step_size - 1);
         END LOOP;
     END $$;
+    ANALYZE {table};
     """  # noqa: S608
     with db_cursor() as cursor:
         cursor.execute(query)

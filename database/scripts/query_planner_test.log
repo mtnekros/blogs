@@ -6,7 +6,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..2.03 rows=1 width=30) (actual time=0.033..0.034 rows=0 loops=1)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.032..0.032 rows=0 loops=1)
         Filter: (id = 10)
@@ -17,7 +17,7 @@ Planning Time: 1.776 ms
 Execution Time: 0.134 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..2.04 rows=1 width=30) (actual time=0.076..0.077 rows=1 loops=1)
   Join Filter: (t1.id = t2.id)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.049..0.049 rows=1 loops=1)
@@ -27,7 +27,7 @@ Planning Time: 2.129 ms
 Execution Time: 0.228 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..2.04 rows=1 width=30) (actual time=0.034..0.035 rows=1 loops=1)
   Join Filter: (t1.id = t2.id)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.024..0.024 rows=1 loops=1)
@@ -37,7 +37,7 @@ Planning Time: 1.103 ms
 Execution Time: 0.116 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..2.03 rows=1 width=30) (actual time=0.042..0.043 rows=1 loops=1)
   Join Filter: (t1.id = t2.id)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.026..0.026 rows=1 loops=1)
@@ -49,7 +49,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..2.03 rows=1 width=30) (actual time=0.016..0.016 rows=0 loops=1)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.015..0.015 rows=0 loops=1)
         Filter: (id = 10)
@@ -60,7 +60,7 @@ Planning Time: 1.429 ms
 Execution Time: 0.101 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..2.04 rows=1 width=30) (actual time=0.031..0.032 rows=1 loops=1)
   Join Filter: (t1.id = t2.id)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.019..0.019 rows=1 loops=1)
@@ -70,7 +70,7 @@ Planning Time: 1.880 ms
 Execution Time: 0.129 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..2.04 rows=1 width=30) (actual time=0.028..0.029 rows=1 loops=1)
   Join Filter: (t1.id = t2.id)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.016..0.016 rows=1 loops=1)
@@ -80,7 +80,7 @@ Planning Time: 1.555 ms
 Execution Time: 0.115 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..2.03 rows=1 width=30) (actual time=0.035..0.036 rows=1 loops=1)
   Join Filter: (t1.id = t2.id)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.017..0.018 rows=1 loops=1)
@@ -92,7 +92,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..2.03 rows=1 width=30) (actual time=0.020..0.020 rows=0 loops=1)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.019..0.019 rows=0 loops=1)
         Filter: (id = 10)
@@ -103,7 +103,7 @@ Planning Time: 2.014 ms
 Execution Time: 0.199 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..2.04 rows=1 width=30) (actual time=0.043..0.044 rows=1 loops=1)
   Join Filter: (t1.id = t2.id)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.027..0.027 rows=1 loops=1)
@@ -113,7 +113,7 @@ Planning Time: 2.307 ms
 Execution Time: 0.150 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..2.04 rows=1 width=30) (actual time=0.033..0.034 rows=1 loops=1)
   Join Filter: (t1.id = t2.id)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.019..0.019 rows=1 loops=1)
@@ -123,7 +123,7 @@ Planning Time: 1.948 ms
 Execution Time: 0.128 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..2.03 rows=1 width=30) (actual time=0.036..0.036 rows=1 loops=1)
   Join Filter: (t1.id = t2.id)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.016..0.016 rows=1 loops=1)
@@ -141,7 +141,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..3.27 rows=1 width=30) (actual time=0.043..0.044 rows=0 loops=1)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.042..0.042 rows=0 loops=1)
         Filter: (id = 10)
@@ -152,7 +152,7 @@ Planning Time: 1.960 ms
 Execution Time: 0.208 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=1.02..3.41 rows=1 width=30) (actual time=0.085..0.099 rows=1 loops=1)
   Hash Cond: (t2.id = t1.id)
   ->  Seq Scan on t2  (cost=0.00..2.00 rows=100 width=15) (actual time=0.037..0.043 rows=100 loops=1)
@@ -164,7 +164,7 @@ Planning Time: 1.350 ms
 Execution Time: 0.200 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=1.02..3.41 rows=1 width=30) (actual time=0.063..0.076 rows=1 loops=1)
   Hash Cond: (t2.id = t1.id)
   ->  Seq Scan on t2  (cost=0.00..2.00 rows=100 width=15) (actual time=0.026..0.032 rows=100 loops=1)
@@ -176,7 +176,7 @@ Planning Time: 1.306 ms
 Execution Time: 0.168 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=1.02..3.41 rows=1 width=30) (actual time=0.073..0.086 rows=1 loops=1)
   Hash Cond: (t2.id = t1.id)
   ->  Seq Scan on t2  (cost=0.00..2.00 rows=100 width=15) (actual time=0.027..0.032 rows=100 loops=1)
@@ -190,7 +190,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..3.27 rows=1 width=30) (actual time=0.028..0.028 rows=0 loops=1)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.026..0.027 rows=0 loops=1)
         Filter: (id = 10)
@@ -201,7 +201,7 @@ Planning Time: 2.041 ms
 Execution Time: 0.164 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=1.02..3.41 rows=1 width=30) (actual time=0.072..0.087 rows=1 loops=1)
   Hash Cond: (t2.id = t1.id)
   ->  Seq Scan on t2  (cost=0.00..2.00 rows=100 width=15) (actual time=0.020..0.025 rows=100 loops=1)
@@ -213,7 +213,7 @@ Planning Time: 2.034 ms
 Execution Time: 0.237 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=1.02..3.41 rows=1 width=30) (actual time=0.072..0.085 rows=1 loops=1)
   Hash Cond: (t2.id = t1.id)
   ->  Seq Scan on t2  (cost=0.00..2.00 rows=100 width=15) (actual time=0.020..0.025 rows=100 loops=1)
@@ -225,7 +225,7 @@ Planning Time: 2.136 ms
 Execution Time: 0.228 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=1.02..3.41 rows=1 width=30) (actual time=0.067..0.080 rows=1 loops=1)
   Hash Cond: (t2.id = t1.id)
   ->  Seq Scan on t2  (cost=0.00..2.00 rows=100 width=15) (actual time=0.021..0.026 rows=100 loops=1)
@@ -239,7 +239,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..3.27 rows=1 width=30) (actual time=0.045..0.046 rows=0 loops=1)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.044..0.044 rows=0 loops=1)
         Filter: (id = 10)
@@ -250,7 +250,7 @@ Planning Time: 2.442 ms
 Execution Time: 0.208 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=1.02..3.41 rows=1 width=30) (actual time=0.085..0.099 rows=1 loops=1)
   Hash Cond: (t2.id = t1.id)
   ->  Seq Scan on t2  (cost=0.00..2.00 rows=100 width=15) (actual time=0.020..0.025 rows=100 loops=1)
@@ -262,7 +262,7 @@ Planning Time: 2.627 ms
 Execution Time: 0.233 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=1.02..3.41 rows=1 width=30) (actual time=0.085..0.099 rows=1 loops=1)
   Hash Cond: (t2.id = t1.id)
   ->  Seq Scan on t2  (cost=0.00..2.00 rows=100 width=15) (actual time=0.019..0.025 rows=100 loops=1)
@@ -274,7 +274,7 @@ Planning Time: 2.658 ms
 Execution Time: 0.250 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=1.02..3.41 rows=1 width=30) (actual time=0.083..0.096 rows=1 loops=1)
   Hash Cond: (t2.id = t1.id)
   ->  Seq Scan on t2  (cost=0.00..2.00 rows=100 width=15) (actual time=0.022..0.027 rows=100 loops=1)
@@ -294,7 +294,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..181.02 rows=1 width=30) (actual time=0.041..0.041 rows=0 loops=1)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.040..0.040 rows=0 loops=1)
         Filter: (id = 10)
@@ -305,7 +305,7 @@ Planning Time: 1.415 ms
 Execution Time: 0.162 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=1.02..193.53 rows=1 width=30) (actual time=0.106..2.218 rows=1 loops=1)
   Hash Cond: (t2.id = t1.id)
   ->  Seq Scan on t2  (cost=0.00..155.00 rows=10000 width=15) (actual time=0.040..1.414 rows=10000 loops=1)
@@ -317,7 +317,7 @@ Planning Time: 1.838 ms
 Execution Time: 2.354 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=1.02..193.53 rows=1 width=30) (actual time=0.078..1.797 rows=1 loops=1)
   Hash Cond: (t2.id = t1.id)
   ->  Seq Scan on t2  (cost=0.00..155.00 rows=10000 width=15) (actual time=0.028..1.034 rows=10000 loops=1)
@@ -329,7 +329,7 @@ Planning Time: 1.923 ms
 Execution Time: 1.935 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=1.02..193.53 rows=1 width=30) (actual time=0.076..1.791 rows=1 loops=1)
   Hash Cond: (t2.id = t1.id)
   ->  Seq Scan on t2  (cost=0.00..155.00 rows=10000 width=15) (actual time=0.026..1.025 rows=10000 loops=1)
@@ -343,7 +343,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..181.02 rows=1 width=30) (actual time=0.032..0.033 rows=0 loops=1)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.031..0.031 rows=0 loops=1)
         Filter: (id = 10)
@@ -354,7 +354,7 @@ Planning Time: 1.923 ms
 Execution Time: 0.147 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=1.02..193.53 rows=1 width=30) (actual time=0.082..1.775 rows=1 loops=1)
   Hash Cond: (t2.id = t1.id)
   ->  Seq Scan on t2  (cost=0.00..155.00 rows=10000 width=15) (actual time=0.022..1.009 rows=10000 loops=1)
@@ -366,7 +366,7 @@ Planning Time: 2.082 ms
 Execution Time: 1.917 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=1.02..193.53 rows=1 width=30) (actual time=0.082..1.871 rows=1 loops=1)
   Hash Cond: (t2.id = t1.id)
   ->  Seq Scan on t2  (cost=0.00..155.00 rows=10000 width=15) (actual time=0.021..1.071 rows=10000 loops=1)
@@ -378,7 +378,7 @@ Planning Time: 2.164 ms
 Execution Time: 2.015 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=1.02..193.53 rows=1 width=30) (actual time=0.082..1.795 rows=1 loops=1)
   Hash Cond: (t2.id = t1.id)
   ->  Seq Scan on t2  (cost=0.00..155.00 rows=10000 width=15) (actual time=0.024..1.012 rows=10000 loops=1)
@@ -392,7 +392,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.29..9.32 rows=1 width=30) (actual time=0.037..0.037 rows=0 loops=1)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.036..0.036 rows=0 loops=1)
         Filter: (id = 10)
@@ -403,7 +403,7 @@ Planning Time: 3.106 ms
 Execution Time: 0.196 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.29..9.32 rows=1 width=30) (actual time=0.108..0.110 rows=1 loops=1)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.031..0.031 rows=1 loops=1)
         Filter: (id < 10)
@@ -413,7 +413,7 @@ Planning Time: 2.525 ms
 Execution Time: 0.239 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.29..9.32 rows=1 width=30) (actual time=0.066..0.067 rows=1 loops=1)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.031..0.032 rows=1 loops=1)
         Filter: (id < 1000)
@@ -423,7 +423,7 @@ Planning Time: 2.765 ms
 Execution Time: 0.210 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.29..9.32 rows=1 width=30) (actual time=0.083..0.085 rows=1 loops=1)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.030..0.030 rows=1 loops=1)
   ->  Index Scan using t2_id_idx on t2  (cost=0.29..8.30 rows=1 width=15) (actual time=0.046..0.047 rows=1 loops=1)
@@ -441,7 +441,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.00..11615.46 rows=1 width=30) (actual time=0.038..0.039 rows=0 loops=1)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.037..0.037 rows=0 loops=1)
         Filter: (id = 10)
@@ -455,7 +455,7 @@ Planning Time: 2.377 ms
 Execution Time: 0.175 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1001.02..12136.30 rows=1 width=30) (actual time=0.807..120.958 rows=1 loops=1)
   Workers Planned: 2
   Workers Launched: 2
@@ -470,7 +470,7 @@ Planning Time: 2.335 ms
 Execution Time: 121.137 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1001.02..12136.30 rows=1 width=30) (actual time=0.733..118.914 rows=1 loops=1)
   Workers Planned: 2
   Workers Launched: 2
@@ -485,7 +485,7 @@ Planning Time: 1.974 ms
 Execution Time: 119.042 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1001.02..12136.30 rows=1 width=30) (actual time=0.669..108.066 rows=1 loops=1)
   Workers Planned: 2
   Workers Launched: 2
@@ -502,7 +502,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.00..11615.46 rows=1 width=30) (actual time=0.052..0.053 rows=0 loops=1)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.050..0.050 rows=0 loops=1)
         Filter: (id = 10)
@@ -516,7 +516,7 @@ Planning Time: 3.460 ms
 Execution Time: 0.251 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1001.02..12136.30 rows=1 width=30) (actual time=0.752..154.677 rows=1 loops=1)
   Workers Planned: 2
   Workers Launched: 2
@@ -531,7 +531,7 @@ Planning Time: 2.367 ms
 Execution Time: 154.818 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1001.02..12136.30 rows=1 width=30) (actual time=0.722..126.019 rows=1 loops=1)
   Workers Planned: 2
   Workers Launched: 2
@@ -546,7 +546,7 @@ Planning Time: 2.050 ms
 Execution Time: 126.140 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1001.02..12136.30 rows=1 width=30) (actual time=0.905..107.071 rows=1 loops=1)
   Workers Planned: 2
   Workers Launched: 2
@@ -563,7 +563,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.42..9.46 rows=1 width=30) (actual time=0.029..0.029 rows=0 loops=1)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.028..0.028 rows=0 loops=1)
         Filter: (id = 10)
@@ -574,7 +574,7 @@ Planning Time: 4.281 ms
 Execution Time: 0.187 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.42..9.46 rows=1 width=30) (actual time=0.152..0.154 rows=1 loops=1)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.032..0.033 rows=1 loops=1)
         Filter: (id < 10)
@@ -584,7 +584,7 @@ Planning Time: 4.313 ms
 Execution Time: 0.217 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.42..9.46 rows=1 width=30) (actual time=0.073..0.075 rows=1 loops=1)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.030..0.031 rows=1 loops=1)
         Filter: (id < 1000)
@@ -594,7 +594,7 @@ Planning Time: 2.880 ms
 Execution Time: 0.142 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.42..9.46 rows=1 width=30) (actual time=0.073..0.075 rows=1 loops=1)
   ->  Seq Scan on t1  (cost=0.00..1.01 rows=1 width=15) (actual time=0.023..0.024 rows=1 loops=1)
   ->  Index Scan using t2_id_idx on t2  (cost=0.42..8.44 rows=1 width=15) (actual time=0.043..0.044 rows=1 loops=1)
@@ -612,7 +612,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..4279.74 rows=118336 width=72) (actual time=0.073..21.889 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Seq Scan on public.t1  (cost=0.00..1399.84 rows=344 width=36) (actual time=0.043..10.892 rows=1 loops=1)
@@ -629,7 +629,7 @@ Planning Time: 2.861 ms
 Execution Time: 22.073 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=11685.86..129986.72 rows=7867639 width=72) (actual time=30.970..30.977 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -653,7 +653,7 @@ Planning Time: 1.685 ms
 Execution Time: 33.127 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=11685.86..129986.72 rows=7867639 width=72) (actual time=31.902..32.374 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -677,7 +677,7 @@ Planning Time: 1.061 ms
 Execution Time: 34.230 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=17255.10..371819.28 rows=23603259 width=72) (actual time=48.487..104.474 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -702,7 +702,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.29..1799.32 rows=1 width=30) (actual time=0.074..10.018 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.051..0.053 rows=1 loops=1)
@@ -716,7 +716,7 @@ Planning Time: 1.801 ms
 Execution Time: 10.142 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=8.59..1924.69 rows=10 width=30) (actual time=0.056..16.256 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -732,7 +732,7 @@ Planning Time: 2.778 ms
 Execution Time: 16.289 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=53.21..1979.85 rows=1064 width=30) (actual time=0.386..17.750 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -748,7 +748,7 @@ Planning Time: 2.508 ms
 Execution Time: 17.809 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..5707.00 rows=100000 width=30) (actual time=23.212..64.442 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -766,7 +766,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.58..16.63 rows=1 width=30) (actual time=0.094..0.095 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.047..0.048 rows=1 loops=1)
@@ -779,7 +779,7 @@ Planning Time: 2.752 ms
 Execution Time: 0.218 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.58..83.33 rows=9 width=30) (actual time=0.010..0.025 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.45 rows=9 width=15) (actual time=0.004..0.006 rows=9 loops=1)
@@ -792,7 +792,7 @@ Planning Time: 2.917 ms
 Execution Time: 0.055 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=51.26..1977.25 rows=999 width=30) (actual time=0.380..18.485 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -808,7 +808,7 @@ Planning Time: 2.918 ms
 Execution Time: 18.567 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..5707.00 rows=100000 width=30) (actual time=21.926..69.724 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -832,7 +832,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..4279.74 rows=118336 width=72) (actual time=0.072..26.808 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Seq Scan on public.t1  (cost=0.00..1399.84 rows=344 width=36) (actual time=0.039..13.141 rows=1 loops=1)
@@ -849,7 +849,7 @@ Planning Time: 1.398 ms
 Execution Time: 26.931 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=11685.86..129986.72 rows=7867639 width=72) (actual time=35.490..35.498 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -873,7 +873,7 @@ Planning Time: 1.431 ms
 Execution Time: 37.398 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=11685.86..129986.72 rows=7867639 width=72) (actual time=35.389..35.920 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -897,7 +897,7 @@ Planning Time: 1.271 ms
 Execution Time: 37.751 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=17255.10..371819.28 rows=23603259 width=72) (actual time=51.419..109.425 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -922,7 +922,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.29..1799.32 rows=1 width=30) (actual time=0.063..9.837 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.043..0.044 rows=1 loops=1)
@@ -936,7 +936,7 @@ Planning Time: 1.598 ms
 Execution Time: 9.954 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=8.56..1924.65 rows=9 width=30) (actual time=0.050..16.588 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -952,7 +952,7 @@ Planning Time: 2.030 ms
 Execution Time: 16.623 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=51.11..1977.05 rows=994 width=30) (actual time=0.376..17.992 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -968,7 +968,7 @@ Planning Time: 2.171 ms
 Execution Time: 18.079 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..5707.00 rows=100000 width=30) (actual time=21.791..59.810 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -986,7 +986,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.58..16.63 rows=1 width=30) (actual time=0.127..0.128 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.054..0.054 rows=1 loops=1)
@@ -999,7 +999,7 @@ Planning Time: 2.313 ms
 Execution Time: 0.258 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.58..83.33 rows=9 width=30) (actual time=0.010..0.026 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.45 rows=9 width=15) (actual time=0.004..0.006 rows=9 loops=1)
@@ -1012,7 +1012,7 @@ Planning Time: 2.598 ms
 Execution Time: 0.055 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=50.60..1976.37 rows=977 width=30) (actual time=0.378..18.402 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -1028,7 +1028,7 @@ Planning Time: 2.564 ms
 Execution Time: 18.459 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..5707.00 rows=100000 width=30) (actual time=21.771..59.462 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -1052,7 +1052,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..4279.74 rows=118336 width=72) (actual time=0.077..26.419 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Seq Scan on public.t1  (cost=0.00..1399.84 rows=344 width=36) (actual time=0.044..13.078 rows=1 loops=1)
@@ -1069,7 +1069,7 @@ Planning Time: 1.455 ms
 Execution Time: 26.541 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=11685.86..129986.72 rows=7867639 width=72) (actual time=36.087..36.095 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -1093,7 +1093,7 @@ Planning Time: 1.361 ms
 Execution Time: 37.989 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=11685.86..129986.72 rows=7867639 width=72) (actual time=36.315..36.842 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -1117,7 +1117,7 @@ Planning Time: 1.379 ms
 Execution Time: 38.855 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=17255.10..371819.28 rows=23603259 width=72) (actual time=52.715..110.380 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -1142,7 +1142,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.29..1799.32 rows=1 width=30) (actual time=0.069..11.038 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.047..0.049 rows=1 loops=1)
@@ -1156,7 +1156,7 @@ Planning Time: 1.785 ms
 Execution Time: 11.155 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=8.56..1924.65 rows=9 width=30) (actual time=0.056..16.382 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -1172,7 +1172,7 @@ Planning Time: 2.397 ms
 Execution Time: 16.421 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=51.23..1977.21 rows=998 width=30) (actual time=0.392..19.023 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -1188,7 +1188,7 @@ Planning Time: 2.284 ms
 Execution Time: 19.114 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..5707.00 rows=100000 width=30) (actual time=21.360..59.897 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -1206,7 +1206,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.58..16.63 rows=1 width=30) (actual time=0.088..0.090 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.043..0.043 rows=1 loops=1)
@@ -1219,7 +1219,7 @@ Planning Time: 2.769 ms
 Execution Time: 0.206 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.58..83.33 rows=9 width=30) (actual time=0.010..0.025 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.45 rows=9 width=15) (actual time=0.004..0.006 rows=9 loops=1)
@@ -1232,7 +1232,7 @@ Planning Time: 3.111 ms
 Execution Time: 0.058 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=50.90..1976.77 rows=987 width=30) (actual time=0.391..18.406 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -1248,7 +1248,7 @@ Planning Time: 2.764 ms
 Execution Time: 18.464 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..5707.00 rows=100000 width=30) (actual time=21.207..59.569 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -1272,7 +1272,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.00..26487.74 rows=1180952 width=72) (actual time=4.601..97.434 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Gather  (cost=1000.00..10325.14 rows=3433 width=36) (actual time=4.549..76.977 rows=1 loops=1)
@@ -1295,7 +1295,7 @@ Planning Time: 1.282 ms
 Execution Time: 97.558 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=100662.78..1281766.92 rows=78618215 width=72) (actual time=336.041..336.048 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -1319,7 +1319,7 @@ Planning Time: 1.424 ms
 Execution Time: 340.544 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=100662.78..1281766.92 rows=78618215 width=72) (actual time=339.370..339.896 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -1343,7 +1343,7 @@ Planning Time: 1.458 ms
 Execution Time: 344.242 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=106232.03..3646163.12 rows=235858077 width=72) (actual time=352.252..410.003 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -1368,7 +1368,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.29..11622.75 rows=1 width=30) (actual time=0.651..73.980 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.047..0.050 rows=1 loops=1)
@@ -1388,7 +1388,7 @@ Planning Time: 1.690 ms
 Execution Time: 74.101 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1008.56..12144.67 rows=9 width=30) (actual time=1.184..104.675 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -1416,7 +1416,7 @@ Planning Time: 2.158 ms
 Execution Time: 104.739 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1050.00..12284.86 rows=957 width=30) (actual time=0.903..102.183 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -1444,7 +1444,7 @@ Planning Time: 2.396 ms
 Execution Time: 102.284 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..22947.00 rows=100000 width=30) (actual time=22.077..252.972 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -1462,7 +1462,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.72..16.76 rows=1 width=30) (actual time=0.111..0.112 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.047..0.047 rows=1 loops=1)
@@ -1475,7 +1475,7 @@ Planning Time: 2.367 ms
 Execution Time: 0.227 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.72..84.52 rows=9 width=30) (actual time=0.011..0.029 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.45 rows=9 width=15) (actual time=0.004..0.006 rows=9 loops=1)
@@ -1488,7 +1488,7 @@ Planning Time: 2.874 ms
 Execution Time: 0.058 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=0.75..3432.27 rows=1021 width=30) (actual time=0.025..0.733 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -1501,7 +1501,7 @@ Planning Time: 3.307 ms
 Execution Time: 0.806 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=0.75..7778.64 rows=100000 width=30) (actual time=0.022..66.004 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -1522,7 +1522,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.00..96376.88 rows=34325 width=51) (actual time=0.622..627.554 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Seq Scan on public.t1  (cost=0.00..1791.00 rows=1 width=15) (actual time=0.032..13.768 rows=1 loops=1)
@@ -1543,7 +1543,7 @@ Planning Time: 2.976 ms
 Execution Time: 627.702 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=2791.12..96248.23 rows=686 width=51) (actual time=14.274..668.046 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -1572,7 +1572,7 @@ Planning Time: 2.099 ms
 Execution Time: 668.143 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=2803.39..103275.70 rows=68032 width=51) (actual time=14.729..705.543 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -1601,7 +1601,7 @@ Planning Time: 0.955 ms
 Execution Time: 705.740 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..219889.39 rows=6864985 width=51) (actual time=18.780..2101.560 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -1619,7 +1619,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.29..107147.66 rows=1 width=30) (actual time=0.594..439.258 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.043..0.045 rows=1 loops=1)
@@ -1639,7 +1639,7 @@ Planning Time: 1.713 ms
 Execution Time: 439.407 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1008.56..112357.17 rows=9 width=30) (actual time=0.569..678.113 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -1667,7 +1667,7 @@ Planning Time: 2.321 ms
 Execution Time: 678.198 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1051.05..112502.05 rows=992 width=30) (actual time=2.076..703.245 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -1695,7 +1695,7 @@ Planning Time: 2.181 ms
 Execution Time: 703.384 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=3791.00..125555.34 rows=100000 width=30) (actual time=30.894..1014.293 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -1725,7 +1725,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.73..16.77 rows=1 width=30) (actual time=0.129..0.130 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.048..0.049 rows=1 loops=1)
@@ -1738,7 +1738,7 @@ Planning Time: 2.951 ms
 Execution Time: 0.230 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.73..93.09 rows=10 width=30) (actual time=0.016..0.031 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.47 rows=10 width=15) (actual time=0.010..0.011 rows=9 loops=1)
@@ -1751,7 +1751,7 @@ Planning Time: 4.114 ms
 Execution Time: 0.052 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=0.77..3580.25 rows=1100 width=30) (actual time=0.025..0.668 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -1764,7 +1764,7 @@ Planning Time: 4.112 ms
 Execution Time: 0.735 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=2.87..7920.25 rows=100000 width=30) (actual time=0.018..69.071 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -1785,7 +1785,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..4279.74 rows=118336 width=72) (actual time=0.060..23.102 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Seq Scan on public.t1  (cost=0.00..1399.84 rows=344 width=36) (actual time=0.029..12.225 rows=1 loops=1)
@@ -1802,7 +1802,7 @@ Planning Time: 1.214 ms
 Execution Time: 23.182 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=11685.86..129986.72 rows=7867639 width=72) (actual time=38.687..38.694 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -1826,7 +1826,7 @@ Planning Time: 1.143 ms
 Execution Time: 40.454 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=11685.86..129986.72 rows=7867639 width=72) (actual time=34.038..34.545 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -1850,7 +1850,7 @@ Planning Time: 1.082 ms
 Execution Time: 36.334 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=17255.10..371819.28 rows=23603259 width=72) (actual time=61.218..117.127 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -1875,7 +1875,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.29..1799.32 rows=1 width=30) (actual time=0.062..7.995 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.043..0.044 rows=1 loops=1)
@@ -1889,7 +1889,7 @@ Planning Time: 1.396 ms
 Execution Time: 8.097 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=8.56..1924.65 rows=9 width=30) (actual time=0.042..13.825 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -1905,7 +1905,7 @@ Planning Time: 1.707 ms
 Execution Time: 13.852 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=49.91..1975.45 rows=954 width=30) (actual time=0.304..15.643 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -1921,7 +1921,7 @@ Planning Time: 1.694 ms
 Execution Time: 15.715 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..5707.00 rows=100000 width=30) (actual time=17.747..49.460 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -1939,7 +1939,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.58..16.63 rows=1 width=30) (actual time=0.078..0.079 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.039..0.040 rows=1 loops=1)
@@ -1952,7 +1952,7 @@ Planning Time: 1.924 ms
 Execution Time: 0.201 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.58..91.67 rows=10 width=30) (actual time=0.008..0.020 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.47 rows=10 width=15) (actual time=0.003..0.005 rows=9 loops=1)
@@ -1965,7 +1965,7 @@ Planning Time: 2.441 ms
 Execution Time: 0.043 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=58.26..1985.25 rows=1099 width=30) (actual time=0.305..15.611 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -1981,7 +1981,7 @@ Planning Time: 2.225 ms
 Execution Time: 15.697 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..5707.00 rows=100000 width=30) (actual time=18.779..56.488 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -2005,7 +2005,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..4279.74 rows=118336 width=72) (actual time=0.064..23.521 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Seq Scan on public.t1  (cost=0.00..1399.84 rows=344 width=36) (actual time=0.034..12.597 rows=1 loops=1)
@@ -2022,7 +2022,7 @@ Planning Time: 1.109 ms
 Execution Time: 23.608 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=11685.86..129986.72 rows=7867639 width=72) (actual time=34.820..34.827 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -2046,7 +2046,7 @@ Planning Time: 1.167 ms
 Execution Time: 36.482 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=11685.86..129986.72 rows=7867639 width=72) (actual time=43.724..44.673 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -2070,7 +2070,7 @@ Planning Time: 1.052 ms
 Execution Time: 46.881 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=17255.10..371819.28 rows=23603259 width=72) (actual time=49.426..108.729 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -2095,7 +2095,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.29..1799.32 rows=1 width=30) (actual time=0.056..7.997 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.035..0.036 rows=1 loops=1)
@@ -2109,7 +2109,7 @@ Planning Time: 1.341 ms
 Execution Time: 8.089 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=8.56..1924.65 rows=9 width=30) (actual time=0.043..14.599 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -2125,7 +2125,7 @@ Planning Time: 1.644 ms
 Execution Time: 14.624 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=52.16..1978.45 rows=1029 width=30) (actual time=0.446..14.742 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -2141,7 +2141,7 @@ Planning Time: 3.093 ms
 Execution Time: 14.790 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..5707.00 rows=100000 width=30) (actual time=21.323..60.645 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -2159,7 +2159,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.58..16.63 rows=1 width=30) (actual time=0.081..0.082 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.037..0.037 rows=1 loops=1)
@@ -2172,7 +2172,7 @@ Planning Time: 1.878 ms
 Execution Time: 0.173 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.58..83.33 rows=9 width=30) (actual time=0.011..0.024 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.45 rows=9 width=15) (actual time=0.003..0.004 rows=9 loops=1)
@@ -2185,7 +2185,7 @@ Planning Time: 2.188 ms
 Execution Time: 0.044 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=50.18..1975.81 rows=963 width=30) (actual time=0.388..16.804 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -2201,7 +2201,7 @@ Planning Time: 2.604 ms
 Execution Time: 16.852 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..5707.00 rows=100000 width=30) (actual time=22.260..60.887 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -2225,7 +2225,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..4279.74 rows=118336 width=72) (actual time=0.059..23.157 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Seq Scan on public.t1  (cost=0.00..1399.84 rows=344 width=36) (actual time=0.028..12.159 rows=1 loops=1)
@@ -2242,7 +2242,7 @@ Planning Time: 0.916 ms
 Execution Time: 23.246 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=11685.86..129986.72 rows=7867639 width=72) (actual time=32.410..32.417 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -2266,7 +2266,7 @@ Planning Time: 1.121 ms
 Execution Time: 34.067 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=11685.86..129986.72 rows=7867639 width=72) (actual time=34.968..35.480 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -2290,7 +2290,7 @@ Planning Time: 1.185 ms
 Execution Time: 37.312 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=17255.10..371819.28 rows=23603259 width=72) (actual time=43.602..94.444 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -2315,7 +2315,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.29..1799.32 rows=1 width=30) (actual time=0.059..7.982 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.037..0.039 rows=1 loops=1)
@@ -2329,7 +2329,7 @@ Planning Time: 1.652 ms
 Execution Time: 8.071 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=8.56..1924.65 rows=9 width=30) (actual time=0.045..14.088 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -2345,7 +2345,7 @@ Planning Time: 2.225 ms
 Execution Time: 14.118 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=52.25..1978.57 rows=1032 width=30) (actual time=0.345..14.780 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -2361,7 +2361,7 @@ Planning Time: 2.369 ms
 Execution Time: 14.830 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..5707.00 rows=100000 width=30) (actual time=22.277..61.076 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -2379,7 +2379,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.58..16.63 rows=1 width=30) (actual time=0.084..0.085 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.040..0.040 rows=1 loops=1)
@@ -2392,7 +2392,7 @@ Planning Time: 1.913 ms
 Execution Time: 0.207 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.58..91.67 rows=10 width=30) (actual time=0.014..0.027 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.47 rows=10 width=15) (actual time=0.003..0.005 rows=9 loops=1)
@@ -2405,7 +2405,7 @@ Planning Time: 2.606 ms
 Execution Time: 0.051 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=58.11..1985.05 rows=1094 width=30) (actual time=0.296..15.961 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -2421,7 +2421,7 @@ Planning Time: 2.017 ms
 Execution Time: 16.020 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..5707.00 rows=100000 width=30) (actual time=20.500..51.263 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -2445,7 +2445,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.00..26487.74 rows=1180952 width=72) (actual time=0.532..92.982 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Gather  (cost=1000.00..10325.14 rows=3433 width=36) (actual time=0.500..73.975 rows=1 loops=1)
@@ -2468,7 +2468,7 @@ Planning Time: 1.387 ms
 Execution Time: 93.079 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=100662.78..1281766.92 rows=78618215 width=72) (actual time=329.730..329.738 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -2492,7 +2492,7 @@ Planning Time: 1.558 ms
 Execution Time: 333.959 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=100662.78..1281766.92 rows=78618215 width=72) (actual time=331.101..331.612 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -2516,7 +2516,7 @@ Planning Time: 1.111 ms
 Execution Time: 335.665 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=106232.03..3646163.12 rows=235858077 width=72) (actual time=342.489..402.080 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -2541,7 +2541,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.29..11622.75 rows=1 width=30) (actual time=1.713..257.733 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.161..0.167 rows=1 loops=1)
@@ -2561,7 +2561,7 @@ Planning Time: 5.698 ms
 Execution Time: 258.108 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1008.56..12144.67 rows=9 width=30) (actual time=1.687..324.779 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -2589,7 +2589,7 @@ Planning Time: 6.584 ms
 Execution Time: 324.953 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1050.15..12285.53 rows=962 width=30) (actual time=3.090..341.389 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -2617,7 +2617,7 @@ Planning Time: 6.624 ms
 Execution Time: 341.692 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..22947.00 rows=100000 width=30) (actual time=74.470..548.412 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -2635,7 +2635,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.72..16.76 rows=1 width=30) (actual time=0.132..0.133 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.059..0.060 rows=1 loops=1)
@@ -2648,7 +2648,7 @@ Planning Time: 2.601 ms
 Execution Time: 0.258 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.72..84.52 rows=9 width=30) (actual time=0.012..0.030 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.45 rows=9 width=15) (actual time=0.005..0.006 rows=9 loops=1)
@@ -2661,7 +2661,7 @@ Planning Time: 2.861 ms
 Execution Time: 0.059 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=0.72..3430.58 rows=1018 width=30) (actual time=0.018..0.727 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -2674,7 +2674,7 @@ Planning Time: 2.766 ms
 Execution Time: 0.801 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=1.33..7777.04 rows=100000 width=30) (actual time=0.015..65.841 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -2695,7 +2695,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.00..96376.88 rows=34325 width=51) (actual time=0.666..665.278 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Seq Scan on public.t1  (cost=0.00..1791.00 rows=1 width=15) (actual time=0.050..20.484 rows=1 loops=1)
@@ -2716,7 +2716,7 @@ Planning Time: 4.225 ms
 Execution Time: 665.382 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=2791.12..96248.23 rows=686 width=51) (actual time=17.125..655.328 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -2745,7 +2745,7 @@ Planning Time: 2.958 ms
 Execution Time: 655.447 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=2803.39..103275.70 rows=68032 width=51) (actual time=18.264..711.531 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -2774,7 +2774,7 @@ Planning Time: 1.506 ms
 Execution Time: 711.800 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..219889.39 rows=6864985 width=51) (actual time=21.507..2407.332 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -2792,7 +2792,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.29..107146.02 rows=1 width=30) (actual time=0.666..420.820 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.054..0.057 rows=1 loops=1)
@@ -2812,7 +2812,7 @@ Planning Time: 1.705 ms
 Execution Time: 420.994 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1008.56..112355.37 rows=9 width=30) (actual time=0.622..640.235 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -2840,7 +2840,7 @@ Planning Time: 2.872 ms
 Execution Time: 640.331 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1050.60..112498.24 rows=977 width=30) (actual time=1.540..698.411 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -2868,7 +2868,7 @@ Planning Time: 2.726 ms
 Execution Time: 698.594 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=3791.00..125553.53 rows=100000 width=30) (actual time=32.034..1013.692 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -2898,7 +2898,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.73..16.77 rows=1 width=30) (actual time=0.156..0.158 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.061..0.061 rows=1 loops=1)
@@ -2911,7 +2911,7 @@ Planning Time: 4.057 ms
 Execution Time: 0.278 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.73..76.13 rows=8 width=30) (actual time=0.023..0.042 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.43 rows=8 width=15) (actual time=0.015..0.017 rows=9 loops=1)
@@ -2924,7 +2924,7 @@ Planning Time: 3.380 ms
 Execution Time: 0.074 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=0.73..3991.43 rows=920 width=30) (actual time=0.029..0.836 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -2937,7 +2937,7 @@ Planning Time: 2.883 ms
 Execution Time: 0.912 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=0.73..8341.83 rows=100000 width=30) (actual time=0.025..70.190 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -2958,7 +2958,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..4279.74 rows=118336 width=72) (actual time=0.077..26.954 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Seq Scan on public.t1  (cost=0.00..1399.84 rows=344 width=36) (actual time=0.038..13.466 rows=1 loops=1)
@@ -2975,7 +2975,7 @@ Planning Time: 1.121 ms
 Execution Time: 27.061 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=11685.86..129986.72 rows=7867639 width=72) (actual time=35.897..35.905 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -2999,7 +2999,7 @@ Planning Time: 1.287 ms
 Execution Time: 37.784 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=11685.86..129986.72 rows=7867639 width=72) (actual time=35.762..36.292 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -3023,7 +3023,7 @@ Planning Time: 1.365 ms
 Execution Time: 38.269 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=17255.10..371819.28 rows=23603259 width=72) (actual time=52.661..109.605 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -3048,7 +3048,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.29..1799.32 rows=1 width=30) (actual time=0.084..9.902 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.056..0.057 rows=1 loops=1)
@@ -3062,7 +3062,7 @@ Planning Time: 2.412 ms
 Execution Time: 10.024 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=8.56..1924.65 rows=9 width=30) (actual time=0.053..16.504 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -3078,7 +3078,7 @@ Planning Time: 2.139 ms
 Execution Time: 16.537 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=52.22..1978.53 rows=1031 width=30) (actual time=0.405..17.964 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -3094,7 +3094,7 @@ Planning Time: 2.335 ms
 Execution Time: 18.027 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..5707.00 rows=100000 width=30) (actual time=25.302..64.199 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -3112,7 +3112,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.58..16.63 rows=1 width=30) (actual time=0.104..0.105 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.052..0.053 rows=1 loops=1)
@@ -3125,7 +3125,7 @@ Planning Time: 2.621 ms
 Execution Time: 0.228 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.58..83.33 rows=9 width=30) (actual time=0.010..0.026 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.45 rows=9 width=15) (actual time=0.004..0.005 rows=9 loops=1)
@@ -3138,7 +3138,7 @@ Planning Time: 2.970 ms
 Execution Time: 0.055 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=51.83..1978.01 rows=1018 width=30) (actual time=0.391..18.135 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -3154,7 +3154,7 @@ Planning Time: 2.824 ms
 Execution Time: 18.218 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..5707.00 rows=100000 width=30) (actual time=21.848..60.772 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -3178,7 +3178,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..4279.74 rows=118336 width=72) (actual time=0.078..26.899 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Seq Scan on public.t1  (cost=0.00..1399.84 rows=344 width=36) (actual time=0.040..13.363 rows=1 loops=1)
@@ -3195,7 +3195,7 @@ Planning Time: 1.401 ms
 Execution Time: 27.020 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=11685.86..129986.72 rows=7867639 width=72) (actual time=35.473..35.481 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -3219,7 +3219,7 @@ Planning Time: 1.320 ms
 Execution Time: 37.292 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=11685.86..129986.72 rows=7867639 width=72) (actual time=35.519..36.040 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -3243,7 +3243,7 @@ Planning Time: 1.287 ms
 Execution Time: 37.916 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=17255.10..371819.28 rows=23603259 width=72) (actual time=51.932..110.020 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -3268,7 +3268,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.29..1799.32 rows=1 width=30) (actual time=0.075..9.908 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.048..0.049 rows=1 loops=1)
@@ -3282,7 +3282,7 @@ Planning Time: 1.960 ms
 Execution Time: 10.021 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=8.56..1924.65 rows=9 width=30) (actual time=0.055..16.479 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -3298,7 +3298,7 @@ Planning Time: 2.200 ms
 Execution Time: 16.513 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=49.85..1975.37 rows=952 width=30) (actual time=0.405..18.441 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -3314,7 +3314,7 @@ Planning Time: 2.224 ms
 Execution Time: 18.501 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..5707.00 rows=100000 width=30) (actual time=22.205..60.694 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -3332,7 +3332,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.58..16.63 rows=1 width=30) (actual time=0.109..0.110 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.048..0.048 rows=1 loops=1)
@@ -3345,7 +3345,7 @@ Planning Time: 2.843 ms
 Execution Time: 0.229 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.58..83.33 rows=9 width=30) (actual time=0.010..0.026 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.45 rows=9 width=15) (actual time=0.004..0.005 rows=9 loops=1)
@@ -3358,7 +3358,7 @@ Planning Time: 2.749 ms
 Execution Time: 0.056 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=51.44..1977.49 rows=1005 width=30) (actual time=0.379..18.064 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -3374,7 +3374,7 @@ Planning Time: 2.498 ms
 Execution Time: 18.119 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..5707.00 rows=100000 width=30) (actual time=21.906..60.546 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -3398,7 +3398,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.00..4279.74 rows=118336 width=72) (actual time=0.080..26.753 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Seq Scan on public.t1  (cost=0.00..1399.84 rows=344 width=36) (actual time=0.041..13.385 rows=1 loops=1)
@@ -3415,7 +3415,7 @@ Planning Time: 1.437 ms
 Execution Time: 26.961 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=11685.86..129986.72 rows=7867639 width=72) (actual time=36.198..36.206 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -3439,7 +3439,7 @@ Planning Time: 1.265 ms
 Execution Time: 38.013 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=11685.86..129986.72 rows=7867639 width=72) (actual time=35.717..36.241 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -3463,7 +3463,7 @@ Planning Time: 1.409 ms
 Execution Time: 38.127 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=17255.10..371819.28 rows=23603259 width=72) (actual time=51.459..107.774 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -3488,7 +3488,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.29..1799.32 rows=1 width=30) (actual time=0.091..10.450 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.061..0.063 rows=1 loops=1)
@@ -3502,7 +3502,7 @@ Planning Time: 2.024 ms
 Execution Time: 10.583 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=8.56..1924.65 rows=9 width=30) (actual time=0.068..17.091 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -3518,7 +3518,7 @@ Planning Time: 2.304 ms
 Execution Time: 17.130 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=51.35..1977.37 rows=1002 width=30) (actual time=0.406..18.517 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -3534,7 +3534,7 @@ Planning Time: 2.109 ms
 Execution Time: 18.575 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..5707.00 rows=100000 width=30) (actual time=21.761..60.057 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -3552,7 +3552,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.58..16.63 rows=1 width=30) (actual time=0.111..0.112 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.054..0.054 rows=1 loops=1)
@@ -3565,7 +3565,7 @@ Planning Time: 2.444 ms
 Execution Time: 0.225 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.58..83.33 rows=9 width=30) (actual time=0.014..0.030 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.45 rows=9 width=15) (actual time=0.008..0.010 rows=9 loops=1)
@@ -3578,7 +3578,7 @@ Planning Time: 2.795 ms
 Execution Time: 0.060 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=50.21..1975.85 rows=964 width=30) (actual time=0.386..18.266 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -3594,7 +3594,7 @@ Planning Time: 3.165 ms
 Execution Time: 18.325 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..5707.00 rows=100000 width=30) (actual time=21.962..60.495 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -3618,7 +3618,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.00..26487.74 rows=1180952 width=72) (actual time=0.669..94.558 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Gather  (cost=1000.00..10325.14 rows=3433 width=36) (actual time=0.615..68.646 rows=1 loops=1)
@@ -3641,7 +3641,7 @@ Planning Time: 1.165 ms
 Execution Time: 94.697 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=100662.78..1281766.92 rows=78618215 width=72) (actual time=336.901..336.912 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -3665,7 +3665,7 @@ Planning Time: 1.281 ms
 Execution Time: 341.542 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=100662.78..1281766.92 rows=78618215 width=72) (actual time=340.295..340.821 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -3689,7 +3689,7 @@ Planning Time: 1.910 ms
 Execution Time: 345.490 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=106232.03..3646163.12 rows=235858077 width=72) (actual time=358.490..417.226 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -3714,7 +3714,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.29..11622.75 rows=1 width=30) (actual time=0.612..74.662 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.048..0.050 rows=1 loops=1)
@@ -3734,7 +3734,7 @@ Planning Time: 1.875 ms
 Execution Time: 74.780 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1008.56..12144.67 rows=9 width=30) (actual time=0.684..102.879 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -3762,7 +3762,7 @@ Planning Time: 2.212 ms
 Execution Time: 102.929 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1051.92..12293.44 rows=1021 width=30) (actual time=1.030..102.830 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -3790,7 +3790,7 @@ Planning Time: 2.480 ms
 Execution Time: 102.939 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..22947.00 rows=100000 width=30) (actual time=21.983..258.137 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -3808,7 +3808,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.72..16.76 rows=1 width=30) (actual time=0.114..0.115 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.046..0.046 rows=1 loops=1)
@@ -3821,7 +3821,7 @@ Planning Time: 2.170 ms
 Execution Time: 0.228 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.72..84.52 rows=9 width=30) (actual time=0.019..0.037 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.45 rows=9 width=15) (actual time=0.008..0.009 rows=9 loops=1)
@@ -3834,7 +3834,7 @@ Planning Time: 2.846 ms
 Execution Time: 0.064 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=0.76..3483.92 rows=1037 width=30) (actual time=0.019..0.718 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -3847,7 +3847,7 @@ Planning Time: 2.732 ms
 Execution Time: 0.787 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=3.13..7829.81 rows=100000 width=30) (actual time=0.021..67.977 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -3868,7 +3868,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.00..243240.83 rows=11807800 width=72) (actual time=0.681..684.039 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Gather  (cost=1000.00..94242.63 rows=34325 width=36) (actual time=0.629..656.830 rows=1 loops=1)
@@ -3891,7 +3891,7 @@ Planning Time: 4.374 ms
 Execution Time: 684.233 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=1280741.53..13089659.98 rows=786109432 width=72) (actual time=3266.179..3266.188 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -3915,7 +3915,7 @@ Planning Time: 4.984 ms
 Execution Time: 3292.053 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=1281978.31..18461598.31 rows=1144152725 width=72) (actual time=3025.477..3026.023 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -3939,7 +3939,7 @@ Planning Time: 1.613 ms
 Execution Time: 3051.897 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=2791.00..219889.39 rows=6864985 width=51) (actual time=21.773..2354.942 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -3957,7 +3957,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.29..107146.02 rows=1 width=30) (actual time=0.607..415.074 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.055..0.058 rows=1 loops=1)
@@ -3977,7 +3977,7 @@ Planning Time: 1.872 ms
 Execution Time: 415.259 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1008.59..112355.50 rows=10 width=30) (actual time=0.637..633.865 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -4005,7 +4005,7 @@ Planning Time: 2.477 ms
 Execution Time: 633.968 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1053.15..112509.64 rows=1062 width=30) (actual time=1.950..686.984 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -4033,7 +4033,7 @@ Planning Time: 2.730 ms
 Execution Time: 687.155 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=3791.00..125553.53 rows=100000 width=30) (actual time=40.102..1013.488 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -4063,7 +4063,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.73..16.77 rows=1 width=30) (actual time=0.173..0.175 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.31 rows=1 width=15) (actual time=0.069..0.069 rows=1 loops=1)
@@ -4076,7 +4076,7 @@ Planning Time: 3.707 ms
 Execution Time: 0.311 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.73..84.61 rows=9 width=30) (actual time=0.043..0.062 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.29..8.45 rows=9 width=15) (actual time=0.025..0.027 rows=9 loops=1)
@@ -4089,7 +4089,7 @@ Planning Time: 4.735 ms
 Execution Time: 0.097 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=0.98..3744.09 rows=982 width=30) (actual time=0.037..0.841 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -4102,7 +4102,7 @@ Planning Time: 3.708 ms
 Execution Time: 0.919 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=20.84..8091.63 rows=100000 width=30) (actual time=0.033..69.668 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -4123,7 +4123,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.00..26487.74 rows=1180952 width=72) (actual time=0.674..101.514 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Gather  (cost=1000.00..10325.14 rows=3433 width=36) (actual time=0.625..81.207 rows=1 loops=1)
@@ -4146,7 +4146,7 @@ Planning Time: 1.302 ms
 Execution Time: 101.629 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=49246.23..1229452.29 rows=78619359 width=72) (actual time=121.967..121.976 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -4170,7 +4170,7 @@ Planning Time: 1.791 ms
 Execution Time: 123.804 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=49246.23..1229452.29 rows=78619359 width=72) (actual time=122.811..123.333 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -4194,7 +4194,7 @@ Planning Time: 1.314 ms
 Execution Time: 125.344 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=106232.03..3646163.12 rows=235858077 width=72) (actual time=343.457..408.992 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -4219,7 +4219,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.42..1799.45 rows=1 width=30) (actual time=0.110..10.066 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.42..8.44 rows=1 width=15) (actual time=0.079..0.081 rows=1 loops=1)
@@ -4233,7 +4233,7 @@ Planning Time: 1.814 ms
 Execution Time: 10.183 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=8.70..1924.70 rows=1 width=30) (actual time=0.060..17.065 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -4249,7 +4249,7 @@ Planning Time: 2.107 ms
 Execution Time: 17.092 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=51.72..1968.73 rows=101 width=30) (actual time=0.400..18.710 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -4265,7 +4265,7 @@ Planning Time: 2.494 ms
 Execution Time: 18.770 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=9846.30..14764.22 rows=100000 width=30) (actual time=37.003..95.593 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -4284,7 +4284,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.72..16.76 rows=1 width=30) (actual time=0.127..0.129 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.42..8.44 rows=1 width=15) (actual time=0.069..0.070 rows=1 loops=1)
@@ -4297,7 +4297,7 @@ Planning Time: 2.216 ms
 Execution Time: 0.255 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.72..83.46 rows=1 width=30) (actual time=0.014..0.029 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.42..8.58 rows=9 width=15) (actual time=0.004..0.005 rows=9 loops=1)
@@ -4310,7 +4310,7 @@ Planning Time: 2.596 ms
 Execution Time: 0.056 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=50.64..1967.62 rows=97 width=30) (actual time=0.391..18.112 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -4326,7 +4326,7 @@ Planning Time: 2.965 ms
 Execution Time: 18.172 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=0.75..7789.11 rows=100000 width=30) (actual time=0.016..66.159 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -4347,7 +4347,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.00..26487.74 rows=1180952 width=72) (actual time=0.685..91.065 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Gather  (cost=1000.00..10325.14 rows=3433 width=36) (actual time=0.633..71.018 rows=1 loops=1)
@@ -4370,7 +4370,7 @@ Planning Time: 1.254 ms
 Execution Time: 91.178 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=49246.23..1229452.29 rows=78619359 width=72) (actual time=123.224..123.233 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -4394,7 +4394,7 @@ Planning Time: 1.789 ms
 Execution Time: 125.196 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=49246.23..1229452.29 rows=78619359 width=72) (actual time=123.303..123.830 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -4418,7 +4418,7 @@ Planning Time: 1.508 ms
 Execution Time: 125.745 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=106232.03..3646163.12 rows=235858077 width=72) (actual time=361.236..426.386 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -4443,7 +4443,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.42..1799.45 rows=1 width=30) (actual time=0.111..10.253 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.42..8.44 rows=1 width=15) (actual time=0.084..0.087 rows=1 loops=1)
@@ -4457,7 +4457,7 @@ Planning Time: 1.967 ms
 Execution Time: 10.374 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=8.70..1924.70 rows=1 width=30) (actual time=0.052..16.158 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -4473,7 +4473,7 @@ Planning Time: 2.278 ms
 Execution Time: 16.189 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=52.83..1969.88 rows=105 width=30) (actual time=0.395..17.857 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -4489,7 +4489,7 @@ Planning Time: 2.639 ms
 Execution Time: 17.943 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=9846.30..14755.31 rows=100000 width=30) (actual time=37.750..96.572 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -4508,7 +4508,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.72..16.76 rows=1 width=30) (actual time=0.126..0.128 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.42..8.44 rows=1 width=15) (actual time=0.073..0.073 rows=1 loops=1)
@@ -4521,7 +4521,7 @@ Planning Time: 2.294 ms
 Execution Time: 0.254 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.72..83.46 rows=1 width=30) (actual time=0.018..0.047 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.42..8.58 rows=9 width=15) (actual time=0.006..0.008 rows=9 loops=1)
@@ -4534,7 +4534,7 @@ Planning Time: 3.096 ms
 Execution Time: 0.082 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=50.38..1967.34 rows=96 width=30) (actual time=0.378..18.066 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -4550,7 +4550,7 @@ Planning Time: 2.691 ms
 Execution Time: 18.124 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=1.06..7667.01 rows=100000 width=30) (actual time=0.020..65.988 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -4571,7 +4571,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.00..26487.74 rows=1180952 width=72) (actual time=0.653..95.998 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Gather  (cost=1000.00..10325.14 rows=3433 width=36) (actual time=0.586..70.621 rows=1 loops=1)
@@ -4594,7 +4594,7 @@ Planning Time: 1.295 ms
 Execution Time: 96.110 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=49246.23..1229452.29 rows=78619359 width=72) (actual time=128.384..128.392 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -4618,7 +4618,7 @@ Planning Time: 1.421 ms
 Execution Time: 130.216 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=49246.23..1229452.29 rows=78619359 width=72) (actual time=103.128..103.549 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -4642,7 +4642,7 @@ Planning Time: 1.804 ms
 Execution Time: 105.567 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=106232.03..3646163.12 rows=235858077 width=72) (actual time=356.707..564.196 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -4667,7 +4667,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.42..1799.45 rows=1 width=30) (actual time=0.082..8.272 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.42..8.44 rows=1 width=15) (actual time=0.062..0.064 rows=1 loops=1)
@@ -4681,7 +4681,7 @@ Planning Time: 2.331 ms
 Execution Time: 8.372 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=8.70..1924.70 rows=1 width=30) (actual time=0.065..13.394 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -4697,7 +4697,7 @@ Planning Time: 2.184 ms
 Execution Time: 13.446 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=50.05..1967.00 rows=95 width=30) (actual time=0.310..14.960 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -4713,7 +4713,7 @@ Planning Time: 2.671 ms
 Execution Time: 15.031 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=9846.34..14750.29 rows=100000 width=30) (actual time=33.522..90.140 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -4732,7 +4732,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.72..16.76 rows=1 width=30) (actual time=0.123..0.124 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.42..8.44 rows=1 width=15) (actual time=0.071..0.071 rows=1 loops=1)
@@ -4745,7 +4745,7 @@ Planning Time: 2.579 ms
 Execution Time: 0.248 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.72..83.46 rows=1 width=30) (actual time=0.011..0.026 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.42..8.58 rows=9 width=15) (actual time=0.004..0.005 rows=9 loops=1)
@@ -4758,7 +4758,7 @@ Planning Time: 2.854 ms
 Execution Time: 0.056 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=50.31..1967.28 rows=96 width=30) (actual time=0.381..18.204 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -4774,7 +4774,7 @@ Planning Time: 2.797 ms
 Execution Time: 18.265 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=0.82..7723.74 rows=100000 width=30) (actual time=0.015..67.657 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -4795,7 +4795,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=2000.00..167977.48 rows=11785489 width=72) (actual time=1.022..147.476 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Gather  (cost=1000.00..10325.14 rows=3433 width=36) (actual time=0.557..29.932 rows=1 loops=1)
@@ -4824,7 +4824,7 @@ Planning Time: 1.215 ms
 Execution Time: 147.683 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=138223.16..11925268.34 rows=785612300 width=72) (actual time=425.617..425.625 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -4848,7 +4848,7 @@ Planning Time: 1.258 ms
 Execution Time: 430.299 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=138223.16..11925268.34 rows=785612300 width=72) (actual time=430.840..431.381 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -4872,7 +4872,7 @@ Planning Time: 1.422 ms
 Execution Time: 436.029 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=195208.96..35552911.66 rows=2356836899 width=72) (actual time=663.092..1298.287 rows=1000000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -4897,7 +4897,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.42..11622.89 rows=1 width=30) (actual time=0.657..72.976 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.42..8.44 rows=1 width=15) (actual time=0.066..0.069 rows=1 loops=1)
@@ -4917,7 +4917,7 @@ Planning Time: 1.972 ms
 Execution Time: 73.085 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1008.73..12144.93 rows=10 width=30) (actual time=0.714..108.396 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -4945,7 +4945,7 @@ Planning Time: 2.245 ms
 Execution Time: 108.430 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1058.28..12307.50 rows=1095 width=30) (actual time=1.003..99.970 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -4973,7 +4973,7 @@ Planning Time: 2.105 ms
 Execution Time: 100.067 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=32789.00..76594.00 rows=1000000 width=30) (actual time=231.511..980.389 rows=1000000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -4991,7 +4991,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.85..16.90 rows=1 width=30) (actual time=0.122..0.123 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.42..8.44 rows=1 width=15) (actual time=0.060..0.060 rows=1 loops=1)
@@ -5004,7 +5004,7 @@ Planning Time: 2.145 ms
 Execution Time: 0.231 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.85..84.66 rows=9 width=30) (actual time=0.019..0.037 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.42..8.58 rows=9 width=15) (actual time=0.004..0.006 rows=9 loops=1)
@@ -5017,7 +5017,7 @@ Planning Time: 3.588 ms
 Execution Time: 0.068 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.85..7900.80 rows=1054 width=30) (actual time=0.031..2.384 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.42..39.87 rows=1054 width=15) (actual time=0.011..0.291 rows=999 loops=1)
@@ -5030,7 +5030,7 @@ Planning Time: 3.232 ms
 Execution Time: 2.451 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=32789.00..76594.00 rows=1000000 width=30) (actual time=229.368..970.876 rows=1000000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -5054,7 +5054,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.00..1581288.03 rows=117837725 width=72) (actual time=0.613..783.846 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Seq Scan on public.t1  (cost=0.00..13988.02 rows=3433 width=36) (actual time=0.049..133.093 rows=1 loops=1)
@@ -5077,7 +5077,7 @@ Planning Time: 3.540 ms
 Execution Time: 784.049 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=1318301.91..119167554.43 rows=7855396386 width=72) (actual time=5114.206..5114.215 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -5101,7 +5101,7 @@ Planning Time: 2.868 ms
 Execution Time: 5140.448 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=1318301.91..119167554.43 rows=7855396386 width=72) (actual time=3368.735..3369.280 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -5125,7 +5125,7 @@ Planning Time: 1.532 ms
 Execution Time: 3395.827 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=1375287.70..354888720.34 rows=23566189158 width=72) (actual time=3567.655..4178.801 rows=1000000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -5150,7 +5150,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.42..107147.80 rows=1 width=30) (actual time=0.634..427.618 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.42..8.44 rows=1 width=15) (actual time=0.082..0.085 rows=1 loops=1)
@@ -5170,7 +5170,7 @@ Planning Time: 1.626 ms
 Execution Time: 427.773 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1008.70..112357.31 rows=9 width=30) (actual time=0.646..633.511 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -5198,7 +5198,7 @@ Planning Time: 2.196 ms
 Execution Time: 633.595 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1050.16..112497.63 rows=958 width=30) (actual time=2.871..683.490 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -5226,7 +5226,7 @@ Planning Time: 1.888 ms
 Execution Time: 683.642 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=17816.00..273626.78 rows=1000000 width=30) (actual time=976.057..2010.245 rows=1000000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -5256,7 +5256,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.86..16.91 rows=1 width=30) (actual time=0.201..0.203 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.42..8.44 rows=1 width=15) (actual time=0.088..0.089 rows=1 loops=1)
@@ -5269,7 +5269,7 @@ Planning Time: 2.913 ms
 Execution Time: 0.311 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.86..76.27 rows=8 width=30) (actual time=0.017..0.032 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.42..8.56 rows=8 width=15) (actual time=0.005..0.006 rows=9 loops=1)
@@ -5282,7 +5282,7 @@ Planning Time: 2.677 ms
 Execution Time: 0.055 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.86..7750.98 rows=922 width=30) (actual time=0.023..1.848 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.42..36.56 rows=922 width=15) (actual time=0.011..0.193 rows=999 loops=1)
@@ -5295,7 +5295,7 @@ Planning Time: 2.789 ms
 Execution Time: 1.893 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=14.42..77657.74 rows=1000000 width=30) (actual time=0.022..729.607 rows=1000000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -5316,7 +5316,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.00..243240.83 rows=11807800 width=72) (actual time=0.683..675.846 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Gather  (cost=1000.00..94242.63 rows=34325 width=36) (actual time=0.641..656.266 rows=1 loops=1)
@@ -5339,7 +5339,7 @@ Planning Time: 3.049 ms
 Execution Time: 676.024 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=515355.37..12313231.11 rows=786120759 width=72) (actual time=1019.284..1019.293 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -5363,7 +5363,7 @@ Planning Time: 3.765 ms
 Execution Time: 1021.075 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=515355.37..12313231.11 rows=786120759 width=72) (actual time=897.535..897.969 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -5387,7 +5387,7 @@ Planning Time: 1.050 ms
 Execution Time: 899.596 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=1286310.77..36679256.10 rows=2358362622 width=72) (actual time=3162.547..3219.017 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -5412,7 +5412,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.43..1799.46 rows=1 width=30) (actual time=0.102..7.980 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.43..8.45 rows=1 width=15) (actual time=0.082..0.083 rows=1 loops=1)
@@ -5426,7 +5426,7 @@ Planning Time: 1.887 ms
 Execution Time: 8.074 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=8.67..1924.68 rows=1 width=30) (actual time=0.046..13.077 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -5442,7 +5442,7 @@ Planning Time: 2.135 ms
 Execution Time: 13.100 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=49.58..1965.66 rows=9 width=30) (actual time=0.354..15.390 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -5458,7 +5458,7 @@ Planning Time: 1.783 ms
 Execution Time: 15.438 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=9846.63..14525.81 rows=100000 width=30) (actual time=31.853..93.245 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -5477,7 +5477,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.73..16.77 rows=1 width=30) (actual time=0.110..0.112 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.43..8.45 rows=1 width=15) (actual time=0.058..0.059 rows=1 loops=1)
@@ -5490,7 +5490,7 @@ Planning Time: 2.205 ms
 Execution Time: 0.233 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.73..75.14 rows=1 width=30) (actual time=0.016..0.031 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.43..8.57 rows=8 width=15) (actual time=0.006..0.008 rows=9 loops=1)
@@ -5503,7 +5503,7 @@ Planning Time: 2.844 ms
 Execution Time: 0.058 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=47.32..1963.40 rows=9 width=30) (actual time=0.379..18.135 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -5519,7 +5519,7 @@ Planning Time: 2.832 ms
 Execution Time: 18.224 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=2.05..7435.56 rows=100000 width=30) (actual time=0.015..66.162 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -5540,7 +5540,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.00..243240.83 rows=11807800 width=72) (actual time=0.704..709.832 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Gather  (cost=1000.00..94242.63 rows=34325 width=36) (actual time=0.656..688.986 rows=1 loops=1)
@@ -5563,7 +5563,7 @@ Planning Time: 3.261 ms
 Execution Time: 710.029 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=515355.37..12313231.11 rows=786120759 width=72) (actual time=1053.522..1053.531 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -5587,7 +5587,7 @@ Planning Time: 3.570 ms
 Execution Time: 1055.440 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=515355.37..12313231.11 rows=786120759 width=72) (actual time=1043.785..1044.309 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -5611,7 +5611,7 @@ Planning Time: 1.437 ms
 Execution Time: 1046.263 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=1286310.77..36679256.10 rows=2358362622 width=72) (actual time=3295.785..3354.762 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -5636,7 +5636,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.43..1799.46 rows=1 width=30) (actual time=0.117..9.953 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.43..8.45 rows=1 width=15) (actual time=0.094..0.095 rows=1 loops=1)
@@ -5650,7 +5650,7 @@ Planning Time: 2.452 ms
 Execution Time: 10.065 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=8.71..1924.71 rows=1 width=30) (actual time=0.052..16.132 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -5666,7 +5666,7 @@ Planning Time: 2.606 ms
 Execution Time: 16.165 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=52.84..1968.94 rows=10 width=30) (actual time=0.448..18.291 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -5682,7 +5682,7 @@ Planning Time: 2.003 ms
 Execution Time: 18.375 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=9846.31..14870.19 rows=100000 width=30) (actual time=36.194..97.981 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -5701,7 +5701,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.73..16.77 rows=1 width=30) (actual time=0.106..0.107 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.43..8.45 rows=1 width=15) (actual time=0.059..0.059 rows=1 loops=1)
@@ -5714,7 +5714,7 @@ Planning Time: 2.326 ms
 Execution Time: 0.218 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.73..83.47 rows=1 width=30) (actual time=0.010..0.025 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.43..8.59 rows=9 width=15) (actual time=0.004..0.005 rows=9 loops=1)
@@ -5727,7 +5727,7 @@ Planning Time: 2.670 ms
 Execution Time: 0.055 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=50.84..1966.93 rows=10 width=30) (actual time=0.381..18.190 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -5743,7 +5743,7 @@ Planning Time: 2.550 ms
 Execution Time: 18.273 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=9.80..7722.93 rows=100000 width=30) (actual time=0.019..66.579 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -5764,7 +5764,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.00..243240.83 rows=11807800 width=72) (actual time=0.786..684.652 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Gather  (cost=1000.00..94242.63 rows=34325 width=36) (actual time=0.721..666.598 rows=1 loops=1)
@@ -5787,7 +5787,7 @@ Planning Time: 2.845 ms
 Execution Time: 684.881 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=515355.37..12313231.11 rows=786120759 width=72) (actual time=1044.872..1044.882 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -5811,7 +5811,7 @@ Planning Time: 3.463 ms
 Execution Time: 1046.649 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=515355.37..12313231.11 rows=786120759 width=72) (actual time=1055.846..1056.378 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -5835,7 +5835,7 @@ Planning Time: 1.427 ms
 Execution Time: 1058.320 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=1286310.77..36679256.10 rows=2358362622 width=72) (actual time=3283.349..3345.870 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -5860,7 +5860,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.43..1799.46 rows=1 width=30) (actual time=0.136..10.064 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.43..8.45 rows=1 width=15) (actual time=0.107..0.110 rows=1 loops=1)
@@ -5874,7 +5874,7 @@ Planning Time: 3.443 ms
 Execution Time: 10.196 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=8.73..1924.74 rows=1 width=30) (actual time=0.058..16.133 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -5890,7 +5890,7 @@ Planning Time: 2.600 ms
 Execution Time: 16.165 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=58.34..1974.45 rows=11 width=30) (actual time=0.478..17.503 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -5906,7 +5906,7 @@ Planning Time: 2.607 ms
 Execution Time: 17.563 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=9850.44..15058.54 rows=100000 width=30) (actual time=37.305..100.022 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -5925,7 +5925,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.73..16.77 rows=1 width=30) (actual time=0.115..0.116 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.43..8.45 rows=1 width=15) (actual time=0.068..0.068 rows=1 loops=1)
@@ -5938,7 +5938,7 @@ Planning Time: 2.160 ms
 Execution Time: 0.230 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.73..91.81 rows=1 width=30) (actual time=0.024..0.040 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.43..8.61 rows=10 width=15) (actual time=0.004..0.006 rows=9 loops=1)
@@ -5951,7 +5951,7 @@ Planning Time: 2.664 ms
 Execution Time: 0.067 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=53.15..1969.25 rows=11 width=30) (actual time=0.379..17.438 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t2.id = t1.id)
@@ -5967,7 +5967,7 @@ Planning Time: 2.537 ms
 Execution Time: 17.495 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=65.80..7966.37 rows=100000 width=30) (actual time=0.028..66.413 rows=100000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -5988,7 +5988,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.00..1581288.03 rows=117837725 width=72) (actual time=0.639..909.115 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Seq Scan on public.t2  (cost=0.00..13988.02 rows=3433 width=36) (actual time=0.050..140.653 rows=1 loops=1)
@@ -6011,7 +6011,7 @@ Planning Time: 3.466 ms
 Execution Time: 909.291 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=604332.30..118444414.56 rows=7855395242 width=72) (actual time=1379.894..1379.904 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -6035,7 +6035,7 @@ Planning Time: 3.858 ms
 Execution Time: 1384.292 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=604332.30..118444414.56 rows=7855395242 width=72) (actual time=1448.024..1448.559 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -6059,7 +6059,7 @@ Planning Time: 1.506 ms
 Execution Time: 1452.933 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=1375287.70..354888720.34 rows=23566189158 width=72) (actual time=3708.992..4439.859 rows=1000000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t2.id = t1.id)
@@ -6084,7 +6084,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.43..11622.90 rows=1 width=30) (actual time=0.746..87.216 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.43..8.45 rows=1 width=15) (actual time=0.139..0.142 rows=1 loops=1)
@@ -6104,7 +6104,7 @@ Planning Time: 4.011 ms
 Execution Time: 87.414 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1008.71..12143.98 rows=1 width=30) (actual time=0.588..99.834 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -6132,7 +6132,7 @@ Planning Time: 2.635 ms
 Execution Time: 99.891 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1049.82..12194.87 rows=95 width=30) (actual time=1.002..99.311 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -6160,7 +6160,7 @@ Planning Time: 1.980 ms
 Execution Time: 99.408 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=132155.28..183968.92 rows=1000000 width=30) (actual time=309.078..1098.257 rows=1000000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -6181,7 +6181,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.86..16.91 rows=1 width=30) (actual time=0.129..0.131 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.43..8.45 rows=1 width=15) (actual time=0.062..0.062 rows=1 loops=1)
@@ -6194,7 +6194,7 @@ Planning Time: 2.180 ms
 Execution Time: 0.242 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.86..84.67 rows=1 width=30) (actual time=0.019..0.038 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.43..8.59 rows=9 width=15) (actual time=0.005..0.006 rows=9 loops=1)
@@ -6207,7 +6207,7 @@ Planning Time: 2.810 ms
 Execution Time: 0.070 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.86..7827.64 rows=104 width=30) (actual time=0.031..2.194 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.43..39.69 rows=1043 width=15) (actual time=0.013..0.238 rows=999 loops=1)
@@ -6220,7 +6220,7 @@ Planning Time: 2.876 ms
 Execution Time: 2.249 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=9.50..78066.50 rows=1000000 width=30) (actual time=0.023..663.196 rows=1000000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -6241,7 +6241,7 @@ INDEXES:
 INDEX ON t1(id): False, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.00..14961766.07 rows=1178205625 width=72) (actual time=0.680..2587.071 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Seq Scan on public.t1  (cost=0.00..139867.31 rows=34325 width=36) (actual time=0.052..1821.772 rows=1 loops=1)
@@ -6264,7 +6264,7 @@ Planning Time: 4.320 ms
 Execution Time: 2587.251 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=1784411.04..1180013319.77 rows=78546686975 width=72) (actual time=4427.246..4427.256 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -6288,7 +6288,7 @@ Planning Time: 31.628 ms
 Execution Time: 4453.808 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=1784411.04..1180013319.77 rows=78546686975 width=72) (actual time=4508.949..4509.483 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -6312,7 +6312,7 @@ Planning Time: 1.731 ms
 Execution Time: 4541.034 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=2555366.44..3537208282.59 rows=235640095251 width=72) (actual time=6802.029..13302.198 rows=10000000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)
@@ -6337,7 +6337,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): False
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=1000.43..107147.81 rows=1 width=30) (actual time=0.688..505.856 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.43..8.45 rows=1 width=15) (actual time=0.117..0.120 rows=1 loops=1)
@@ -6357,7 +6357,7 @@ Planning Time: 2.874 ms
 Execution Time: 506.050 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1008.71..112357.32 rows=9 width=30) (actual time=0.711..705.116 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -6385,7 +6385,7 @@ Planning Time: 3.809 ms
 Execution Time: 705.241 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Gather  (cost=1051.59..112503.95 rows=1005 width=30) (actual time=2.426..776.069 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Workers Planned: 2
@@ -6413,7 +6413,7 @@ Planning Time: 2.279 ms
 Execution Time: 776.233 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Hash Join  (cost=327887.94..878436.06 rows=10000175 width=30) (actual time=2654.396..11119.815 rows=10000000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Hash Cond: (t1.id = t2.id)
@@ -6431,7 +6431,7 @@ INDEXES:
 INDEX ON t1(id): True, INDEX ON t2(id): True
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id = 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.87..16.92 rows=1 width=30) (actual time=0.157..0.159 rows=1 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.43..8.45 rows=1 width=15) (actual time=0.061..0.061 rows=1 loops=1)
@@ -6444,7 +6444,7 @@ Planning Time: 2.135 ms
 Execution Time: 0.269 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 10
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.87..93.23 rows=10 width=30) (actual time=0.021..0.040 rows=9 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.43..8.61 rows=10 width=15) (actual time=0.004..0.006 rows=9 loops=1)
@@ -6457,7 +6457,7 @@ Planning Time: 3.074 ms
 Execution Time: 0.069 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id where t1.id < 1000
-QUERYPLAN: 
+QUERYPLAN:
 Nested Loop  (cost=0.87..9706.27 rows=1158 width=30) (actual time=0.026..2.369 rows=999 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   ->  Index Scan using t1_id_idx on public.t1  (cost=0.43..46.70 rows=1158 width=15) (actual time=0.011..0.235 rows=999 loops=1)
@@ -6470,7 +6470,7 @@ Planning Time: 2.969 ms
 Execution Time: 2.427 ms
 ----------------------------------------------------------------------------------------------------
 QUERY: SELECT * FROM t1 INNER JOIN t2 ON t1.id = t2.id
-QUERYPLAN: 
+QUERYPLAN:
 Merge Join  (cost=12.76..777415.83 rows=9999860 width=30) (actual time=0.027..6816.185 rows=10000000 loops=1)
   Output: t1.id, t1.name, t2.id, t2.name
   Merge Cond: (t1.id = t2.id)

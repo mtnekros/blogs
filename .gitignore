@@ -1,5 +1,5 @@
 __pycache__/
 venv/**
-**/main.py
+*.py[cod]
 **/main.js
 *.png~
