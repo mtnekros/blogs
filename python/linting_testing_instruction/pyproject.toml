@@ -1,0 +1,99 @@
+[project]
+name = "Name of the project" # REQUIRED, is the only field that cannot be marked as dynamic.
+version = "1.0.0" # REQUIRED, although can be dynamic
+description = ""
+readme = "README.md"
+requires-python=">=3.11"
+dependencies = [
+]
+
+[dependency-groups]
+dev = [
+    "python-dotenv>=1.1.0",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.0"
+]
+
+
+[tool.ruff]
+# Set the maximum line length for code
+line-length = 120
+
+# Target Python version for linting/auto-upgrade suggestions
+target-version = "py311"
+
+[tool.ruff.lint]
+# Enable specific linting rules
+select = [
+  "ANN",  # `flake8-annotations`: Checks for missing & incorrect type annotations
+  "B",    # `flake8-bugbear`: Checks for likely bugs or bad practises for python code
+  "D",    # `pydocstyle`: Enforces docstring conventions
+  "E",    # `pycodestyle`: Checks for style guide violations (Eg, whitespace & line-length)
+  "F",    # `pyflakes`: Checks for undefined names, unused variables, etc.
+  "I",    # `isort`: Checks for import order and formatting
+  "N",    # Enables PEP8 naming convention rules
+  "S",    # `bandit`: Checks for security issues in Python code
+  "SIM",  # `flake8-simplify`: Checks for code that can be simplified
+  "TCH",  # `flake8-type-checking`: Checks for type checking import placement
+  "UP",   # `pyupgrade`: Checks for code that can be upgraded to a newer version of Python
+  "W",    # `pycodestyle`: Checks for style guide violations (Eg, whitespace & line-length)
+  "YTT"   # `flake8-y2038`: Checks for year 2038 compatibility issues
+]
+
+# Disable specific linting rules:
+ignore = [
+  "ANN101", # - ANN101: Missing type annotation for 'self' (often unnecessary)
+  "S101" # - S101: Allow 'assert' (useful in tests and debugging)
+]
+
+[tool.ruff.format]
+# Set formatting rules (Ruff now handles formatting too)
+quote-style = "double"         # Use double quotes consistently
+indent-style = "space"         # Use spaces for indentation
+line-ending = "lf"             # Use LF line endings for cross-platform consistency
+
+[tool.pytest.ini_options]
+# Pytest configuration for consistent test discovery and reporting
+minversion = "6.0"
+addopts = "--cov=. --cov-report=term-missing -ra"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+
+[tool.coverage.run]
+# Coverage settings
+branch = true                  # Track branch coverage
+source = ["."]               # Source code location
+
+[tool.coverage.report]
+# Report formatting options
+show_missing = true            # Show lines that were not covered
+skip_covered = true            # Hide files that are 100% covered
+exclude_lines = [
+    "pragma: no cover",        # Exclude specific coverage lines
+    "if __name__ == .__main__.:"
+]
+
+[tool.pyright]
+# For more information on pyright configuration, see: https://github.com/microsoft/pyright/blob/main/docs/configuration.md#sample-pyprojecttoml-file
+typeCheckingMode = "standard"
+venv = ".venv"
+include = ["."]
+exclude = ["**/node_modules",
+    "**/__pycache__",
+    "src/experimental",
+    "src/typestubs",
+    ".venv",
+    "venv"
+]
+ignore = ["src/oldstuff"]
+defineConstant = { DEBUG = true }
+stubPath = "src/stubs"
+
+reportMissingImports = "error"
+reportMissingTypeStubs = false
+
+pythonVersion = "3.11"
+
+executionEnvironments = [
+  { root = "." }
+]
