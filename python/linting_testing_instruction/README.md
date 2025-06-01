@@ -29,11 +29,11 @@
 
 ## Some examples of ruff & pyrights capabilities
 1. Formatting the python files
-    * Use: <Ctrl> + <Shift> + P -> Ruff: format documents
+    * Use: `<Ctrl> + <Shift> + P` -> Ruff: format documents
 2. Sorting import statements
-    * Use: <Ctrl> + <Shift> + P -> Ruff: format imports
+    * Use: `<Ctrl> + <Shift> + P` -> Ruff: format imports
 3. Fixing all auto-fixable linting errors with ruff:
-    * Use: <Ctrl> + <Shift> + P -> Ruff: fix auto-fixable imports
+    * Use: `<Ctrl> + <Shift> + P` -> Ruff: fix auto-fixable imports
 4. Code Diagnostics Examples:
     * demo.py
         * Diagnostics
@@ -41,19 +41,19 @@
         * Quick Fixes / Code Actions
 
 ## Configure Tests on VSCode
-* Use: <Ctrl> + <Shift> + P -> Python: Configure Tests
+* Use: `<Ctrl> + <Shift> + P` -> Python: Configure Tests
 * Select testing tool: Choose `pytest`
 * Select tests directory: Choose `tests`
 
 ## Running Tests
 1. Run all tests
-    * Use: <Ctrl> + <Shift> + P -> Test: Run all tests
+    * Use: `<Ctrl> + <Shift> + P` -> Test: Run all tests
 2. Running unit tests on a single file:
-    * Use: <Ctrl> + <Shift> + P -> Test: Run tests in current file
+    * Use: `<Ctrl> + <Shift> + P` -> Test: Run tests in current file
 3. Running a single function test:
     * Click on the checkmark/error symbol on the gutter.
     OR
-    * Use: <Ctrl> + <Shift> + P -> Test: Run test at cursor
+    * Use: `<Ctrl> + <Shift> + P` -> Test: Run test at cursor
 
 ## Running tests with command line tool
 1. If you want full coverage report w/ html file:

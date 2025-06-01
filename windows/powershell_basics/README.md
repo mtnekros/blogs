@@ -273,28 +273,31 @@ try {
 
 Here are some of the most frequently used PowerShell cmdlets for system administration and general tasks:
 
-| Cmdlet                | Description                                              |
-|-----------------------|---------------------------------------------------------|
-| `Get-Process`         | Lists running processes                                 |
-| `Stop-Process`        | Stops a running process                                 |
-| `Get-Service`         | Lists all services                                      |
-| `Start-Service`       | Starts a service                                        |
-| `Stop-Service`        | Stops a service                                         |
-| `Restart-Service`     | Restarts a service                                      |
-| `Get-EventLog`        | Retrieves event logs from local/remote computers        |
-| `Get-ChildItem`       | Lists files and directories (like `ls` or `dir`)        |
-| `Copy-Item`           | Copies files and folders                                |
-| `Move-Item`           | Moves files and folders                                 |
-| `Remove-Item`         | Deletes files and folders                               |
-| `Set-ExecutionPolicy` | Changes script execution policy                         |
-| `Get-Content`         | Reads content from a file                               |
-| `Set-Content`         | Writes/replaces content in a file                       |
-| `Add-Content`         | Appends content to a file                               |
-| `Test-Connection`     | Sends ICMP echo requests (like `ping`)                  |
-| `Get-LocalUser`       | Lists local user accounts                               |
-| `New-LocalUser`       | Creates a new local user account                        |
-| `Get-LocalGroup`      | Lists local groups                                      |
-| `Add-LocalGroupMember`| Adds a user to a local group                            |
-| `Get-Help`            | Displays help about cmdlets and concepts                |
++-----------------------+-------------------------------------------------------------+
+| Cmdlet                | Description                                                 |
+|-----------------------|-------------------------------------------------------------|
+| `Get-Process`         | Lists running processes                                     |
+| `Stop-Process`        | Stops a running process                                     |
+| `Get-Service`         | Lists all services                                          |
+| `Start-Service`       | Starts a service                                            |
+| `Stop-Service`        | Stops a service                                             |
+| `Restart-Service`     | Restarts a service                                          |
+| `Get-EventLog`        | Retrieves event logs from local/remote computers            |
+| `Get-ChildItem`       | Lists files and directories (like `ls` or `dir`)            |
+| `Copy-Item`           | Copies files and folders                                    |
+| `Move-Item`           | Moves files and folders                                     |
+| `Remove-Item`         | Deletes files and folders                                   |
+| `Set-ExecutionPolicy` | Changes script execution policy                             |
+| `Get-Content`         | Reads content from a file                                   |
+| `Set-Content`         | Writes/replaces content in a file                           |
+| `Add-Content`         | Appends content to a file                                   |
+| `Test-Connection`     | Sends ICMP echo requests (like `ping`)                      |
+| `Get-LocalUser`       | Lists local user accounts                                   |
+| `New-LocalUser`       | Creates a new local user account                            |
+| `Get-LocalGroup`      | Lists local groups                                          |
+| `Add-LocalGroupMember`| Adds a user to a local group                                |
+| `Get-Help`            | Displays help about cmdlets and concepts                    |
+| `Get-CimInstance`     | Retrieves detailed system info (processes, hardware, etc.)  |
++-----------------------+-------------------------------------------------------------+
 
 These cmdlets form the foundation for many administrative scripts and daily tasks.
